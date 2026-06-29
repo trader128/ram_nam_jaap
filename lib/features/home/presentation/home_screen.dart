@@ -9,6 +9,7 @@ import '../../../shared/models/jap_statistics.dart';
 import '../../../features/jap/providers/jap_providers.dart';
 import '../../../shared/ui/app_scaffold.dart';
 import '../../../shared/widgets/divine_name_text.dart';
+import '../../../shared/widgets/daily_goal_progress.dart';
 import '../../../shared/widgets/primary_button.dart';
 import '../../../theme/app_colors.dart';
 import '../../../theme/app_durations.dart';
@@ -33,6 +34,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(japStatisticsProvider.notifier).refresh();
+      ref.read(japHistoryProvider.notifier).refresh();
+    });
     _controller = AnimationController(vsync: this, duration: AppDurations.slow);
 
     _heroFade = CurvedAnimation(
@@ -64,6 +69,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
   @override
   Widget build(BuildContext context) {
     final statistics = ref.watch(japStatisticsProvider);
+    final settings = ref.watch(japSettingsProvider);
 
     return AppScaffold(
       body: SafeArea(
@@ -86,7 +92,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                     const SizedBox(height: AppSpacing.xl),
                     FadeTransition(
                       opacity: _statsFade,
-                      child: _HomeStatsRow(statistics: statistics),
+                      child: Column(
+                        children: [
+                          _HomeStatsRow(statistics: statistics),
+                          const SizedBox(height: AppSpacing.lg),
+                          DailyGoalProgress(
+                            todayCount: statistics.todayCount,
+                            dailyGoal: settings.dailyGoal,
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -94,7 +109,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
               FadeTransition(
                 opacity: _statsFade,
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: AppSpacing.xl),
+                  padding: const EdgeInsets.only(bottom: AppSpacing.lg),
                   child: PrimaryButtonAnimated(
                     label: AppStrings.beginJap,
                     onPressed: () => context.push(AppRoutes.jap),

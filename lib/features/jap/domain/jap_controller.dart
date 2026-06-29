@@ -5,6 +5,7 @@ import '../../../core/services/sound_service.dart';
 import '../../../shared/models/jap_session.dart';
 import '../../../shared/models/jap_settings.dart';
 import '../../../shared/models/jap_statistics.dart';
+import '../data/jap_history_repository.dart';
 import '../data/jap_session_repository.dart';
 import '../data/jap_settings_repository.dart';
 import '../data/jap_statistics_repository.dart';
@@ -14,17 +15,20 @@ class JapController {
     required JapStatisticsRepository statisticsRepository,
     required JapSessionRepository sessionRepository,
     required JapSettingsRepository settingsRepository,
+    required JapHistoryRepository historyRepository,
     required SoundService soundService,
     required HapticService hapticService,
   }) : _statisticsRepository = statisticsRepository,
        _sessionRepository = sessionRepository,
        _settingsRepository = settingsRepository,
+       _historyRepository = historyRepository,
        _soundService = soundService,
        _hapticService = hapticService;
 
   final JapStatisticsRepository _statisticsRepository;
   final JapSessionRepository _sessionRepository;
   final JapSettingsRepository _settingsRepository;
+  final JapHistoryRepository _historyRepository;
   final SoundService _soundService;
   final HapticService _hapticService;
 
@@ -64,6 +68,11 @@ class JapController {
     );
     await _statisticsRepository.save(updatedStatistics);
     await _statisticsRepository.saveLastActiveDate(DateHelper.today());
+    await _historyRepository.saveDailyCount(
+      date: updatedStatistics.todayDate,
+      count: updatedStatistics.todayCount,
+      dailyGoal: settings.dailyGoal,
+    );
 
     final isMalaComplete =
         updatedSession.count % JapConstants.beadsPerMala == 0;

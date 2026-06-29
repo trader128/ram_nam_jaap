@@ -3,10 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../constants/app_routes.dart';
-import '../features/jap/presentation/jap_screen.dart';
+import '../features/history/presentation/history_screen.dart';
 import '../features/home/presentation/home_screen.dart';
+import '../features/insights/presentation/insights_screen.dart';
+import '../features/jap/presentation/jap_screen.dart';
+import '../features/settings/presentation/more_screen.dart';
 import '../features/splash/presentation/splash_navigation_listener.dart';
 import '../features/splash/presentation/splash_screen.dart';
+import '../shared/ui/app_shell.dart';
 
 final appRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
@@ -30,22 +34,60 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           },
         ),
       ),
-      GoRoute(
-        path: AppRoutes.home,
-        name: 'home',
-        pageBuilder: (context, state) => CustomTransitionPage<void>(
-          key: state.pageKey,
-          child: const HomeScreen(),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return FadeTransition(
-              opacity: CurvedAnimation(
-                parent: animation,
-                curve: Curves.easeOut,
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) {
+          return AppShell(navigationShell: navigationShell);
+        },
+        branches: [
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.home,
+                name: 'home',
+                pageBuilder: (context, state) => NoTransitionPage<void>(
+                  key: state.pageKey,
+                  child: const HomeScreen(),
+                ),
               ),
-              child: child,
-            );
-          },
-        ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.insights,
+                name: 'insights',
+                pageBuilder: (context, state) => NoTransitionPage<void>(
+                  key: state.pageKey,
+                  child: const InsightsScreen(),
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.history,
+                name: 'history',
+                pageBuilder: (context, state) => NoTransitionPage<void>(
+                  key: state.pageKey,
+                  child: const HistoryScreen(),
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.more,
+                name: 'more',
+                pageBuilder: (context, state) => NoTransitionPage<void>(
+                  key: state.pageKey,
+                  child: const MoreScreen(),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
       GoRoute(
         path: AppRoutes.jap,

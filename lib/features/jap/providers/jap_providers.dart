@@ -1,10 +1,15 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/helpers/insights_calculator.dart';
 import '../../../core/services/haptic_service.dart';
 import '../../../core/services/sound_service.dart';
+import '../../../shared/enums/insights_period.dart';
+import '../../../shared/models/daily_jap_record.dart';
+import '../../../shared/models/insights_snapshot.dart';
 import '../../../shared/models/jap_session.dart';
 import '../../../shared/models/jap_settings.dart';
 import '../../../shared/models/jap_statistics.dart';
+import '../data/jap_history_repository.dart';
 import '../data/jap_session_repository.dart';
 import '../data/jap_settings_repository.dart';
 import '../data/jap_statistics_repository.dart';
@@ -22,6 +27,10 @@ final japSettingsRepositoryProvider = Provider<JapSettingsRepository>(
   (ref) => JapSettingsRepository(),
 );
 
+final japHistoryRepositoryProvider = Provider<JapHistoryRepository>(
+  (ref) => JapHistoryRepository(),
+);
+
 final soundServiceProvider = Provider<SoundService>((ref) {
   final service = SoundService();
   ref.onDispose(service.dispose);
@@ -35,6 +44,7 @@ final japControllerProvider = Provider<JapController>((ref) {
     statisticsRepository: ref.watch(japStatisticsRepositoryProvider),
     sessionRepository: ref.watch(japSessionRepositoryProvider),
     settingsRepository: ref.watch(japSettingsRepositoryProvider),
+    historyRepository: ref.watch(japHistoryRepositoryProvider),
     soundService: ref.watch(soundServiceProvider),
     hapticService: ref.watch(hapticServiceProvider),
   );
@@ -55,6 +65,30 @@ final japSessionProvider =
       return JapSessionNotifier(ref.watch(japControllerProvider));
     });
 
+final japHistoryProvider =
+    StateNotifierProvider<JapHistoryNotifier, List<DailyJapRecord>>((ref) {
+      return JapHistoryNotifier(
+        ref.watch(japHistoryRepositoryProvider),
+        ref.watch(japSettingsRepositoryProvider),
+      );
+    });
+
+final insightsPeriodProvider = StateProvider<InsightsPeriod>(
+  (ref) => InsightsPeriod.thirtyDays,
+);
+
+final insightsProvider = Provider<InsightsSnapshot>((ref) {
+  final period = ref.watch(insightsPeriodProvider);
+  final records = ref.watch(japHistoryProvider);
+  final dailyGoal = ref.watch(japSettingsProvider).dailyGoal;
+
+  return InsightsCalculator.calculate(
+    records: records,
+    period: period,
+    dailyGoal: dailyGoal,
+  );
+});
+
 class JapStatisticsNotifier extends StateNotifier<JapStatistics> {
   JapStatisticsNotifier(this._controller) : super(_controller.loadStatistics());
 
@@ -67,7 +101,7 @@ class JapStatisticsNotifier extends StateNotifier<JapStatistics> {
 
 class JapSettingsNotifier extends StateNotifier<JapSettings> {
   JapSettingsNotifier(JapController controller)
-      : super(controller.loadSettings());
+    : super(controller.loadSettings());
 }
 
 class JapSessionStateBundle {
@@ -102,17 +136,36 @@ class JapSessionNotifier extends StateNotifier<JapSessionStateBundle> {
     state = JapSessionStateBundle(session: session, japTrigger: session.count);
   }
 
-  Future<void> registerJap(JapStatisticsNotifier statisticsNotifier) async {
+  Future<void> registerJap(
+    JapStatisticsNotifier statisticsNotifier,
+    JapHistoryNotifier historyNotifier,
+  ) async {
     final result = await _controller.registerJap();
     state = JapSessionStateBundle(
       session: result.session,
       japTrigger: result.japTrigger,
     );
     statisticsNotifier.state = result.statistics;
+    historyNotifier.refresh();
   }
 
   Future<void> endSession() async {
     await _controller.endSession();
     state = JapSessionStateBundle.empty;
+  }
+}
+
+class JapHistoryNotifier extends StateNotifier<List<DailyJapRecord>> {
+  JapHistoryNotifier(this._repository, this._settingsRepository)
+    : super(const []) {
+    refresh();
+  }
+
+  final JapHistoryRepository _repository;
+  final JapSettingsRepository _settingsRepository;
+
+  void refresh() {
+    final dailyGoal = _settingsRepository.load().dailyGoal;
+    state = _repository.loadRecords(dailyGoal: dailyGoal);
   }
 }

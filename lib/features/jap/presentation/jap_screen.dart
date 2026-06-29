@@ -31,6 +31,7 @@ class _JapScreenState extends ConsumerState<JapScreen> {
   Future<void> _closeSession() async {
     await ref.read(japSessionProvider.notifier).endSession();
     ref.read(japStatisticsProvider.notifier).refresh();
+    ref.read(japHistoryProvider.notifier).refresh();
     if (mounted) {
       context.pop();
     }
@@ -39,7 +40,10 @@ class _JapScreenState extends ConsumerState<JapScreen> {
   Future<void> _onJapTap() async {
     await ref
         .read(japSessionProvider.notifier)
-        .registerJap(ref.read(japStatisticsProvider.notifier));
+        .registerJap(
+          ref.read(japStatisticsProvider.notifier),
+          ref.read(japHistoryProvider.notifier),
+        );
   }
 
   @override

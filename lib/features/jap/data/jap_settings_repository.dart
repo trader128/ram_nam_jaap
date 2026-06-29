@@ -15,12 +15,15 @@ class JapSettingsRepository {
           box.get(HiveKeys.enclosureEnabled, defaultValue: true) as bool,
       floatingTextEnabled:
           box.get(HiveKeys.floatingTextEnabled, defaultValue: true) as bool,
-      textSize: (box.get(HiveKeys.textSize) as num?)?.toDouble() ??
+      textSize:
+          (box.get(HiveKeys.textSize) as num?)?.toDouble() ??
           JapConstants.defaultTextSize,
-      dailyGoal: box.get(
-        HiveKeys.dailyGoal,
-        defaultValue: JapConstants.defaultDailyGoal,
-      ) as int,
+      dailyGoal:
+          box.get(
+                HiveKeys.dailyGoal,
+                defaultValue: JapConstants.defaultDailyGoal,
+              )
+              as int,
     );
   }
 

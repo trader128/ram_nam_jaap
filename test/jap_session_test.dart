@@ -38,10 +38,7 @@ void main() {
   testWidgets('HomeScreen displays divine name as hero', (tester) async {
     await tester.pumpWidget(
       ProviderScope(
-        child: MaterialApp(
-          theme: AppTheme.dark,
-          home: const HomeScreen(),
-        ),
+        child: MaterialApp(theme: AppTheme.dark, home: const HomeScreen()),
       ),
     );
 
@@ -54,10 +51,7 @@ void main() {
   testWidgets('JapScreen shows tap instruction', (tester) async {
     await tester.pumpWidget(
       ProviderScope(
-        child: MaterialApp(
-          theme: AppTheme.dark,
-          home: const JapScreen(),
-        ),
+        child: MaterialApp(theme: AppTheme.dark, home: const JapScreen()),
       ),
     );
 

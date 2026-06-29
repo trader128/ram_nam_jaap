@@ -16,4 +16,5 @@ abstract final class HiveKeys {
   static const String floatingTextEnabled = 'floating_text_enabled';
   static const String textSize = 'text_size';
   static const String dailyGoal = 'daily_goal';
+  static const String dailyRecords = 'daily_records';
 }
