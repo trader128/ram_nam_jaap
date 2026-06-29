@@ -14,7 +14,6 @@ dependencies:
   go_router: ^15.1.2
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  path_provider: ^2.1.5
   audioplayers: ^6.1.0
   fl_chart: ^0.70.2
   volume_controller: ^3.4.1
@@ -24,6 +23,14 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/icon/app_icon.png"
+  background_color_ios: "#3A0A05"
 
 flutter:
   uses-material-design: true
