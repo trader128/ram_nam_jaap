@@ -8,6 +8,7 @@ import 'package:hive/hive.dart';
 import 'package:ram_nam_jap/constants/app_strings.dart';
 import 'package:ram_nam_jap/core/constants/hive_box_names.dart';
 import 'package:ram_nam_jap/core/helpers/number_formatter.dart';
+import 'package:ram_nam_jap/features/deity/domain/deity_catalog.dart';
 import 'package:ram_nam_jap/features/home/presentation/home_screen.dart';
 import 'package:ram_nam_jap/features/jap/presentation/jap_screen.dart';
 import 'package:ram_nam_jap/theme/app_theme.dart';
@@ -44,7 +45,7 @@ void main() {
 
     await tester.pump();
 
-    expect(find.text(AppStrings.divineName), findsOneWidget);
+    expect(find.text(DeityCatalog.fallback.name), findsOneWidget);
     expect(find.text(AppStrings.beginJap), findsOneWidget);
   });
 

@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../constants/app_routes.dart';
 import '../../../constants/app_strings.dart';
 import '../../../core/constants/settings_constants.dart';
+import '../../../features/deity/providers/deity_providers.dart';
 import '../../../features/jap/providers/jap_providers.dart';
 import '../../../shared/ui/app_scaffold.dart';
 import '../../../theme/app_spacing.dart';
@@ -22,6 +23,7 @@ class SettingsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(japSettingsProvider);
     final notifier = ref.read(japSettingsProvider.notifier);
+    final deity = ref.watch(selectedDeityProvider);
 
     return AppScaffold(
       body: SafeArea(
@@ -31,6 +33,18 @@ class SettingsScreen extends ConsumerWidget {
             Text(AppStrings.settingsTitle, style: AppTextStyles.headlineLarge),
             const SizedBox(height: AppSpacing.xxs),
             Text(AppStrings.moreSubtitle, style: AppTextStyles.bodyMedium),
+            const SizedBox(height: AppSpacing.lg),
+            SettingsSection(
+              title: AppStrings.deitySection,
+              children: [
+                SettingsNavTile(
+                  title: AppStrings.currentNaam,
+                  trailingLabel: deity.transliteration,
+                  trailingColor: deity.primary,
+                  onTap: () => context.push(AppRoutes.deitySelection),
+                ),
+              ],
+            ),
             const SizedBox(height: AppSpacing.lg),
             const SettingsCountMethodSelector(),
             const SizedBox(height: AppSpacing.lg),
@@ -84,12 +98,6 @@ class SettingsScreen extends ConsumerWidget {
                   title: AppStrings.showFloatingNaam,
                   value: settings.floatingTextEnabled,
                   onChanged: notifier.setFloatingTextEnabled,
-                ),
-                const Divider(height: 1),
-                SettingsToggleTile(
-                  title: AppStrings.encloseNaam,
-                  value: settings.enclosureEnabled,
-                  onChanged: notifier.setEnclosureEnabled,
                 ),
                 const Divider(height: 1),
                 SettingsNavTile(

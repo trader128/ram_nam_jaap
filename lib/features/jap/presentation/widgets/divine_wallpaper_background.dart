@@ -1,102 +1,103 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../constants/app_strings.dart';
 import '../../../../theme/app_colors.dart';
+import '../../../deity/providers/deity_providers.dart';
 
-class DivineWallpaperBackground extends StatelessWidget {
+/// Immersive, deity-themed backdrop painted entirely on the GPU.
+///
+/// Lightweight by design (no video decoding): a vertical gradient, a soft
+/// radial glow, faint concentric rings, god-rays, and a few drifting motes —
+/// all in one [CustomPainter] wrapped in a [RepaintBoundary].
+class DivineWallpaperBackground extends ConsumerWidget {
   const DivineWallpaperBackground({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return CustomPaint(
-      painter: _DivineWallpaperPainter(naam: AppStrings.divineName),
-      child: const SizedBox.expand(),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final deity = ref.watch(selectedDeityProvider);
+
+    return RepaintBoundary(
+      child: CustomPaint(
+        painter: _DivineWallpaperPainter(
+          top: deity.backdropTop,
+          bottom: deity.backdropBottom,
+          glow: deity.primary,
+          ray: deity.accent,
+        ),
+        child: const SizedBox.expand(),
+      ),
     );
   }
 }
 
 class _DivineWallpaperPainter extends CustomPainter {
-  _DivineWallpaperPainter({required this.naam});
+  const _DivineWallpaperPainter({
+    required this.top,
+    required this.bottom,
+    required this.glow,
+    required this.ray,
+  });
 
-  final String naam;
+  final Color top;
+  final Color bottom;
+  final Color glow;
+  final Color ray;
 
   @override
   void paint(Canvas canvas, Size size) {
     final rect = Offset.zero & size;
+
     final background = Paint()
       ..shader = LinearGradient(
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
-        colors: [
-          const Color(0xFF120A04),
-          AppColors.background,
-          const Color(0xFF1A1208),
-        ],
+        colors: [top, AppColors.background, bottom],
+        stops: const [0, 0.55, 1],
       ).createShader(rect);
     canvas.drawRect(rect, background);
 
-    final glow = Paint()
+    final halo = Offset(size.width / 2, size.height * 0.4);
+
+    final rays = Paint()
       ..shader = RadialGradient(
-        center: const Alignment(0, -0.15),
-        radius: 0.85,
-        colors: [
-          AppColors.primaryGold.withValues(alpha: 0.16),
-          Colors.transparent,
-        ],
+        center: Alignment(0, (halo.dy / size.height) * 2 - 1),
+        radius: 0.95,
+        colors: [ray.withValues(alpha: 0.10), Colors.transparent],
       ).createShader(rect);
-    canvas.drawRect(rect, glow);
+    canvas.drawRect(rect, rays);
+
+    final glowPaint = Paint()
+      ..shader = RadialGradient(
+        center: Alignment(0, (halo.dy / size.height) * 2 - 1),
+        radius: 0.6,
+        colors: [glow.withValues(alpha: 0.16), Colors.transparent],
+      ).createShader(rect);
+    canvas.drawRect(rect, glowPaint);
 
     final ringPaint = Paint()
-      ..color = AppColors.primaryGold.withValues(alpha: 0.08)
+      ..color = glow.withValues(alpha: 0.06)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.2;
-    canvas.drawCircle(
-      Offset(size.width / 2, size.height * 0.42),
-      size.width * 0.34,
-      ringPaint,
-    );
-    canvas.drawCircle(
-      Offset(size.width / 2, size.height * 0.42),
-      size.width * 0.28,
-      ringPaint,
-    );
+      ..strokeWidth = 1;
+    canvas.drawCircle(halo, size.width * 0.31, ringPaint);
+    canvas.drawCircle(halo, size.width * 0.42, ringPaint);
 
-    _drawVerticalNaam(canvas, size);
-    _drawParticles(canvas, size);
-  }
-
-  void _drawVerticalNaam(Canvas canvas, Size size) {
-    final textPainter = TextPainter(
-      text: TextSpan(
-        text: List.generate(4, (_) => naam).join('\n'),
-        style: TextStyle(
-          fontSize: size.width * 0.11,
-          height: 1.15,
-          color: AppColors.primaryGold.withValues(alpha: 0.14),
-          fontWeight: FontWeight.w500,
-        ),
-      ),
-      textDirection: TextDirection.ltr,
-    )..layout(maxWidth: size.width * 0.3);
-
-    textPainter.paint(canvas, Offset(size.width * 0.72, size.height * 0.18));
-  }
-
-  void _drawParticles(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = AppColors.primaryGold.withValues(alpha: 0.25);
-    final randomOffsets = [
+    final motes = Paint()..color = glow.withValues(alpha: 0.18);
+    for (final offset in [
       Offset(size.width * 0.18, size.height * 0.22),
       Offset(size.width * 0.82, size.height * 0.68),
       Offset(size.width * 0.24, size.height * 0.74),
       Offset(size.width * 0.66, size.height * 0.18),
-    ];
-
-    for (final offset in randomOffsets) {
-      canvas.drawCircle(offset, 2, paint);
+      Offset(size.width * 0.5, size.height * 0.85),
+    ]) {
+      canvas.drawCircle(offset, 2, motes);
     }
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+  bool shouldRepaint(covariant _DivineWallpaperPainter oldDelegate) {
+    return oldDelegate.top != top ||
+        oldDelegate.bottom != bottom ||
+        oldDelegate.glow != glow ||
+        oldDelegate.ray != ray;
+  }
 }

@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/services/volume_jap_service.dart';
-import '../../../shared/enums/count_method.dart';
 import '../../../core/constants/settings_constants.dart';
+import '../../../core/helpers/date_helper.dart';
 import '../../../core/helpers/insights_calculator.dart';
 import '../../../core/services/haptic_service.dart';
+import '../../../core/services/motion_jap_service.dart';
 import '../../../core/services/sound_service.dart';
+import '../../../core/services/volume_jap_service.dart';
+import '../../../shared/enums/count_method.dart';
 import '../../../shared/enums/insights_period.dart';
 import '../../../shared/models/daily_jap_record.dart';
 import '../../../shared/models/insights_snapshot.dart';
 import '../../../shared/models/jap_session.dart';
 import '../../../shared/models/jap_settings.dart';
 import '../../../shared/models/jap_statistics.dart';
+import '../../deity/providers/deity_providers.dart';
 import '../data/jap_history_repository.dart';
 import '../data/jap_session_repository.dart';
 import '../data/jap_settings_repository.dart';
@@ -43,8 +46,24 @@ final soundServiceProvider = Provider<SoundService>((ref) {
 
 final hapticServiceProvider = Provider<HapticService>((ref) => HapticService());
 
+final volumeJapServiceProvider = Provider<VolumeJapService>((ref) {
+  final service = VolumeJapService();
+  ref.onDispose(service.stop);
+  return service;
+});
+
+final motionJapServiceProvider = Provider<MotionJapService>((ref) {
+  final service = MotionJapService();
+  ref.onDispose(service.stop);
+  return service;
+});
+
+/// Rebuilt whenever the active deity changes, so all session data is scoped to
+/// the selected deity automatically.
 final japControllerProvider = Provider<JapController>((ref) {
+  final deity = ref.watch(selectedDeityProvider);
   return JapController(
+    deityId: deity.id,
     statisticsRepository: ref.watch(japStatisticsRepositoryProvider),
     sessionRepository: ref.watch(japSessionRepositoryProvider),
     settingsRepository: ref.watch(japSettingsRepositoryProvider),
@@ -52,12 +71,6 @@ final japControllerProvider = Provider<JapController>((ref) {
     soundService: ref.watch(soundServiceProvider),
     hapticService: ref.watch(hapticServiceProvider),
   );
-});
-
-final volumeJapServiceProvider = Provider<VolumeJapService>((ref) {
-  final service = VolumeJapService();
-  ref.onDispose(service.stop);
-  return service;
 });
 
 final japStatisticsProvider =
@@ -78,8 +91,9 @@ final japSessionProvider =
 final japHistoryProvider =
     StateNotifierProvider<JapHistoryNotifier, List<DailyJapRecord>>((ref) {
       return JapHistoryNotifier(
-        ref.watch(japHistoryRepositoryProvider),
-        ref.watch(japSettingsRepositoryProvider),
+        deityId: ref.watch(selectedDeityProvider).id,
+        repository: ref.watch(japHistoryRepositoryProvider),
+        settingsRepository: ref.watch(japSettingsRepositoryProvider),
       );
     });
 
@@ -127,10 +141,6 @@ class JapSettingsNotifier extends StateNotifier<JapSettings> {
     return update(state.copyWith(hapticEnabled: value));
   }
 
-  Future<void> setEnclosureEnabled(bool value) {
-    return update(state.copyWith(enclosureEnabled: value));
-  }
-
   Future<void> setFloatingTextEnabled(bool value) {
     return update(state.copyWith(floatingTextEnabled: value));
   }
@@ -157,6 +167,10 @@ class JapSettingsNotifier extends StateNotifier<JapSettings> {
 
   Future<void> setCountMethod(CountMethod value) {
     return update(state.copyWith(countMethod: value));
+  }
+
+  Future<void> setBackTapEnabled(bool value) {
+    return update(state.copyWith(backTapEnabled: value));
   }
 
   Future<void> setShowMalaRing(bool value) {
@@ -210,7 +224,10 @@ class JapSessionNotifier extends StateNotifier<JapSessionStateBundle> {
       japTrigger: result.japTrigger,
     );
     statisticsNotifier.state = result.statistics;
-    historyNotifier.refresh();
+    historyNotifier.patchTodayCount(
+      count: result.statistics.todayCount,
+      dailyGoal: result.settings.dailyGoal,
+    );
   }
 
   Future<void> endSession() async {
@@ -220,16 +237,42 @@ class JapSessionNotifier extends StateNotifier<JapSessionStateBundle> {
 }
 
 class JapHistoryNotifier extends StateNotifier<List<DailyJapRecord>> {
-  JapHistoryNotifier(this._repository, this._settingsRepository)
-    : super(const []) {
+  JapHistoryNotifier({
+    required String deityId,
+    required JapHistoryRepository repository,
+    required JapSettingsRepository settingsRepository,
+  }) : _deityId = deityId,
+       _repository = repository,
+       _settingsRepository = settingsRepository,
+       super(const []) {
     refresh();
   }
 
+  final String _deityId;
   final JapHistoryRepository _repository;
   final JapSettingsRepository _settingsRepository;
 
   void refresh() {
     final dailyGoal = _settingsRepository.load().dailyGoal;
-    state = _repository.loadRecords(dailyGoal: dailyGoal);
+    state = _repository.loadRecords(deityId: _deityId, dailyGoal: dailyGoal);
+  }
+
+  void patchTodayCount({required int count, required int dailyGoal}) {
+    final today = DateHelper.today();
+    final records = [...state];
+    final index = records.indexWhere(
+      (record) => DateHelper.isSameDay(record.date, today),
+    );
+
+    if (index >= 0) {
+      records[index] = records[index].copyWith(count: count);
+    } else {
+      records.insert(
+        0,
+        DailyJapRecord(date: today, count: count, dailyGoal: dailyGoal),
+      );
+    }
+
+    state = records;
   }
 }

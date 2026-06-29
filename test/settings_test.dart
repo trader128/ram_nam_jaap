@@ -76,16 +76,26 @@ void main() {
 
     await tester.pumpAndSettle();
 
+    expect(find.text(AppStrings.currentNaam), findsOneWidget);
+    expect(find.text(AppStrings.countWith), findsOneWidget);
+    expect(find.text(AppStrings.backTapTitle), findsOneWidget);
+
+    final scrollable = find.byType(Scrollable).first;
+
+    await tester.scrollUntilVisible(
+      find.text(AppStrings.hapticsAndVibrations),
+      120,
+      scrollable: scrollable,
+    );
     expect(find.text(AppStrings.hapticsAndVibrations), findsOneWidget);
     expect(find.text(AppStrings.soundEffects), findsOneWidget);
 
     await tester.scrollUntilVisible(
       find.text(AppStrings.showFloatingNaam),
       120,
-      scrollable: find.byType(Scrollable).first,
+      scrollable: scrollable,
     );
     expect(find.text(AppStrings.showFloatingNaam), findsOneWidget);
     expect(find.text(AppStrings.floatingTextColor), findsOneWidget);
-    expect(find.text(AppStrings.countWith), findsOneWidget);
   });
 }

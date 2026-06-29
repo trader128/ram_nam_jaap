@@ -6,16 +6,19 @@ import 'app_radius.dart';
 import 'app_text_styles.dart';
 
 abstract final class AppTheme {
-  static ThemeData get dark {
-    const colorScheme = ColorScheme.dark(
+  static ThemeData get dark =>
+      themed(primary: AppColors.primaryGold, accent: AppColors.accent);
+
+  static ThemeData themed({required Color primary, required Color accent}) {
+    final colorScheme = ColorScheme.dark(
       brightness: Brightness.dark,
-      primary: AppColors.primaryGold,
+      primary: primary,
       onPrimary: AppColors.background,
-      secondary: AppColors.accent,
+      secondary: accent,
       onSecondary: AppColors.textPrimary,
       surface: AppColors.surface,
       onSurface: AppColors.textPrimary,
-      error: Color(0xFFCF6679),
+      error: const Color(0xFFCF6679),
       onError: AppColors.textPrimary,
     );
 
@@ -69,8 +72,8 @@ abstract final class AppTheme {
       ),
       iconTheme: const IconThemeData(color: AppColors.textSecondary, size: 24),
       splashFactory: InkRipple.splashFactory,
-      highlightColor: AppColors.primaryGold.withValues(alpha: 0.08),
-      splashColor: AppColors.primaryGold.withValues(alpha: 0.12),
+      highlightColor: primary.withValues(alpha: 0.08),
+      splashColor: primary.withValues(alpha: 0.12),
     );
   }
 }

@@ -4,8 +4,10 @@ import '../../../core/storage/hive_storage.dart';
 import '../../../shared/models/daily_jap_record.dart';
 
 class JapHistoryRepository {
-  Map<String, int> _loadRawRecords() {
-    final raw = HiveStorage.historyBox.get(HiveKeys.dailyRecords);
+  Map<String, int> _loadRawRecords(String deityId) {
+    final raw = HiveStorage.historyBox.get(
+      HiveKeys.forDeity(deityId, HiveKeys.dailyRecords),
+    );
     if (raw is Map) {
       return raw.map(
         (key, value) => MapEntry(key.toString(), (value as num).toInt()),
@@ -15,17 +17,24 @@ class JapHistoryRepository {
   }
 
   Future<void> saveDailyCount({
+    required String deityId,
     required DateTime date,
     required int count,
     required int dailyGoal,
   }) async {
-    final records = _loadRawRecords();
+    final records = _loadRawRecords(deityId);
     records[DateHelper.toDateKey(date)] = count;
-    await HiveStorage.historyBox.put(HiveKeys.dailyRecords, records);
+    await HiveStorage.historyBox.put(
+      HiveKeys.forDeity(deityId, HiveKeys.dailyRecords),
+      records,
+    );
   }
 
-  List<DailyJapRecord> loadRecords({required int dailyGoal}) {
-    final records = _loadRawRecords();
+  List<DailyJapRecord> loadRecords({
+    required String deityId,
+    required int dailyGoal,
+  }) {
+    final records = _loadRawRecords(deityId);
     return records.entries
         .map((entry) {
           final date = DateHelper.fromDateKey(entry.key);
@@ -44,10 +53,11 @@ class JapHistoryRepository {
   }
 
   DailyJapRecord? recordForDate({
+    required String deityId,
     required DateTime date,
     required int dailyGoal,
   }) {
-    final count = _loadRawRecords()[DateHelper.toDateKey(date)];
+    final count = _loadRawRecords(deityId)[DateHelper.toDateKey(date)];
     if (count == null) {
       return null;
     }

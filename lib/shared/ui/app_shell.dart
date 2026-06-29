@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../constants/app_strings.dart';
+import '../../features/deity/providers/deity_providers.dart';
 import '../../theme/app_colors.dart';
 
-class AppShell extends StatelessWidget {
+class AppShell extends ConsumerWidget {
   const AppShell({required this.navigationShell, super.key});
 
   final StatefulNavigationShell navigationShell;
@@ -17,7 +19,9 @@ class AppShell extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final deityColor = ref.watch(deityColorProvider);
+
     return Scaffold(
       backgroundColor: AppColors.background,
       body: navigationShell,
@@ -25,7 +29,7 @@ class AppShell extends StatelessWidget {
         selectedIndex: navigationShell.currentIndex,
         onDestinationSelected: _onTap,
         backgroundColor: AppColors.surface,
-        indicatorColor: AppColors.primaryGold.withValues(alpha: 0.14),
+        indicatorColor: deityColor.withValues(alpha: 0.16),
         destinations: const [
           NavigationDestination(
             icon: Icon(Icons.home_outlined),

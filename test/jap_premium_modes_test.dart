@@ -9,17 +9,18 @@ void main() {
     const settings = JapSettings(
       soundEnabled: true,
       hapticEnabled: true,
-      enclosureEnabled: true,
       floatingTextEnabled: true,
       textSize: 72,
       dailyGoal: 108,
       floatingTextColor: Color(0xFFD4AF37),
       countMethod: CountMethod.both,
+      backTapEnabled: true,
       showMalaRing: true,
       divineWallpaperEnabled: true,
     );
 
     expect(settings.countMethod, CountMethod.both);
+    expect(settings.backTapEnabled, isTrue);
     expect(settings.showMalaRing, isTrue);
     expect(settings.divineWallpaperEnabled, isTrue);
   });

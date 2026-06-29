@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../constants/app_strings.dart';
 import '../../../core/constants/settings_constants.dart';
+import '../../../features/deity/providers/deity_providers.dart';
 import '../../../features/jap/providers/jap_providers.dart';
 import '../../../theme/app_colors.dart';
 import '../../../theme/app_spacing.dart';
@@ -17,6 +18,7 @@ class FloatingColorScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(japSettingsProvider);
     final notifier = ref.read(japSettingsProvider.notifier);
+    final deity = ref.watch(selectedDeityProvider);
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -36,7 +38,7 @@ class FloatingColorScreen extends ConsumerWidget {
             ColorPreviewCard(
               color: settings.floatingTextColor,
               textSize: settings.textSize,
-              enclosureEnabled: settings.enclosureEnabled,
+              name: deity.name,
             ),
             const SizedBox(height: AppSpacing.xl),
             Text(AppStrings.presetColors, style: AppTextStyles.titleLarge),

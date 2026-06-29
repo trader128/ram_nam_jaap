@@ -51,6 +51,20 @@ class SettingsCountMethodSelector extends ConsumerWidget {
         ),
         const Divider(height: 1),
         SwitchListTile(
+          title: Text(AppStrings.backTapTitle, style: AppTextStyles.bodyLarge),
+          subtitle: Text(
+            AppStrings.backTapHint,
+            style: AppTextStyles.bodyMedium,
+          ),
+          value: settings.backTapEnabled,
+          onChanged: notifier.setBackTapEnabled,
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.md,
+            vertical: AppSpacing.xxs,
+          ),
+        ),
+        const Divider(height: 1),
+        SwitchListTile(
           title: Text(AppStrings.showMalaRing, style: AppTextStyles.bodyLarge),
           value: settings.showMalaRing,
           onChanged: notifier.setShowMalaRing,

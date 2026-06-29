@@ -68,13 +68,13 @@ class ColorPreviewCard extends StatelessWidget {
   const ColorPreviewCard({
     required this.color,
     required this.textSize,
-    required this.enclosureEnabled,
+    required this.name,
     super.key,
   });
 
   final Color color;
   final double textSize;
-  final bool enclosureEnabled;
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -86,11 +86,7 @@ class ColorPreviewCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppRadius.lg),
         border: Border.all(color: AppColors.divider.withValues(alpha: 0.5)),
       ),
-      child: NaamPreviewText(
-        color: color,
-        textSize: textSize,
-        enclosureEnabled: enclosureEnabled,
-      ),
+      child: NaamPreviewText(color: color, textSize: textSize, name: name),
     );
   }
 }
@@ -99,20 +95,20 @@ class NaamPreviewText extends StatelessWidget {
   const NaamPreviewText({
     required this.color,
     required this.textSize,
-    required this.enclosureEnabled,
+    required this.name,
     super.key,
   });
 
   final Color color;
   final double textSize;
-  final bool enclosureEnabled;
+  final String name;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: NaamDisplayText(
+        name: name,
         fontSize: textSize * 0.72,
-        enclosureEnabled: enclosureEnabled,
         color: color,
       ),
     );

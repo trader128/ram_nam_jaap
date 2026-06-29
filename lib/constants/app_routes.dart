@@ -7,4 +7,5 @@ abstract final class AppRoutes {
   static const String jap = '/jap';
   static const String settings = '/settings';
   static const String floatingTextColor = '/settings/floating-color';
+  static const String deitySelection = '/deity';
 }

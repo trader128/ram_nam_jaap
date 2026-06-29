@@ -1,6 +1,5 @@
 abstract final class AppStrings {
   static const String appName = 'RAM NAM JAP';
-  static const String divineName = 'राम';
   static const String tagline = 'A peaceful digital temple';
   static const String beginJap = 'Begin Jap';
   static const String settings = 'Settings';
@@ -14,8 +13,9 @@ abstract final class AppStrings {
   static const String closeJap = 'Close';
   static const String japSession = 'Jap Session';
   static const String tapToChant = 'Tap anywhere to chant';
-  static const String naamEnclosureStart = '||';
-  static const String naamEnclosureEnd = '||';
+  static const String tapBodyToChant = 'Tap your phone body to chant';
+  static const String tapBodyOrVolumeToChant =
+      'Tap your phone body or use volume buttons';
 
   static const String home = 'Home';
   static const String insights = 'Insights';
@@ -54,8 +54,7 @@ abstract final class AppStrings {
   static const String dailyNaamGoal = 'Daily Naam Goal';
   static const String naamTextSize = 'Naam Text Size';
   static const String showFloatingNaam = 'Show Floating Naam Text';
-  static const String encloseNaam = 'Enclose Naam with || ||';
-  static const String floatingTextColor = 'Floating Text Color';
+  static const String floatingTextColor = 'Naam Color';
   static const String preview = 'Preview';
   static const String presetColors = 'Preset Colors';
   static const String saveGoal = 'Save Goal';
@@ -73,4 +72,14 @@ abstract final class AppStrings {
   static const String volumeToChant = 'Use volume buttons to chant';
   static const String tapOrVolumeToChant = 'Tap or use volume buttons to chant';
   static const String focusMode = 'Focus Mode';
+  static const String backTapTitle = 'Tap on Phone Body';
+  static const String backTapHint =
+      'Count a jap by tapping the back of your phone';
+
+  static const String deitySection = 'Deity';
+  static const String chooseYourNaam = 'Choose Your Naam';
+  static const String chooseNaamSubtitle =
+      'Select the divine name you wish to chant';
+  static const String currentNaam = 'Current Naam';
+  static const String mantraLabel = 'Mantra';
 }

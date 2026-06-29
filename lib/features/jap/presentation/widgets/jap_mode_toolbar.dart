@@ -9,6 +9,7 @@ class JapModeToolbar extends StatelessWidget {
     required this.focusMode,
     required this.wallpaperMode,
     required this.malaRingVisible,
+    required this.activeColor,
     required this.onFocusChanged,
     required this.onWallpaperChanged,
     required this.onMalaRingChanged,
@@ -18,6 +19,7 @@ class JapModeToolbar extends StatelessWidget {
   final bool focusMode;
   final bool wallpaperMode;
   final bool malaRingVisible;
+  final Color activeColor;
   final ValueChanged<bool> onFocusChanged;
   final ValueChanged<bool> onWallpaperChanged;
   final ValueChanged<bool> onMalaRingChanged;
@@ -39,16 +41,19 @@ class JapModeToolbar extends StatelessWidget {
                 ? Icons.visibility_off_outlined
                 : Icons.visibility_outlined,
             selected: focusMode,
+            activeColor: activeColor,
             onPressed: () => onFocusChanged(!focusMode),
           ),
           _ModeIconButton(
             icon: Icons.wallpaper_rounded,
             selected: wallpaperMode,
+            activeColor: activeColor,
             onPressed: () => onWallpaperChanged(!wallpaperMode),
           ),
           _ModeIconButton(
             icon: Icons.radio_button_checked_outlined,
             selected: malaRingVisible,
+            activeColor: activeColor,
             onPressed: () => onMalaRingChanged(!malaRingVisible),
           ),
         ],
@@ -61,11 +66,13 @@ class _ModeIconButton extends StatelessWidget {
   const _ModeIconButton({
     required this.icon,
     required this.selected,
+    required this.activeColor,
     required this.onPressed,
   });
 
   final IconData icon;
   final bool selected;
+  final Color activeColor;
   final VoidCallback onPressed;
 
   @override
@@ -73,11 +80,11 @@ class _ModeIconButton extends StatelessWidget {
     return IconButton(
       onPressed: onPressed,
       icon: Icon(icon),
-      color: selected ? AppColors.primaryGold : AppColors.textSecondary,
+      color: selected ? activeColor : AppColors.textSecondary,
       visualDensity: VisualDensity.compact,
       style: IconButton.styleFrom(
         backgroundColor: selected
-            ? AppColors.primaryGold.withValues(alpha: 0.12)
+            ? activeColor.withValues(alpha: 0.12)
             : Colors.transparent,
       ),
     );

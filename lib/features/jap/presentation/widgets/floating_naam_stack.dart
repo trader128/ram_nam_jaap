@@ -7,15 +7,15 @@ import '../../../../shared/widgets/naam_display_text.dart';
 class FloatingNaamStack extends StatefulWidget {
   const FloatingNaamStack({
     required this.japTrigger,
+    required this.name,
     required this.textSize,
-    required this.enclosureEnabled,
     required this.naamColor,
     super.key,
   });
 
   final int japTrigger;
+  final String name;
   final double textSize;
-  final bool enclosureEnabled;
   final Color naamColor;
 
   @override
@@ -89,43 +89,39 @@ class _FloatingNaamStackState extends State<FloatingNaamStack>
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      clipBehavior: Clip.none,
-      children: [
-        NaamDisplayText(
-          fontSize: widget.textSize,
-          enclosureEnabled: widget.enclosureEnabled,
-          color: widget.naamColor,
-          opacity: 0.18,
-        ),
-        for (final entry in _entries)
-          AnimatedBuilder(
-            animation: entry.controller,
-            builder: (context, child) {
-              return Transform.translate(
-                offset: Offset(
-                  0,
-                  entry.offset.value.dy * MediaQuery.sizeOf(context).height,
-                ),
-                child: Transform.scale(
-                  scale: entry.scale.value,
-                  child: Opacity(opacity: entry.opacity.value, child: child),
-                ),
-              );
-            },
-            child: NaamDisplayText(
-              fontSize: widget.textSize,
-              enclosureEnabled: widget.enclosureEnabled,
-              color: widget.naamColor,
+    return RepaintBoundary(
+      child: Stack(
+        alignment: Alignment.center,
+        clipBehavior: Clip.none,
+        children: [
+          for (final entry in _entries)
+            AnimatedBuilder(
+              animation: entry.controller,
+              builder: (context, child) {
+                return Transform.translate(
+                  offset: Offset(
+                    0,
+                    entry.offset.value.dy * MediaQuery.sizeOf(context).height,
+                  ),
+                  child: Transform.scale(
+                    scale: entry.scale.value,
+                    child: Opacity(opacity: entry.opacity.value, child: child),
+                  ),
+                );
+              },
+              child: NaamDisplayText(
+                name: widget.name,
+                fontSize: widget.textSize,
+                color: widget.naamColor,
+              ),
             ),
+          NaamDisplayText(
+            name: widget.name,
+            fontSize: widget.textSize,
+            color: widget.naamColor,
           ),
-        NaamDisplayText(
-          fontSize: widget.textSize,
-          enclosureEnabled: widget.enclosureEnabled,
-          color: widget.naamColor,
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

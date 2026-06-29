@@ -15,10 +15,10 @@ class JapSettingsRepository {
       soundEnabled: box.get(HiveKeys.soundEnabled, defaultValue: true) as bool,
       hapticEnabled:
           box.get(HiveKeys.hapticEnabled, defaultValue: true) as bool,
-      enclosureEnabled:
-          box.get(HiveKeys.enclosureEnabled, defaultValue: true) as bool,
       floatingTextEnabled:
           box.get(HiveKeys.floatingTextEnabled, defaultValue: true) as bool,
+      backTapEnabled:
+          box.get(HiveKeys.backTapEnabled, defaultValue: false) as bool,
       textSize:
           (box.get(HiveKeys.textSize) as num?)?.toDouble() ??
           JapConstants.defaultTextSize,
@@ -45,8 +45,8 @@ class JapSettingsRepository {
     final box = HiveStorage.settingsBox;
     await box.put(HiveKeys.soundEnabled, settings.soundEnabled);
     await box.put(HiveKeys.hapticEnabled, settings.hapticEnabled);
-    await box.put(HiveKeys.enclosureEnabled, settings.enclosureEnabled);
     await box.put(HiveKeys.floatingTextEnabled, settings.floatingTextEnabled);
+    await box.put(HiveKeys.backTapEnabled, settings.backTapEnabled);
     await box.put(HiveKeys.textSize, settings.textSize);
     await box.put(HiveKeys.dailyGoal, settings.dailyGoal);
     await box.put(

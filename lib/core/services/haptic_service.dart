@@ -1,17 +1,17 @@
 import 'package:flutter/services.dart';
 
 class HapticService {
-  Future<void> japTap({required bool enabled}) async {
+  void japTap({required bool enabled}) {
     if (!enabled) {
       return;
     }
-    await HapticFeedback.lightImpact();
+    HapticFeedback.lightImpact();
   }
 
-  Future<void> malaComplete({required bool enabled}) async {
+  void malaComplete({required bool enabled}) {
     if (!enabled) {
       return;
     }
-    await HapticFeedback.mediumImpact();
+    HapticFeedback.mediumImpact();
   }
 }

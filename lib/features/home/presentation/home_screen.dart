@@ -5,7 +5,9 @@ import 'package:go_router/go_router.dart';
 import '../../../constants/app_routes.dart';
 import '../../../constants/app_strings.dart';
 import '../../../core/helpers/number_formatter.dart';
+import '../../../features/deity/providers/deity_providers.dart';
 import '../../../shared/models/jap_statistics.dart';
+import '../../../features/jap/presentation/widgets/divine_wallpaper_background.dart';
 import '../../../features/jap/providers/jap_providers.dart';
 import '../../../shared/ui/app_scaffold.dart';
 import '../../../shared/widgets/divine_name_text.dart';
@@ -70,51 +72,132 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
   Widget build(BuildContext context) {
     final statistics = ref.watch(japStatisticsProvider);
     final settings = ref.watch(japSettingsProvider);
+    final deity = ref.watch(selectedDeityProvider);
 
     return AppScaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
-          child: Column(
-            children: [
-              const SizedBox(height: AppSpacing.xxxl),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FadeTransition(
-                      opacity: _heroFade,
-                      child: ScaleTransition(
-                        scale: _heroScale,
-                        child: const DivineNameText(fontSize: 96),
-                      ),
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          const DivineWallpaperBackground(),
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+              child: Column(
+                children: [
+                  const SizedBox(height: AppSpacing.lg),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: _DeitySwitcher(
+                      label: deity.transliteration,
+                      color: deity.primary,
+                      onTap: () => context.push(AppRoutes.deitySelection),
                     ),
-                    const SizedBox(height: AppSpacing.xl),
-                    FadeTransition(
-                      opacity: _statsFade,
-                      child: Column(
-                        children: [
-                          _HomeStatsRow(statistics: statistics),
-                          const SizedBox(height: AppSpacing.lg),
-                          DailyGoalProgress(
-                            todayCount: statistics.todayCount,
-                            dailyGoal: settings.dailyGoal,
+                  ),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FadeTransition(
+                          opacity: _heroFade,
+                          child: ScaleTransition(
+                            scale: _heroScale,
+                            child: const DivineNameText(fontSize: 96),
                           ),
-                        ],
+                        ),
+                        const SizedBox(height: AppSpacing.md),
+                        FadeTransition(
+                          opacity: _statsFade,
+                          child: Text(
+                            deity.mantra,
+                            textAlign: TextAlign.center,
+                            style: AppTextStyles.bodyLarge.copyWith(
+                              color: deity.primary.withValues(alpha: 0.85),
+                              letterSpacing: 0.4,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: AppSpacing.xl),
+                        FadeTransition(
+                          opacity: _statsFade,
+                          child: Column(
+                            children: [
+                              _HomeStatsRow(statistics: statistics),
+                              const SizedBox(height: AppSpacing.lg),
+                              DailyGoalProgress(
+                                todayCount: statistics.todayCount,
+                                dailyGoal: settings.dailyGoal,
+                                color: deity.primary,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  FadeTransition(
+                    opacity: _statsFade,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: AppSpacing.lg),
+                      child: PrimaryButtonAnimated(
+                        label: AppStrings.beginJap,
+                        onPressed: () => context.push(AppRoutes.jap),
                       ),
                     ),
-                  ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _DeitySwitcher extends StatelessWidget {
+  const _DeitySwitcher({
+    required this.label,
+    required this.color,
+    required this.onTap,
+  });
+
+  final String label;
+  final Color color;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(AppRadius.full),
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.md,
+            vertical: AppSpacing.xs,
+          ),
+          decoration: BoxDecoration(
+            color: AppColors.surface.withValues(alpha: 0.7),
+            borderRadius: BorderRadius.circular(AppRadius.full),
+            border: Border.all(color: color.withValues(alpha: 0.5)),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.auto_awesome_rounded, size: 16, color: color),
+              const SizedBox(width: AppSpacing.xs),
+              Text(
+                label,
+                style: AppTextStyles.labelLarge.copyWith(
+                  color: AppColors.textPrimary,
                 ),
               ),
-              FadeTransition(
-                opacity: _statsFade,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: AppSpacing.lg),
-                  child: PrimaryButtonAnimated(
-                    label: AppStrings.beginJap,
-                    onPressed: () => context.push(AppRoutes.jap),
-                  ),
-                ),
+              const SizedBox(width: AppSpacing.xxs),
+              Icon(
+                Icons.expand_more_rounded,
+                size: 18,
+                color: AppColors.textSecondary,
               ),
             ],
           ),

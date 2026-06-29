@@ -6,9 +6,10 @@ import '../../../../core/constants/jap_constants.dart';
 import '../../../../theme/app_colors.dart';
 
 class MalaRing extends StatelessWidget {
-  const MalaRing({required this.sessionCount, super.key});
+  const MalaRing({required this.sessionCount, required this.color, super.key});
 
   final int sessionCount;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -30,17 +31,17 @@ class MalaRing extends StatelessWidget {
         children: [
           CustomPaint(
             size: const Size(220, 220),
-            painter: _MalaRingPainter(progress: progress),
+            painter: _MalaRingPainter(progress: progress, color: color),
           ),
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 '$displayCount',
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 34,
                   fontWeight: FontWeight.w400,
-                  color: AppColors.primaryGold,
+                  color: color,
                 ),
               ),
               Text(
@@ -59,9 +60,10 @@ class MalaRing extends StatelessWidget {
 }
 
 class _MalaRingPainter extends CustomPainter {
-  _MalaRingPainter({required this.progress});
+  _MalaRingPainter({required this.progress, required this.color});
 
   final double progress;
+  final Color color;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -79,7 +81,7 @@ class _MalaRingPainter extends CustomPainter {
       final isActive = i < completedBeads;
       final paint = Paint()
         ..color = isActive
-            ? AppColors.primaryGold.withValues(alpha: 0.95)
+            ? color.withValues(alpha: 0.95)
             : AppColors.surfaceVariant.withValues(alpha: 0.85)
         ..style = PaintingStyle.fill;
       canvas.drawCircle(offset, isActive ? 4.2 : 3.4, paint);
@@ -88,6 +90,6 @@ class _MalaRingPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _MalaRingPainter oldDelegate) {
-    return oldDelegate.progress != progress;
+    return oldDelegate.progress != progress || oldDelegate.color != color;
   }
 }

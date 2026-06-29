@@ -3,10 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/services/motion_jap_service.dart';
 import '../../../../core/services/volume_jap_service.dart';
 import '../../../../theme/app_colors.dart';
 import '../providers/jap_providers.dart';
 import '../providers/jap_session_ui_provider.dart';
+import 'widgets/divine_wallpaper_background.dart';
 import 'widgets/jap_session_content.dart';
 
 class JapScreen extends ConsumerStatefulWidget {
@@ -19,14 +21,19 @@ class JapScreen extends ConsumerStatefulWidget {
 class _JapScreenState extends ConsumerState<JapScreen>
     with JapSessionLifecycle {
   late final VolumeJapService _volumeService;
+  late final MotionJapService _motionService;
 
   @override
   VolumeJapService get volumeService => _volumeService;
 
   @override
+  MotionJapService get motionService => _motionService;
+
+  @override
   void initState() {
     super.initState();
     _volumeService = ref.read(volumeJapServiceProvider);
+    _motionService = ref.read(motionJapServiceProvider);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await initializeJapSession(ref);
     });
@@ -35,6 +42,7 @@ class _JapScreenState extends ConsumerState<JapScreen>
   @override
   void dispose() {
     _volumeService.stop();
+    _motionService.stop();
     super.dispose();
   }
 
@@ -51,12 +59,15 @@ class _JapScreenState extends ConsumerState<JapScreen>
   @override
   Widget build(BuildContext context) {
     ref.listen(japSettingsProvider, (previous, next) {
-      if (previous?.countMethod != next.countMethod) {
-        syncVolumeListener(ref);
+      if (previous?.countMethod != next.countMethod ||
+          previous?.backTapEnabled != next.backTapEnabled) {
+        syncInputListeners(ref);
       }
     });
 
-    final wallpaperMode = ref.watch(japSessionUiProvider).wallpaperMode;
+    final wallpaperMode = ref.watch(
+      japSessionUiProvider.select((state) => state.wallpaperMode),
+    );
 
     return PopScope(
       canPop: false,
@@ -79,13 +90,19 @@ class _JapScreenState extends ConsumerState<JapScreen>
           backgroundColor: wallpaperMode
               ? Colors.transparent
               : AppColors.background,
-          body: SafeArea(
-            top: !wallpaperMode,
-            bottom: !wallpaperMode,
-            child: JapSessionContent(
-              onJap: () => registerJap(ref),
-              onClose: _closeSession,
-            ),
+          body: Stack(
+            fit: StackFit.expand,
+            children: [
+              if (wallpaperMode) const DivineWallpaperBackground(),
+              SafeArea(
+                top: true,
+                bottom: !wallpaperMode,
+                child: JapSessionContent(
+                  onJap: () => registerJap(ref),
+                  onClose: _closeSession,
+                ),
+              ),
+            ],
           ),
         ),
       ),

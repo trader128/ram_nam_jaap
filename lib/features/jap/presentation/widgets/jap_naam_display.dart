@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 
 import '../../../../theme/app_durations.dart';
 import '../../../../shared/widgets/naam_display_text.dart';
-import '../widgets/floating_naam_stack.dart';
+import 'floating_naam_stack.dart';
 
 class JapNaamDisplay extends StatelessWidget {
   const JapNaamDisplay({
     required this.japTrigger,
+    required this.name,
     required this.textSize,
-    required this.enclosureEnabled,
     required this.naamColor,
     required this.floatingTextEnabled,
     super.key,
   });
 
   final int japTrigger;
+  final String name;
   final double textSize;
-  final bool enclosureEnabled;
   final Color naamColor;
   final bool floatingTextEnabled;
 
@@ -25,16 +25,16 @@ class JapNaamDisplay extends StatelessWidget {
     if (floatingTextEnabled) {
       return FloatingNaamStack(
         japTrigger: japTrigger,
+        name: name,
         textSize: textSize,
-        enclosureEnabled: enclosureEnabled,
         naamColor: naamColor,
       );
     }
 
     return StaticNaamDisplay(
       japTrigger: japTrigger,
+      name: name,
       textSize: textSize,
-      enclosureEnabled: enclosureEnabled,
       naamColor: naamColor,
     );
   }
@@ -43,15 +43,15 @@ class JapNaamDisplay extends StatelessWidget {
 class StaticNaamDisplay extends StatelessWidget {
   const StaticNaamDisplay({
     required this.japTrigger,
+    required this.name,
     required this.textSize,
-    required this.enclosureEnabled,
     required this.naamColor,
     super.key,
   });
 
   final int japTrigger;
+  final String name;
   final double textSize;
-  final bool enclosureEnabled;
   final Color naamColor;
 
   @override
@@ -64,11 +64,7 @@ class StaticNaamDisplay extends StatelessWidget {
       builder: (context, scale, child) {
         return Transform.scale(scale: scale, child: child);
       },
-      child: NaamDisplayText(
-        fontSize: textSize,
-        enclosureEnabled: enclosureEnabled,
-        color: naamColor,
-      ),
+      child: NaamDisplayText(name: name, fontSize: textSize, color: naamColor),
     );
   }
 }

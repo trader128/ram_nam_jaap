@@ -12,10 +12,12 @@ class DailyGoalProgress extends StatelessWidget {
     required this.todayCount,
     required this.dailyGoal,
     super.key,
+    this.color,
   });
 
   final int todayCount;
   final int dailyGoal;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class DailyGoalProgress extends StatelessWidget {
             value: progress,
             minHeight: 4,
             backgroundColor: AppColors.surfaceVariant,
-            color: AppColors.primaryGold.withValues(alpha: 0.85),
+            color: (color ?? AppColors.primaryGold).withValues(alpha: 0.85),
           ),
         ),
         const SizedBox(height: AppSpacing.xs),

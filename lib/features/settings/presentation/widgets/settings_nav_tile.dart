@@ -12,11 +12,13 @@ class SettingsNavTile extends StatelessWidget {
     super.key,
     this.subtitle,
     this.trailingColor,
+    this.trailingLabel,
   });
 
   final String title;
   final String? subtitle;
   final Color? trailingColor;
+  final String? trailingLabel;
   final VoidCallback onTap;
 
   @override
@@ -29,6 +31,15 @@ class SettingsNavTile extends StatelessWidget {
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
+          if (trailingLabel != null) ...[
+            Text(
+              trailingLabel!,
+              style: AppTextStyles.bodyMedium.copyWith(
+                color: trailingColor ?? AppColors.textSecondary,
+              ),
+            ),
+            const SizedBox(width: AppSpacing.xs),
+          ],
           if (trailingColor != null) ...[
             Container(
               width: 22,

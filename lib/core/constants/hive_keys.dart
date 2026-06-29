@@ -12,8 +12,8 @@ abstract final class HiveKeys {
 
   static const String soundEnabled = 'sound_enabled';
   static const String hapticEnabled = 'haptic_enabled';
-  static const String enclosureEnabled = 'enclosure_enabled';
   static const String floatingTextEnabled = 'floating_text_enabled';
+  static const String backTapEnabled = 'back_tap_enabled';
   static const String textSize = 'text_size';
   static const String dailyGoal = 'daily_goal';
   static const String dailyRecords = 'daily_records';
@@ -21,4 +21,11 @@ abstract final class HiveKeys {
   static const String countMethod = 'count_method';
   static const String showMalaRing = 'show_mala_ring';
   static const String divineWallpaperEnabled = 'divine_wallpaper_enabled';
+
+  static const String selectedDeity = 'selected_deity';
+  static const String deityMigrated = 'deity_namespace_migrated';
+
+  /// Builds a per-deity namespaced key, e.g. `ram_today_count`.
+  static String forDeity(String deityId, String baseKey) =>
+      '${deityId}_$baseKey';
 }
