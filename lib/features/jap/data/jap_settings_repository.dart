@@ -2,6 +2,7 @@ import '../../../core/constants/hive_keys.dart';
 import '../../../core/constants/jap_constants.dart';
 import '../../../core/helpers/color_helper.dart';
 import '../../../core/storage/hive_storage.dart';
+import '../../../shared/enums/count_method.dart';
 import '../../../shared/models/jap_settings.dart';
 import '../../../theme/app_colors.dart';
 
@@ -31,6 +32,12 @@ class JapSettingsRepository {
         colorValue ?? AppColors.primaryGold.toARGB32(),
         fallback: AppColors.primaryGold,
       ),
+      countMethod: CountMethod.fromStorageKey(
+        box.get(HiveKeys.countMethod) as String?,
+      ),
+      showMalaRing: box.get(HiveKeys.showMalaRing, defaultValue: false) as bool,
+      divineWallpaperEnabled:
+          box.get(HiveKeys.divineWallpaperEnabled, defaultValue: false) as bool,
     );
   }
 
@@ -45,6 +52,12 @@ class JapSettingsRepository {
     await box.put(
       HiveKeys.floatingTextColor,
       ColorHelper.toStorageValue(settings.floatingTextColor),
+    );
+    await box.put(HiveKeys.countMethod, settings.countMethod.storageKey);
+    await box.put(HiveKeys.showMalaRing, settings.showMalaRing);
+    await box.put(
+      HiveKeys.divineWallpaperEnabled,
+      settings.divineWallpaperEnabled,
     );
   }
 }

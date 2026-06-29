@@ -60,4 +60,17 @@ abstract final class AppStrings {
   static const String presetColors = 'Preset Colors';
   static const String saveGoal = 'Save Goal';
   static const String invalidGoal = 'Enter a valid daily goal';
+
+  static const String japSessionSection = 'Jap Session';
+  static const String countWith = 'Count With';
+  static const String countTap = 'Tap';
+  static const String countVolume = 'Volume';
+  static const String countBoth = 'Both';
+  static const String showMalaRing = 'Show Mala Ring';
+  static const String divineWallpaperMode = 'Divine Wallpaper Mode';
+  static const String divineWallpaperHint =
+      'Immersive temple backdrop during jap';
+  static const String volumeToChant = 'Use volume buttons to chant';
+  static const String tapOrVolumeToChant = 'Tap or use volume buttons to chant';
+  static const String focusMode = 'Focus Mode';
 }

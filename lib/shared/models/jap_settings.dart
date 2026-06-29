@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/constants/jap_constants.dart';
+import '../../shared/enums/count_method.dart';
 import '../../theme/app_colors.dart';
 
 class JapSettings {
@@ -12,6 +13,9 @@ class JapSettings {
     required this.textSize,
     required this.dailyGoal,
     required this.floatingTextColor,
+    required this.countMethod,
+    required this.showMalaRing,
+    required this.divineWallpaperEnabled,
   });
 
   final bool soundEnabled;
@@ -21,6 +25,9 @@ class JapSettings {
   final double textSize;
   final int dailyGoal;
   final Color floatingTextColor;
+  final CountMethod countMethod;
+  final bool showMalaRing;
+  final bool divineWallpaperEnabled;
 
   static JapSettings defaults() {
     return const JapSettings(
@@ -31,6 +38,9 @@ class JapSettings {
       textSize: JapConstants.defaultTextSize,
       dailyGoal: JapConstants.defaultDailyGoal,
       floatingTextColor: AppColors.primaryGold,
+      countMethod: CountMethod.tap,
+      showMalaRing: false,
+      divineWallpaperEnabled: false,
     );
   }
 
@@ -42,6 +52,9 @@ class JapSettings {
     double? textSize,
     int? dailyGoal,
     Color? floatingTextColor,
+    CountMethod? countMethod,
+    bool? showMalaRing,
+    bool? divineWallpaperEnabled,
   }) {
     return JapSettings(
       soundEnabled: soundEnabled ?? this.soundEnabled,
@@ -51,6 +64,10 @@ class JapSettings {
       textSize: textSize ?? this.textSize,
       dailyGoal: dailyGoal ?? this.dailyGoal,
       floatingTextColor: floatingTextColor ?? this.floatingTextColor,
+      countMethod: countMethod ?? this.countMethod,
+      showMalaRing: showMalaRing ?? this.showMalaRing,
+      divineWallpaperEnabled:
+          divineWallpaperEnabled ?? this.divineWallpaperEnabled,
     );
   }
 }

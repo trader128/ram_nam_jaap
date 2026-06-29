@@ -10,6 +10,7 @@ import 'package:ram_nam_jap/core/constants/hive_keys.dart';
 import 'package:ram_nam_jap/core/helpers/color_helper.dart';
 import 'package:ram_nam_jap/features/jap/data/jap_settings_repository.dart';
 import 'package:ram_nam_jap/features/settings/presentation/settings_screen.dart';
+import 'package:ram_nam_jap/shared/enums/count_method.dart';
 import 'package:ram_nam_jap/shared/models/jap_settings.dart';
 import 'package:ram_nam_jap/theme/app_theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -50,6 +51,22 @@ void main() {
     );
   });
 
+  test('JapSettingsRepository persists milestone 5 preferences', () async {
+    final repository = JapSettingsRepository();
+    final custom = JapSettings.defaults().copyWith(
+      countMethod: CountMethod.volume,
+      showMalaRing: false,
+      divineWallpaperEnabled: false,
+    );
+
+    await repository.save(custom);
+    final loaded = repository.load();
+
+    expect(loaded.countMethod, CountMethod.volume);
+    expect(loaded.showMalaRing, isFalse);
+    expect(loaded.divineWallpaperEnabled, isFalse);
+  });
+
   testWidgets('SettingsScreen shows core toggles', (tester) async {
     await tester.pumpWidget(
       ProviderScope(
@@ -57,11 +74,18 @@ void main() {
       ),
     );
 
-    await tester.pump();
+    await tester.pumpAndSettle();
 
     expect(find.text(AppStrings.hapticsAndVibrations), findsOneWidget);
     expect(find.text(AppStrings.soundEffects), findsOneWidget);
+
+    await tester.scrollUntilVisible(
+      find.text(AppStrings.showFloatingNaam),
+      120,
+      scrollable: find.byType(Scrollable).first,
+    );
     expect(find.text(AppStrings.showFloatingNaam), findsOneWidget);
     expect(find.text(AppStrings.floatingTextColor), findsOneWidget);
+    expect(find.text(AppStrings.countWith), findsOneWidget);
   });
 }

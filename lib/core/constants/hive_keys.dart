@@ -18,4 +18,7 @@ abstract final class HiveKeys {
   static const String dailyGoal = 'daily_goal';
   static const String dailyRecords = 'daily_records';
   static const String floatingTextColor = 'floating_text_color';
+  static const String countMethod = 'count_method';
+  static const String showMalaRing = 'show_mala_ring';
+  static const String divineWallpaperEnabled = 'divine_wallpaper_enabled';
 }

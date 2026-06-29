@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/services/volume_jap_service.dart';
+import '../../../shared/enums/count_method.dart';
 import '../../../core/constants/settings_constants.dart';
 import '../../../core/helpers/insights_calculator.dart';
 import '../../../core/services/haptic_service.dart';
@@ -50,6 +52,12 @@ final japControllerProvider = Provider<JapController>((ref) {
     soundService: ref.watch(soundServiceProvider),
     hapticService: ref.watch(hapticServiceProvider),
   );
+});
+
+final volumeJapServiceProvider = Provider<VolumeJapService>((ref) {
+  final service = VolumeJapService();
+  ref.onDispose(service.stop);
+  return service;
 });
 
 final japStatisticsProvider =
@@ -145,6 +153,18 @@ class JapSettingsNotifier extends StateNotifier<JapSettings> {
 
   Future<void> setFloatingTextColor(Color value) {
     return update(state.copyWith(floatingTextColor: value));
+  }
+
+  Future<void> setCountMethod(CountMethod value) {
+    return update(state.copyWith(countMethod: value));
+  }
+
+  Future<void> setShowMalaRing(bool value) {
+    return update(state.copyWith(showMalaRing: value));
+  }
+
+  Future<void> setDivineWallpaperEnabled(bool value) {
+    return update(state.copyWith(divineWallpaperEnabled: value));
   }
 }
 

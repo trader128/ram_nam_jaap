@@ -1,0 +1,31 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+import 'package:ram_nam_jap/shared/enums/count_method.dart';
+import 'package:ram_nam_jap/shared/models/jap_settings.dart';
+
+void main() {
+  test('JapSettings defaults include milestone 5 preferences', () {
+    const settings = JapSettings(
+      soundEnabled: true,
+      hapticEnabled: true,
+      enclosureEnabled: true,
+      floatingTextEnabled: true,
+      textSize: 72,
+      dailyGoal: 108,
+      floatingTextColor: Color(0xFFD4AF37),
+      countMethod: CountMethod.both,
+      showMalaRing: true,
+      divineWallpaperEnabled: true,
+    );
+
+    expect(settings.countMethod, CountMethod.both);
+    expect(settings.showMalaRing, isTrue);
+    expect(settings.divineWallpaperEnabled, isTrue);
+  });
+
+  test('CountMethod restores from storage key', () {
+    expect(CountMethod.fromStorageKey('volume'), CountMethod.volume);
+    expect(CountMethod.fromStorageKey(null), CountMethod.tap);
+  });
+}

@@ -9,6 +9,7 @@ import '../../../features/jap/providers/jap_providers.dart';
 import '../../../shared/ui/app_scaffold.dart';
 import '../../../theme/app_spacing.dart';
 import '../../../theme/app_text_styles.dart';
+import 'widgets/settings_count_method_selector.dart';
 import 'widgets/settings_nav_tile.dart';
 import 'widgets/settings_section.dart';
 import 'widgets/settings_toggle_tile.dart';
@@ -30,6 +31,8 @@ class SettingsScreen extends ConsumerWidget {
             Text(AppStrings.settingsTitle, style: AppTextStyles.headlineLarge),
             const SizedBox(height: AppSpacing.xxs),
             Text(AppStrings.moreSubtitle, style: AppTextStyles.bodyMedium),
+            const SizedBox(height: AppSpacing.lg),
+            const SettingsCountMethodSelector(),
             const SizedBox(height: AppSpacing.lg),
             SettingsSection(
               title: AppStrings.feedbackSection,
