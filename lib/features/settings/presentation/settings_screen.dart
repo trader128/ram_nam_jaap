@@ -1,0 +1,104 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../constants/app_routes.dart';
+import '../../../constants/app_strings.dart';
+import '../../../core/constants/settings_constants.dart';
+import '../../../features/jap/providers/jap_providers.dart';
+import '../../../shared/ui/app_scaffold.dart';
+import '../../../theme/app_spacing.dart';
+import '../../../theme/app_text_styles.dart';
+import 'widgets/settings_nav_tile.dart';
+import 'widgets/settings_section.dart';
+import 'widgets/settings_toggle_tile.dart';
+import 'widgets/settings_value_tiles.dart';
+
+class SettingsScreen extends ConsumerWidget {
+  const SettingsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final settings = ref.watch(japSettingsProvider);
+    final notifier = ref.read(japSettingsProvider.notifier);
+
+    return AppScaffold(
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.all(AppSpacing.lg),
+          children: [
+            Text(AppStrings.settingsTitle, style: AppTextStyles.headlineLarge),
+            const SizedBox(height: AppSpacing.xxs),
+            Text(AppStrings.moreSubtitle, style: AppTextStyles.bodyMedium),
+            const SizedBox(height: AppSpacing.lg),
+            SettingsSection(
+              title: AppStrings.feedbackSection,
+              children: [
+                SettingsToggleTile(
+                  title: AppStrings.hapticsAndVibrations,
+                  value: settings.hapticEnabled,
+                  onChanged: notifier.setHapticEnabled,
+                ),
+                const Divider(height: 1),
+                SettingsToggleTile(
+                  title: AppStrings.soundEffects,
+                  value: settings.soundEnabled,
+                  onChanged: notifier.setSoundEnabled,
+                ),
+              ],
+            ),
+            const SizedBox(height: AppSpacing.lg),
+            SettingsSection(
+              title: AppStrings.goalsSection,
+              children: [
+                SettingsGoalTile(
+                  value: settings.dailyGoal,
+                  presets: SettingsConstants.dailyGoalPresets,
+                  onSave: (goal) async {
+                    await notifier.setDailyGoal(goal);
+                    ref.read(japHistoryProvider.notifier).refresh();
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: AppSpacing.lg),
+            SettingsSection(
+              title: AppStrings.displaySection,
+              children: [
+                SettingsSliderTile(
+                  title: AppStrings.naamTextSize,
+                  value: settings.textSize,
+                  min: SettingsConstants.minTextSize,
+                  max: SettingsConstants.maxTextSize,
+                  divisions:
+                      (SettingsConstants.maxTextSize -
+                              SettingsConstants.minTextSize)
+                          .round(),
+                  onChanged: (value) => notifier.setTextSize(value),
+                ),
+                const Divider(height: 1),
+                SettingsToggleTile(
+                  title: AppStrings.showFloatingNaam,
+                  value: settings.floatingTextEnabled,
+                  onChanged: notifier.setFloatingTextEnabled,
+                ),
+                const Divider(height: 1),
+                SettingsToggleTile(
+                  title: AppStrings.encloseNaam,
+                  value: settings.enclosureEnabled,
+                  onChanged: notifier.setEnclosureEnabled,
+                ),
+                const Divider(height: 1),
+                SettingsNavTile(
+                  title: AppStrings.floatingTextColor,
+                  trailingColor: settings.floatingTextColor,
+                  onTap: () => context.push(AppRoutes.floatingTextColor),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

@@ -79,11 +79,13 @@ class _JapScreenState extends ConsumerState<JapScreen> {
                                   japTrigger: sessionBundle.japTrigger,
                                   textSize: settings.textSize,
                                   enclosureEnabled: settings.enclosureEnabled,
+                                  naamColor: settings.floatingTextColor,
                                 )
                               : StaticNaamDisplay(
                                   japTrigger: sessionBundle.japTrigger,
                                   textSize: settings.textSize,
                                   enclosureEnabled: settings.enclosureEnabled,
+                                  naamColor: settings.floatingTextColor,
                                 ),
                         ),
                       ),
@@ -137,12 +139,14 @@ class StaticNaamDisplay extends StatelessWidget {
     required this.japTrigger,
     required this.textSize,
     required this.enclosureEnabled,
+    required this.naamColor,
     super.key,
   });
 
   final int japTrigger;
   final double textSize;
   final bool enclosureEnabled;
+  final Color naamColor;
 
   @override
   Widget build(BuildContext context) {
@@ -157,6 +161,7 @@ class StaticNaamDisplay extends StatelessWidget {
       child: NaamDisplayText(
         fontSize: textSize,
         enclosureEnabled: enclosureEnabled,
+        color: naamColor,
       ),
     );
   }

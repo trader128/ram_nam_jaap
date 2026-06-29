@@ -1,11 +1,14 @@
 import '../../../core/constants/hive_keys.dart';
 import '../../../core/constants/jap_constants.dart';
+import '../../../core/helpers/color_helper.dart';
 import '../../../core/storage/hive_storage.dart';
 import '../../../shared/models/jap_settings.dart';
+import '../../../theme/app_colors.dart';
 
 class JapSettingsRepository {
   JapSettings load() {
     final box = HiveStorage.settingsBox;
+    final colorValue = box.get(HiveKeys.floatingTextColor) as int?;
 
     return JapSettings(
       soundEnabled: box.get(HiveKeys.soundEnabled, defaultValue: true) as bool,
@@ -24,6 +27,10 @@ class JapSettingsRepository {
                 defaultValue: JapConstants.defaultDailyGoal,
               )
               as int,
+      floatingTextColor: ColorHelper.fromStorageValue(
+        colorValue ?? AppColors.primaryGold.toARGB32(),
+        fallback: AppColors.primaryGold,
+      ),
     );
   }
 
@@ -35,5 +42,9 @@ class JapSettingsRepository {
     await box.put(HiveKeys.floatingTextEnabled, settings.floatingTextEnabled);
     await box.put(HiveKeys.textSize, settings.textSize);
     await box.put(HiveKeys.dailyGoal, settings.dailyGoal);
+    await box.put(
+      HiveKeys.floatingTextColor,
+      ColorHelper.toStorageValue(settings.floatingTextColor),
+    );
   }
 }

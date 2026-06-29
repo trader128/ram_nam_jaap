@@ -9,12 +9,14 @@ class FloatingNaamStack extends StatefulWidget {
     required this.japTrigger,
     required this.textSize,
     required this.enclosureEnabled,
+    required this.naamColor,
     super.key,
   });
 
   final int japTrigger;
   final double textSize;
   final bool enclosureEnabled;
+  final Color naamColor;
 
   @override
   State<FloatingNaamStack> createState() => _FloatingNaamStackState();
@@ -94,6 +96,7 @@ class _FloatingNaamStackState extends State<FloatingNaamStack>
         NaamDisplayText(
           fontSize: widget.textSize,
           enclosureEnabled: widget.enclosureEnabled,
+          color: widget.naamColor,
           opacity: 0.18,
         ),
         for (final entry in _entries)
@@ -114,11 +117,13 @@ class _FloatingNaamStackState extends State<FloatingNaamStack>
             child: NaamDisplayText(
               fontSize: widget.textSize,
               enclosureEnabled: widget.enclosureEnabled,
+              color: widget.naamColor,
             ),
           ),
         NaamDisplayText(
           fontSize: widget.textSize,
           enclosureEnabled: widget.enclosureEnabled,
+          color: widget.naamColor,
         ),
       ],
     );

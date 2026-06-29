@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/constants/settings_constants.dart';
 import '../../../core/helpers/insights_calculator.dart';
 import '../../../core/services/haptic_service.dart';
 import '../../../core/services/sound_service.dart';
@@ -57,7 +59,7 @@ final japStatisticsProvider =
 
 final japSettingsProvider =
     StateNotifierProvider<JapSettingsNotifier, JapSettings>((ref) {
-      return JapSettingsNotifier(ref.watch(japControllerProvider));
+      return JapSettingsNotifier(ref.watch(japSettingsRepositoryProvider));
     });
 
 final japSessionProvider =
@@ -100,8 +102,50 @@ class JapStatisticsNotifier extends StateNotifier<JapStatistics> {
 }
 
 class JapSettingsNotifier extends StateNotifier<JapSettings> {
-  JapSettingsNotifier(JapController controller)
-    : super(controller.loadSettings());
+  JapSettingsNotifier(this._repository) : super(_repository.load());
+
+  final JapSettingsRepository _repository;
+
+  Future<void> update(JapSettings settings) async {
+    state = settings;
+    await _repository.save(settings);
+  }
+
+  Future<void> setSoundEnabled(bool value) {
+    return update(state.copyWith(soundEnabled: value));
+  }
+
+  Future<void> setHapticEnabled(bool value) {
+    return update(state.copyWith(hapticEnabled: value));
+  }
+
+  Future<void> setEnclosureEnabled(bool value) {
+    return update(state.copyWith(enclosureEnabled: value));
+  }
+
+  Future<void> setFloatingTextEnabled(bool value) {
+    return update(state.copyWith(floatingTextEnabled: value));
+  }
+
+  Future<void> setTextSize(double value) {
+    final clamped = value.clamp(
+      SettingsConstants.minTextSize,
+      SettingsConstants.maxTextSize,
+    );
+    return update(state.copyWith(textSize: clamped));
+  }
+
+  Future<void> setDailyGoal(int value) {
+    final clamped = value.clamp(
+      SettingsConstants.minDailyGoal,
+      SettingsConstants.maxDailyGoal,
+    );
+    return update(state.copyWith(dailyGoal: clamped));
+  }
+
+  Future<void> setFloatingTextColor(Color value) {
+    return update(state.copyWith(floatingTextColor: value));
+  }
 }
 
 class JapSessionStateBundle {

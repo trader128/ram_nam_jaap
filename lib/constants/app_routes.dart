@@ -6,4 +6,5 @@ abstract final class AppRoutes {
   static const String more = '/more';
   static const String jap = '/jap';
   static const String settings = '/settings';
+  static const String floatingTextColor = '/settings/floating-color';
 }
