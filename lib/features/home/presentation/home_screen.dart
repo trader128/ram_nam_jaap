@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../constants/app_routes.dart';
 import '../../../constants/app_strings.dart';
+import '../../../core/helpers/number_formatter.dart';
+import '../../../shared/models/jap_statistics.dart';
+import '../../../features/jap/providers/jap_providers.dart';
 import '../../../shared/ui/app_scaffold.dart';
 import '../../../shared/widgets/divine_name_text.dart';
 import '../../../shared/widgets/primary_button.dart';
@@ -10,14 +16,14 @@ import '../../../theme/app_radius.dart';
 import '../../../theme/app_spacing.dart';
 import '../../../theme/app_text_styles.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>
+class _HomeScreenState extends ConsumerState<HomeScreen>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _heroFade;
@@ -57,6 +63,8 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
+    final statistics = ref.watch(japStatisticsProvider);
+
     return AppScaffold(
       body: SafeArea(
         child: Padding(
@@ -78,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen>
                     const SizedBox(height: AppSpacing.xl),
                     FadeTransition(
                       opacity: _statsFade,
-                      child: const _HomeStatsRow(),
+                      child: _HomeStatsRow(statistics: statistics),
                     ),
                   ],
                 ),
@@ -89,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen>
                   padding: const EdgeInsets.only(bottom: AppSpacing.xl),
                   child: PrimaryButtonAnimated(
                     label: AppStrings.beginJap,
-                    onPressed: () {},
+                    onPressed: () => context.push(AppRoutes.jap),
                   ),
                 ),
               ),
@@ -102,22 +110,33 @@ class _HomeScreenState extends State<HomeScreen>
 }
 
 class _HomeStatsRow extends StatelessWidget {
-  const _HomeStatsRow();
+  const _HomeStatsRow({required this.statistics});
+
+  final JapStatistics statistics;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Expanded(
-          child: _StatCard(label: AppStrings.today, value: '0'),
+          child: _StatCard(
+            label: AppStrings.today,
+            value: NumberFormatter.formatCount(statistics.todayCount),
+          ),
         ),
         const SizedBox(width: AppSpacing.sm),
         Expanded(
-          child: _StatCard(label: AppStrings.totalJaps, value: '0'),
+          child: _StatCard(
+            label: AppStrings.totalJaps,
+            value: NumberFormatter.formatCount(statistics.lifetimeCount),
+          ),
         ),
         const SizedBox(width: AppSpacing.sm),
         Expanded(
-          child: _StatCard(label: AppStrings.streak, value: '0'),
+          child: _StatCard(
+            label: AppStrings.streak,
+            value: NumberFormatter.formatCount(statistics.currentStreak),
+          ),
         ),
       ],
     );
