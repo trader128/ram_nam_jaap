@@ -9,20 +9,24 @@ class JapModeToolbar extends StatelessWidget {
     required this.focusMode,
     required this.wallpaperMode,
     required this.malaRingVisible,
+    required this.bookMode,
     required this.activeColor,
     required this.onFocusChanged,
     required this.onWallpaperChanged,
     required this.onMalaRingChanged,
+    required this.onBookChanged,
     super.key,
   });
 
   final bool focusMode;
   final bool wallpaperMode;
   final bool malaRingVisible;
+  final bool bookMode;
   final Color activeColor;
   final ValueChanged<bool> onFocusChanged;
   final ValueChanged<bool> onWallpaperChanged;
   final ValueChanged<bool> onMalaRingChanged;
+  final ValueChanged<bool> onBookChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +59,12 @@ class JapModeToolbar extends StatelessWidget {
             selected: malaRingVisible,
             activeColor: activeColor,
             onPressed: () => onMalaRingChanged(!malaRingVisible),
+          ),
+          _ModeIconButton(
+            icon: Icons.auto_stories_rounded,
+            selected: bookMode,
+            activeColor: activeColor,
+            onPressed: () => onBookChanged(!bookMode),
           ),
         ],
       ),

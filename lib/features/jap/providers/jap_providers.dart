@@ -8,6 +8,7 @@ import '../../../core/services/haptic_service.dart';
 import '../../../core/services/motion_jap_service.dart';
 import '../../../core/services/sound_service.dart';
 import '../../../core/services/volume_jap_service.dart';
+import '../../../shared/enums/app_language.dart';
 import '../../../shared/enums/count_method.dart';
 import '../../../shared/enums/insights_period.dart';
 import '../../../shared/models/daily_jap_record.dart';
@@ -180,20 +181,35 @@ class JapSettingsNotifier extends StateNotifier<JapSettings> {
   Future<void> setDivineWallpaperEnabled(bool value) {
     return update(state.copyWith(divineWallpaperEnabled: value));
   }
+
+  Future<void> setIdleMusicEnabled(bool value) {
+    return update(state.copyWith(idleMusicEnabled: value));
+  }
+
+  Future<void> setBookModeEnabled(bool value) {
+    return update(state.copyWith(bookModeEnabled: value));
+  }
+
+  Future<void> setLanguage(AppLanguage value) {
+    return update(state.copyWith(language: value));
+  }
 }
 
 class JapSessionStateBundle {
   const JapSessionStateBundle({
     required this.session,
     required this.japTrigger,
+    this.malaPulse = 0,
   });
 
   final JapSession session;
   final int japTrigger;
+  final int malaPulse;
 
   static const empty = JapSessionStateBundle(
     session: JapSession.empty,
     japTrigger: 0,
+    malaPulse: 0,
   );
 }
 
@@ -222,6 +238,7 @@ class JapSessionNotifier extends StateNotifier<JapSessionStateBundle> {
     state = JapSessionStateBundle(
       session: result.session,
       japTrigger: result.japTrigger,
+      malaPulse: result.malaCompleted ? state.malaPulse + 1 : state.malaPulse,
     );
     statisticsNotifier.state = result.statistics;
     historyNotifier.patchTodayCount(

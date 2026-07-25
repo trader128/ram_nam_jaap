@@ -1,7 +1,7 @@
 name: ram_nam_jap
 description: A premium offline Ram Naam chanting application.
 publish_to: 'none'
-version: 1.0.1+2
+version: 1.0.2+3
 
 environment:
   sdk: ^3.11.4

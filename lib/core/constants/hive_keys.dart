@@ -23,10 +23,12 @@ abstract final class HiveKeys {
   static const String divineWallpaperEnabled = 'divine_wallpaper_enabled';
   static const String idleMusicEnabled = 'idle_music_enabled';
   static const String bookModeEnabled = 'book_mode_enabled';
+  static const String appLanguage = 'app_language';
 
   static const String selectedDeity = 'selected_deity';
   static const String deityMigrated = 'deity_namespace_migrated';
   static const String welcomeCompleted = 'welcome_completed';
+  static const String japCoachCompleted = 'jap_coach_completed';
 
   /// Builds a per-deity namespaced key, e.g. `ram_today_count`.
   static String forDeity(String deityId, String baseKey) =>

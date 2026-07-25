@@ -46,5 +46,6 @@ app.*.map.json
 
 # Android release signing secrets (never commit)
 /android/key.properties
+/android/SIGNING_CREDENTIALS.txt
 **/*.jks
 **/*.keystore

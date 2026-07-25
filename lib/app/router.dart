@@ -12,6 +12,7 @@ import '../features/jap/presentation/jap_screen.dart';
 import '../features/deity/presentation/deity_selection_screen.dart';
 import '../features/onboarding/presentation/welcome_screen.dart';
 import '../features/settings/presentation/floating_color_screen.dart';
+import '../features/settings/presentation/about_screen.dart';
 import '../features/settings/presentation/help_screen.dart';
 import '../features/settings/presentation/more_screen.dart';
 import '../features/splash/presentation/splash_navigation_listener.dart';
@@ -163,6 +164,24 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         pageBuilder: (context, state) => CustomTransitionPage<void>(
           key: state.pageKey,
           child: const HelpScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: CurvedAnimation(
+                parent: animation,
+                curve: Curves.easeOut,
+              ),
+              child: child,
+            );
+          },
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.about,
+        name: 'about',
+        parentNavigatorKey: rootNavigatorKey,
+        pageBuilder: (context, state) => CustomTransitionPage<void>(
+          key: state.pageKey,
+          child: const AboutScreen(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return FadeTransition(
               opacity: CurvedAnimation(

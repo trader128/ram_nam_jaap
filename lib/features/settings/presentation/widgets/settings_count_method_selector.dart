@@ -90,6 +90,37 @@ class SettingsCountMethodSelector extends ConsumerWidget {
             vertical: AppSpacing.xxs,
           ),
         ),
+        const Divider(height: 1),
+        SwitchListTile(
+          title: Text(
+            AppStrings.idleMusicTitle,
+            style: AppTextStyles.bodyLarge,
+          ),
+          subtitle: Text(
+            AppStrings.idleMusicHint,
+            style: AppTextStyles.bodyMedium,
+          ),
+          value: settings.idleMusicEnabled,
+          onChanged: notifier.setIdleMusicEnabled,
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.md,
+            vertical: AppSpacing.xxs,
+          ),
+        ),
+        const Divider(height: 1),
+        SwitchListTile(
+          title: Text(AppStrings.bookModeTitle, style: AppTextStyles.bodyLarge),
+          subtitle: Text(
+            AppStrings.bookModeHint,
+            style: AppTextStyles.bodyMedium,
+          ),
+          value: settings.bookModeEnabled,
+          onChanged: notifier.setBookModeEnabled,
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.md,
+            vertical: AppSpacing.xxs,
+          ),
+        ),
       ],
     );
   }

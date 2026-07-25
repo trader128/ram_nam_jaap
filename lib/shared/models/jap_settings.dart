@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/constants/jap_constants.dart';
+import '../../shared/enums/app_language.dart';
 import '../../shared/enums/count_method.dart';
 import '../../theme/app_colors.dart';
 
@@ -16,6 +17,9 @@ class JapSettings {
     required this.backTapEnabled,
     required this.showMalaRing,
     required this.divineWallpaperEnabled,
+    required this.idleMusicEnabled,
+    required this.bookModeEnabled,
+    required this.language,
   });
 
   final bool soundEnabled;
@@ -28,6 +32,9 @@ class JapSettings {
   final bool backTapEnabled;
   final bool showMalaRing;
   final bool divineWallpaperEnabled;
+  final bool idleMusicEnabled;
+  final bool bookModeEnabled;
+  final AppLanguage language;
 
   static JapSettings defaults() {
     return const JapSettings(
@@ -40,7 +47,10 @@ class JapSettings {
       countMethod: CountMethod.tap,
       backTapEnabled: false,
       showMalaRing: false,
-      divineWallpaperEnabled: false,
+      divineWallpaperEnabled: true,
+      idleMusicEnabled: true,
+      bookModeEnabled: false,
+      language: AppLanguage.english,
     );
   }
 
@@ -55,6 +65,9 @@ class JapSettings {
     bool? backTapEnabled,
     bool? showMalaRing,
     bool? divineWallpaperEnabled,
+    bool? idleMusicEnabled,
+    bool? bookModeEnabled,
+    AppLanguage? language,
   }) {
     return JapSettings(
       soundEnabled: soundEnabled ?? this.soundEnabled,
@@ -68,6 +81,9 @@ class JapSettings {
       showMalaRing: showMalaRing ?? this.showMalaRing,
       divineWallpaperEnabled:
           divineWallpaperEnabled ?? this.divineWallpaperEnabled,
+      idleMusicEnabled: idleMusicEnabled ?? this.idleMusicEnabled,
+      bookModeEnabled: bookModeEnabled ?? this.bookModeEnabled,
+      language: language ?? this.language,
     );
   }
 }

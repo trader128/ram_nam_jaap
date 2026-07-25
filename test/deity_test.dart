@@ -8,7 +8,14 @@ void main() {
     final ids = DeityCatalog.all.map((deity) => deity.id).toList();
     expect(
       ids,
-      containsAll(<String>['ram', 'krishna', 'mahadev', 'ganesh', 'durga', 'hanuman']),
+      containsAll(<String>[
+        'ram',
+        'krishna',
+        'mahadev',
+        'ganesh',
+        'durga',
+        'hanuman',
+      ]),
     );
   });
 

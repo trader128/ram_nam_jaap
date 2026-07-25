@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../constants/app_strings.dart';
 import '../../features/deity/providers/deity_providers.dart';
+import '../../l10n/localized_strings_provider.dart';
 import '../../theme/app_colors.dart';
 
 class AppShell extends ConsumerWidget {
@@ -21,6 +21,7 @@ class AppShell extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final deityColor = ref.watch(deityColorProvider);
+    final l10n = ref.watch(localizedStringsProvider);
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -30,26 +31,26 @@ class AppShell extends ConsumerWidget {
         onDestinationSelected: _onTap,
         backgroundColor: AppColors.surface,
         indicatorColor: deityColor.withValues(alpha: 0.16),
-        destinations: const [
+        destinations: [
           NavigationDestination(
-            icon: Icon(Icons.home_outlined),
-            selectedIcon: Icon(Icons.home_rounded),
-            label: AppStrings.home,
+            icon: const Icon(Icons.home_outlined),
+            selectedIcon: const Icon(Icons.home_rounded),
+            label: l10n.home,
           ),
           NavigationDestination(
-            icon: Icon(Icons.insights_outlined),
-            selectedIcon: Icon(Icons.insights_rounded),
-            label: AppStrings.insights,
+            icon: const Icon(Icons.insights_outlined),
+            selectedIcon: const Icon(Icons.insights_rounded),
+            label: l10n.insights,
           ),
           NavigationDestination(
-            icon: Icon(Icons.history_outlined),
-            selectedIcon: Icon(Icons.history_rounded),
-            label: AppStrings.history,
+            icon: const Icon(Icons.history_outlined),
+            selectedIcon: const Icon(Icons.history_rounded),
+            label: l10n.history,
           ),
           NavigationDestination(
-            icon: Icon(Icons.more_horiz_rounded),
-            selectedIcon: Icon(Icons.more_horiz_rounded),
-            label: AppStrings.more,
+            icon: const Icon(Icons.more_horiz_rounded),
+            selectedIcon: const Icon(Icons.more_horiz_rounded),
+            label: l10n.more,
           ),
         ],
       ),

@@ -49,4 +49,7 @@ class DeityPack {
 
   /// Soft glow color derived from [primary].
   Color get glow => primary;
+
+  /// Full asset path of this deity's devotional background artwork.
+  String get backgroundImage => 'assets/images/deities/$id.jpg';
 }

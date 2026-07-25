@@ -2,6 +2,7 @@ import '../../../core/constants/hive_keys.dart';
 import '../../../core/constants/jap_constants.dart';
 import '../../../core/helpers/color_helper.dart';
 import '../../../core/storage/hive_storage.dart';
+import '../../../shared/enums/app_language.dart';
 import '../../../shared/enums/count_method.dart';
 import '../../../shared/models/jap_settings.dart';
 import '../../../theme/app_colors.dart';
@@ -37,7 +38,12 @@ class JapSettingsRepository {
       ),
       showMalaRing: box.get(HiveKeys.showMalaRing, defaultValue: false) as bool,
       divineWallpaperEnabled:
-          box.get(HiveKeys.divineWallpaperEnabled, defaultValue: false) as bool,
+          box.get(HiveKeys.divineWallpaperEnabled, defaultValue: true) as bool,
+      idleMusicEnabled:
+          box.get(HiveKeys.idleMusicEnabled, defaultValue: true) as bool,
+      bookModeEnabled:
+          box.get(HiveKeys.bookModeEnabled, defaultValue: false) as bool,
+      language: AppLanguage.fromCode(box.get(HiveKeys.appLanguage) as String?),
     );
   }
 
@@ -59,5 +65,8 @@ class JapSettingsRepository {
       HiveKeys.divineWallpaperEnabled,
       settings.divineWallpaperEnabled,
     );
+    await box.put(HiveKeys.idleMusicEnabled, settings.idleMusicEnabled);
+    await box.put(HiveKeys.bookModeEnabled, settings.bookModeEnabled);
+    await box.put(HiveKeys.appLanguage, settings.language.code);
   }
 }

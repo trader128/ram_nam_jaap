@@ -15,6 +15,7 @@ class JapSessionUiNotifier extends StateNotifier<JapSessionUiState> {
           focusMode: false,
           wallpaperMode: false,
           malaRingVisible: false,
+          bookMode: false,
         ),
       );
 
@@ -23,6 +24,7 @@ class JapSessionUiNotifier extends StateNotifier<JapSessionUiState> {
       focusMode: false,
       wallpaperMode: settings.divineWallpaperEnabled,
       malaRingVisible: settings.showMalaRing,
+      bookMode: settings.bookModeEnabled,
     );
   }
 
@@ -36,5 +38,9 @@ class JapSessionUiNotifier extends StateNotifier<JapSessionUiState> {
 
   void setMalaRingVisible(bool value) {
     state = state.copyWith(malaRingVisible: value);
+  }
+
+  void setBookMode(bool value) {
+    state = state.copyWith(bookMode: value);
   }
 }

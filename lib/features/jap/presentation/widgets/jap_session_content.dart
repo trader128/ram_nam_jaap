@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../constants/app_strings.dart';
+import '../../../../core/constants/sound_assets.dart';
 import '../../../../core/services/motion_jap_service.dart';
 import '../../../../core/services/volume_jap_service.dart';
 import '../../../../shared/enums/count_method.dart';
@@ -10,6 +11,7 @@ import '../../../../theme/app_spacing.dart';
 import '../../../deity/providers/deity_providers.dart';
 import '../../providers/jap_providers.dart';
 import '../../providers/jap_session_ui_provider.dart';
+import 'jap_book_view.dart';
 import 'jap_minimal_counter.dart';
 import 'jap_mode_toolbar.dart';
 import 'jap_naam_display.dart';
@@ -87,11 +89,26 @@ class _JapNaamCenter extends ConsumerWidget {
     final showMalaRing = ref.watch(
       japSessionUiProvider.select((state) => state.malaRingVisible),
     );
+    final bookMode = ref.watch(
+      japSessionUiProvider.select((state) => state.bookMode),
+    );
     final sessionCount = ref.watch(
       japSessionProvider.select((bundle) => bundle.session.count),
     );
     final deity = ref.watch(selectedDeityProvider);
     final settings = ref.watch(japSettingsProvider);
+
+    if (bookMode) {
+      return Center(
+        child: RepaintBoundary(
+          child: JapBookView(
+            japTrigger: japTrigger,
+            name: deity.name,
+            inkColor: deity.primary,
+          ),
+        ),
+      );
+    }
 
     return Center(
       child: Column(
@@ -200,6 +217,7 @@ class _JapModeToolbarHost extends ConsumerWidget {
       focusMode: ui.focusMode,
       wallpaperMode: ui.wallpaperMode,
       malaRingVisible: ui.malaRingVisible,
+      bookMode: ui.bookMode,
       activeColor: color,
       onFocusChanged: (value) =>
           ref.read(japSessionUiProvider.notifier).setFocusMode(value),
@@ -207,6 +225,8 @@ class _JapModeToolbarHost extends ConsumerWidget {
           ref.read(japSessionUiProvider.notifier).setWallpaperMode(value),
       onMalaRingChanged: (value) =>
           ref.read(japSessionUiProvider.notifier).setMalaRingVisible(value),
+      onBookChanged: (value) =>
+          ref.read(japSessionUiProvider.notifier).setBookMode(value),
     );
   }
 }
@@ -223,6 +243,13 @@ mixin JapSessionLifecycle<T extends ConsumerStatefulWidget>
     ref.read(japSessionUiProvider.notifier).initializeFromSettings(settings);
     await ref.read(japSessionProvider.notifier).beginSession();
     await syncInputListeners(ref);
+
+    await ref
+        .read(soundServiceProvider)
+        .startIdleMusic(
+          asset: SoundAssets.templeAmbient,
+          enabled: settings.idleMusicEnabled,
+        );
   }
 
   Future<void> syncInputListeners(WidgetRef ref) async {
@@ -240,6 +267,7 @@ mixin JapSessionLifecycle<T extends ConsumerStatefulWidget>
   Future<void> disposeJapSession(WidgetRef ref) async {
     await volumeService.stop();
     await motionService.stop();
+    await ref.read(soundServiceProvider).stopIdleMusic();
   }
 
   Future<void> registerJap(WidgetRef ref) async {

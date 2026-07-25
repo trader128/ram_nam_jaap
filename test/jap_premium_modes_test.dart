@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:ram_nam_jap/shared/enums/app_language.dart';
 import 'package:ram_nam_jap/shared/enums/count_method.dart';
 import 'package:ram_nam_jap/shared/models/jap_settings.dart';
 
@@ -17,12 +18,17 @@ void main() {
       backTapEnabled: true,
       showMalaRing: true,
       divineWallpaperEnabled: true,
+      idleMusicEnabled: true,
+      bookModeEnabled: true,
+      language: AppLanguage.english,
     );
 
     expect(settings.countMethod, CountMethod.both);
     expect(settings.backTapEnabled, isTrue);
     expect(settings.showMalaRing, isTrue);
     expect(settings.divineWallpaperEnabled, isTrue);
+    expect(settings.idleMusicEnabled, isTrue);
+    expect(settings.bookModeEnabled, isTrue);
   });
 
   test('CountMethod restores from storage key', () {

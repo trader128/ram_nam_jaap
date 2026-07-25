@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import '../../../core/constants/jap_constants.dart';
+import '../../../core/constants/sound_assets.dart';
 import '../../../core/helpers/date_helper.dart';
 import '../../../core/services/haptic_service.dart';
 import '../../../core/services/sound_service.dart';
@@ -151,7 +152,10 @@ class JapController {
     required bool malaCompleted,
   }) {
     _hapticService.japTap(enabled: settings.hapticEnabled);
-    _soundService.playJapTap(enabled: settings.soundEnabled);
+    _soundService.playChant(
+      enabled: settings.soundEnabled,
+      asset: SoundAssets.chantFor(_deityId),
+    );
 
     if (malaCompleted) {
       _hapticService.malaComplete(enabled: settings.hapticEnabled);

@@ -4,9 +4,12 @@ import 'package:go_router/go_router.dart';
 
 import '../../../constants/app_routes.dart';
 import '../../../constants/app_strings.dart';
+import '../../../l10n/localized_strings_provider.dart';
 import '../../../core/constants/settings_constants.dart';
 import '../../../features/deity/providers/deity_providers.dart';
 import '../../../features/jap/providers/jap_providers.dart';
+import '../../../l10n/localized_strings_provider.dart';
+import '../../../shared/enums/app_language.dart';
 import '../../../shared/ui/app_scaffold.dart';
 import '../../../theme/app_spacing.dart';
 import '../../../theme/app_text_styles.dart';
@@ -109,11 +112,46 @@ class SettingsScreen extends ConsumerWidget {
             ),
             const SizedBox(height: AppSpacing.lg),
             SettingsSection(
+              title: ref.watch(localizedStringsProvider).languageSection,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.md,
+                    vertical: AppSpacing.sm,
+                  ),
+                  child: Text(
+                    ref.watch(localizedStringsProvider).languageHint,
+                    style: AppTextStyles.labelSmall,
+                  ),
+                ),
+                SegmentedButton<AppLanguage>(
+                  segments: AppLanguage.values
+                      .map(
+                        (language) => ButtonSegment(
+                          value: language,
+                          label: Text(language.label),
+                        ),
+                      )
+                      .toList(),
+                  selected: {settings.language},
+                  onSelectionChanged: (selection) {
+                    notifier.setLanguage(selection.first);
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: AppSpacing.lg),
+            SettingsSection(
               title: AppStrings.supportSection,
               children: [
                 SettingsNavTile(
                   title: AppStrings.helpAndPrivacy,
                   onTap: () => context.push(AppRoutes.help),
+                ),
+                const Divider(height: 1),
+                SettingsNavTile(
+                  title: ref.watch(localizedStringsProvider).aboutTitle,
+                  onTap: () => context.push(AppRoutes.about),
                 ),
               ],
             ),

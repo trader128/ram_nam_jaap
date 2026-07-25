@@ -8,4 +8,4 @@ We do not collect, transmit, or sell personal data. There is no account and no a
 
 Audio plays locally from bundled assets.
 
-Contact: support@example.com (replace with your email before App Store submit)
+Contact: add your real support email in App Store Connect and in this file before publishing.

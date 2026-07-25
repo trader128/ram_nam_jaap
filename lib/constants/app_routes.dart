@@ -10,4 +10,5 @@ abstract final class AppRoutes {
   static const String deitySelection = '/deity';
   static const String welcome = '/welcome';
   static const String help = '/help';
+  static const String about = '/about';
 }
