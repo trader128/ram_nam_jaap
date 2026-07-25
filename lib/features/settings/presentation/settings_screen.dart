@@ -107,6 +107,16 @@ class SettingsScreen extends ConsumerWidget {
                 ),
               ],
             ),
+            const SizedBox(height: AppSpacing.lg),
+            SettingsSection(
+              title: AppStrings.supportSection,
+              children: [
+                SettingsNavTile(
+                  title: AppStrings.helpAndPrivacy,
+                  onTap: () => context.push(AppRoutes.help),
+                ),
+              ],
+            ),
           ],
         ),
       ),

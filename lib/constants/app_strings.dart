@@ -68,7 +68,12 @@ abstract final class AppStrings {
   static const String showMalaRing = 'Show Mala Ring';
   static const String divineWallpaperMode = 'Divine Wallpaper Mode';
   static const String divineWallpaperHint =
-      'Immersive temple backdrop during jap';
+      'Show the deity\'s artwork behind your jap';
+  static const String idleMusicTitle = 'Ambient Music';
+  static const String idleMusicHint = 'Gentle background music during your jap';
+  static const String bookModeTitle = 'Likhit Jap Book';
+  static const String bookModeHint =
+      'Each naam is written into a book, page flips when full';
   static const String volumeToChant = 'Use volume buttons to chant';
   static const String tapOrVolumeToChant = 'Tap or use volume buttons to chant';
   static const String focusMode = 'Focus Mode';
@@ -82,4 +87,29 @@ abstract final class AppStrings {
       'Select the divine name you wish to chant';
   static const String currentNaam = 'Current Naam';
   static const String mantraLabel = 'Mantra';
+
+  static const String welcomeStep1 =
+      'Tap Begin Jap on the home screen to start a session.';
+  static const String welcomeStep2 =
+      'Tap the screen, use volume buttons, or back-tap (in Settings) to count each jap.';
+  static const String welcomeStep3 =
+      'Track goals, streaks, and history on Home, Insights, and History tabs.';
+  static const String welcomeContinue = 'Get started';
+
+  static const String helpTitle = 'How to use';
+  static const String helpIntro =
+      'RAM NAM JAP is a private, offline counter for your daily naam jap. Everything stays on your device.';
+  static const String helpHowToTitle = 'Quick start';
+  static const List<String> helpSteps = [
+    'Choose your deity and mantra from the home screen.',
+    'Tap Begin Jap and count by tapping, volume, or back-tap.',
+    'Set a daily goal in More → Settings.',
+    'View trends in Insights and past days in History.',
+  ];
+
+  static const String privacyTitle = 'Privacy';
+  static const String privacyBody =
+      'RAM NAM JAP does not collect personal data. Counts and settings are stored locally on your device. No account is required. Optional sounds play from bundled files only.';
+  static const String helpAndPrivacy = 'Help & privacy';
+  static const String supportSection = 'Support';
 }
