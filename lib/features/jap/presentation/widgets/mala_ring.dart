@@ -4,57 +4,103 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/constants/jap_constants.dart';
 import '../../../../theme/app_colors.dart';
+import '../../../../theme/app_durations.dart';
 
-class MalaRing extends StatelessWidget {
+class MalaRing extends StatefulWidget {
   const MalaRing({required this.sessionCount, required this.color, super.key});
 
   final int sessionCount;
   final Color color;
 
   @override
-  Widget build(BuildContext context) {
+  State<MalaRing> createState() => _MalaRingState();
+}
+
+class _MalaRingState extends State<MalaRing> {
+  double _animatedProgress = 0;
+
+  double _targetProgress(int sessionCount) {
+    if (sessionCount == 0) {
+      return 0;
+    }
     final remainder = sessionCount % JapConstants.beadsPerMala;
-    final displayCount = remainder == 0 && sessionCount > 0
+    if (remainder == 0) {
+      return 1;
+    }
+    return remainder / JapConstants.beadsPerMala;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _animatedProgress = _targetProgress(widget.sessionCount);
+  }
+
+  @override
+  void didUpdateWidget(MalaRing oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.sessionCount != widget.sessionCount) {
+      setState(() {});
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final target = _targetProgress(widget.sessionCount);
+    final remainder = widget.sessionCount % JapConstants.beadsPerMala;
+    final displayCount = remainder == 0 && widget.sessionCount > 0
         ? JapConstants.beadsPerMala
         : remainder;
-    final progress = sessionCount == 0
-        ? 0.0
-        : remainder == 0
-        ? 1.0
-        : remainder / JapConstants.beadsPerMala;
 
-    return SizedBox(
-      width: 220,
-      height: 220,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          CustomPaint(
-            size: const Size(220, 220),
-            painter: _MalaRingPainter(progress: progress, color: color),
-          ),
-          Column(
-            mainAxisSize: MainAxisSize.min,
+    return TweenAnimationBuilder<double>(
+      duration: AppDurations.fast,
+      curve: Curves.easeOutCubic,
+      tween: Tween(begin: _animatedProgress, end: target),
+      onEnd: () => _animatedProgress = target,
+      builder: (context, progress, _) {
+        return SizedBox(
+          width: 220,
+          height: 220,
+          child: Stack(
+            alignment: Alignment.center,
             children: [
-              Text(
-                '$displayCount',
-                style: TextStyle(
-                  fontSize: 34,
-                  fontWeight: FontWeight.w400,
-                  color: color,
-                ),
+              CustomPaint(
+                size: const Size(220, 220),
+                painter: _MalaRingPainter(progress: progress, color: widget.color),
               ),
-              Text(
-                '/ ${JapConstants.beadsPerMala}',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: AppColors.textSecondary.withValues(alpha: 0.9),
-                ),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TweenAnimationBuilder<double>(
+                    duration: AppDurations.fast,
+                    tween: Tween(
+                      begin: displayCount.toDouble(),
+                      end: displayCount.toDouble(),
+                    ),
+                    builder: (context, value, _) {
+                      return Text(
+                        value.round().toString(),
+                        style: TextStyle(
+                          fontSize: 34,
+                          fontWeight: FontWeight.w400,
+                          color: widget.color,
+                        ),
+                      );
+                    },
+                  ),
+                  Text(
+                    '/ ${JapConstants.beadsPerMala}',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: AppColors.textSecondary.withValues(alpha: 0.9),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

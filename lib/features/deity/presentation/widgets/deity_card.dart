@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../theme/app_colors.dart';
+import '../../../../theme/app_durations.dart';
 import '../../../../theme/app_radius.dart';
 import '../../../../theme/app_spacing.dart';
 import '../../../../theme/app_text_styles.dart';
@@ -20,65 +21,86 @@ class DeityCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(AppRadius.lg),
-        child: Ink(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(AppRadius.lg),
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                deity.primary.withValues(alpha: selected ? 0.22 : 0.10),
-                deity.accent.withValues(alpha: selected ? 0.12 : 0.04),
-              ],
-            ),
-            border: Border.all(
-              color: selected
-                  ? deity.primary.withValues(alpha: 0.9)
-                  : AppColors.divider.withValues(alpha: 0.5),
-              width: selected ? 1.6 : 1,
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(AppSpacing.md),
-            child: Row(
-              children: [
-                _NaamGlyph(deity: deity),
-                const SizedBox(width: AppSpacing.md),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        deity.transliteration,
-                        style: AppTextStyles.titleLarge.copyWith(
-                          color: AppColors.textPrimary,
-                        ),
+    return AnimatedScale(
+      scale: selected ? 1.02 : 1,
+      duration: AppDurations.fast,
+      curve: Curves.easeOutCubic,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(AppRadius.lg),
+          splashColor: deity.primary.withValues(alpha: 0.12),
+          child: AnimatedContainer(
+            duration: AppDurations.fast,
+            curve: Curves.easeOutCubic,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(AppRadius.lg),
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  deity.primary.withValues(alpha: selected ? 0.24 : 0.10),
+                  deity.accent.withValues(alpha: selected ? 0.14 : 0.04),
+                ],
+              ),
+              border: Border.all(
+                color: selected
+                    ? deity.primary.withValues(alpha: 0.95)
+                    : AppColors.divider.withValues(alpha: 0.5),
+                width: selected ? 2 : 1,
+              ),
+              boxShadow: selected
+                  ? [
+                      BoxShadow(
+                        color: deity.primary.withValues(alpha: 0.25),
+                        blurRadius: 16,
+                        offset: const Offset(0, 4),
                       ),
-                      const SizedBox(height: 2),
-                      Text(
-                        deity.mantra,
-                        style: AppTextStyles.bodyMedium.copyWith(
-                          color: deity.primary,
+                    ]
+                  : null,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(AppSpacing.md),
+              child: Row(
+                children: [
+                  _NaamGlyph(deity: deity, selected: selected),
+                  const SizedBox(width: AppSpacing.md),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          deity.transliteration,
+                          style: AppTextStyles.titleLarge.copyWith(
+                            color: AppColors.textPrimary,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: AppSpacing.xxs),
-                      Text(deity.meaning, style: AppTextStyles.bodyMedium),
-                    ],
+                        const SizedBox(height: 2),
+                        Text(
+                          deity.mantra,
+                          style: AppTextStyles.bodyMedium.copyWith(
+                            color: deity.primary,
+                          ),
+                        ),
+                        const SizedBox(height: AppSpacing.xxs),
+                        Text(deity.meaning, style: AppTextStyles.bodyMedium),
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(width: AppSpacing.sm),
-                Icon(
-                  selected ? Icons.check_circle_rounded : Icons.circle_outlined,
-                  color: selected
-                      ? deity.primary
-                      : AppColors.textSecondary.withValues(alpha: 0.6),
-                ),
-              ],
+                  const SizedBox(width: AppSpacing.sm),
+                  AnimatedSwitcher(
+                    duration: AppDurations.fast,
+                    child: Icon(
+                      selected ? Icons.check_circle_rounded : Icons.circle_outlined,
+                      key: ValueKey(selected),
+                      color: selected
+                          ? deity.primary
+                          : AppColors.textSecondary.withValues(alpha: 0.6),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -88,20 +110,25 @@ class DeityCard extends StatelessWidget {
 }
 
 class _NaamGlyph extends StatelessWidget {
-  const _NaamGlyph({required this.deity});
+  const _NaamGlyph({required this.deity, required this.selected});
 
   final DeityPack deity;
+  final bool selected;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: AppDurations.fast,
       width: 58,
       height: 58,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: deity.primary.withValues(alpha: 0.14),
-        border: Border.all(color: deity.primary.withValues(alpha: 0.5)),
+        color: deity.primary.withValues(alpha: selected ? 0.22 : 0.14),
+        border: Border.all(
+          color: deity.primary.withValues(alpha: selected ? 0.85 : 0.5),
+          width: selected ? 2 : 1,
+        ),
       ),
       child: Text(
         deity.name,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../constants/app_strings.dart';
 import '../../../core/helpers/number_formatter.dart';
+import '../../../theme/app_durations.dart';
 import '../../../theme/app_colors.dart';
 import '../../../theme/app_radius.dart';
 import '../../../theme/app_spacing.dart';
@@ -29,11 +30,18 @@ class DailyGoalProgress extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(AppRadius.full),
-          child: LinearProgressIndicator(
-            value: progress,
-            minHeight: 4,
-            backgroundColor: AppColors.surfaceVariant,
-            color: (color ?? AppColors.primaryGold).withValues(alpha: 0.85),
+          child: TweenAnimationBuilder<double>(
+            duration: AppDurations.normal,
+            curve: Curves.easeOutCubic,
+            tween: Tween(begin: 0, end: progress),
+            builder: (context, value, _) {
+              return LinearProgressIndicator(
+                value: value,
+                minHeight: 5,
+                backgroundColor: AppColors.surfaceVariant,
+                color: (color ?? AppColors.primaryGold).withValues(alpha: 0.9),
+              );
+            },
           ),
         ),
         const SizedBox(height: AppSpacing.xs),

@@ -12,6 +12,7 @@ import '../../../shared/models/jap_statistics.dart';
 import '../../../features/jap/presentation/widgets/deity_image_background.dart';
 import '../../../features/jap/providers/jap_providers.dart';
 import '../../../shared/ui/app_scaffold.dart';
+import '../../../shared/widgets/breathing_glow.dart';
 import '../../../shared/widgets/animated_count_text.dart';
 import '../../../shared/widgets/divine_name_text.dart';
 import '../../../shared/widgets/daily_goal_progress.dart';
@@ -153,9 +154,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                     opacity: _statsFade,
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: AppSpacing.lg),
-                      child: PrimaryButtonAnimated(
-                        label: l10n.beginJap,
-                        onPressed: () => context.push(AppRoutes.jap),
+                      child: BreathingGlow(
+                        color: deity.primary,
+                        child: PrimaryButtonAnimated(
+                          label: l10n.beginJap,
+                          onPressed: () => context.push(AppRoutes.jap),
+                        ),
                       ),
                     ),
                   ),

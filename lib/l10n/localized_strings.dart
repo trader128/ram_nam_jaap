@@ -114,4 +114,11 @@ class LocalizedStrings {
       : 'Tap anywhere on the screen. Each tap counts one jap. Press ✕ at the top to finish.';
 
   String get coachGotIt => isHindi ? 'समझ गया' : 'Got it';
+
+  String get emptyHistoryTitle =>
+      isHindi ? 'यात्रा अभी शुरू होगी' : 'Your journey starts here';
+
+  String get emptyHistorySubtitle => isHindi
+      ? 'पहला जप पूरा करें — यहाँ दैनिक इतिहास दिखेगा।'
+      : 'Complete your first jap session — daily history will appear here.';
 }

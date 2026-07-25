@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../constants/app_routes.dart';
 import '../../../constants/app_strings.dart';
-import '../../../l10n/localized_strings_provider.dart';
 import '../../../core/constants/settings_constants.dart';
 import '../../../features/deity/providers/deity_providers.dart';
 import '../../../features/jap/providers/jap_providers.dart';

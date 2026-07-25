@@ -16,6 +16,7 @@ import 'jap_minimal_counter.dart';
 import 'jap_mode_toolbar.dart';
 import 'jap_naam_display.dart';
 import 'jap_stats_bar.dart';
+import 'jap_tap_pulse.dart';
 import 'mala_ring.dart';
 
 class JapSessionContent extends ConsumerWidget {
@@ -38,9 +39,16 @@ class JapSessionContent extends ConsumerWidget {
         (settings) => settings.countMethod != CountMethod.volume,
       ),
     );
+    final japPulse = ref.watch(
+      japSessionProvider.select((bundle) => bundle.japTrigger),
+    );
+    final pulseColor = ref.watch(deityColorProvider);
 
     return Stack(
       children: [
+        Positioned.fill(
+          child: JapTapPulse(pulse: japPulse, color: pulseColor),
+        ),
         Positioned.fill(
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,

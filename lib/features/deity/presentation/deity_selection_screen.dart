@@ -9,6 +9,7 @@ import '../../../theme/app_text_styles.dart';
 import '../../jap/presentation/widgets/divine_wallpaper_background.dart';
 import '../../jap/providers/jap_providers.dart';
 import '../domain/deity_catalog.dart';
+import '../../../shared/widgets/motion_entrance.dart';
 import '../providers/deity_providers.dart';
 import 'widgets/deity_card.dart';
 
@@ -76,10 +77,12 @@ class DeitySelectionScreen extends ConsumerWidget {
                         const SizedBox(height: AppSpacing.sm),
                     itemBuilder: (context, index) {
                       final deity = DeityCatalog.all[index];
-                      return DeityCard(
-                        deity: deity,
-                        selected: deity.id == selected.id,
-                        onTap: () async {
+                      return StaggeredEntrance(
+                        index: index,
+                        child: DeityCard(
+                          deity: deity,
+                          selected: deity.id == selected.id,
+                          onTap: () async {
                           await ref
                               .read(selectedDeityProvider.notifier)
                               .select(deity);
@@ -91,7 +94,8 @@ class DeitySelectionScreen extends ConsumerWidget {
                             context.pop();
                           }
                         },
-                      );
+                      ),
+                    );
                     },
                   ),
                 ),
