@@ -16,14 +16,20 @@ service cloud.firestore {
       }
     }
 
-    // Shared content added in later phases (vrats, bhajans) will be read-only
-    // to clients and written from the console or a trusted backend.
+    // Shared content is public-read and written only from the console or a
+    // trusted machine (Navamsha sync for panchang, editorial overlay for vrats
+    // and bhajans). Clients must never write these collections.
     match /vrats/{vratId} {
       allow read: if true;
       allow write: if false;
     }
 
     match /bhajans/{bhajanId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /panchang/{dayId} {
       allow read: if true;
       allow write: if false;
     }
