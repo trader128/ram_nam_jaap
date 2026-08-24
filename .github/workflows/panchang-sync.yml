@@ -1,0 +1,40 @@
+name: Navamsha panchang sync
+
+# Refreshes Firestore `panchang/{yyyy-MM-dd}` for the next 45 days.
+# Secrets stay in GitHub — never in the Flutter app.
+#
+# One-time: repo Settings → Secrets and variables → Actions
+#   NAVAMSHA_API_KEY          Navamsha dashboard key
+#   FIREBASE_SERVICE_ACCOUNT  full JSON of the Firebase Admin SDK key
+#
+# Or from a machine that already has the files:
+#   gh secret set NAVAMSHA_API_KEY
+#   gh secret set FIREBASE_SERVICE_ACCOUNT < "$GOOGLE_APPLICATION_CREDENTIALS"
+
+on:
+  schedule:
+    # Monday 06:00 IST (00:30 UTC)
+    - cron: '30 0 * * 1'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tool/navamsha
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: tool/navamsha/package-lock.json
+      - name: Install
+        run: npm ci
+      - name: Sync panchang
+        env:
+          NAVAMSHA_API_KEY: ${{ secrets.NAVAMSHA_API_KEY }}
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          FIREBASE_PROJECT_ID: bhakti-sawarun
+        run: node sync.mjs
