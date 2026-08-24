@@ -231,14 +231,62 @@ class LocalizedStrings {
   String get kundaliTitle => isHindi ? 'कुंडली' : 'Kundali';
 
   String get kundaliBody => isHindi
-      ? 'जन्म कुंडली उज्जैन पंचांग से — शीघ्र आ रहा है। कुंजी ऐप में नहीं रहेगी।'
-      : 'Birth kundali from the Ujjain panchang — coming soon. The API key stays off the device.';
+      ? 'जन्म कुंडली और ज्योतिष प्रश्न — कुंजी फ़ोन पर नहीं रहती। चैट ₹२९९, स्टोर बिलिंग के साथ।'
+      : 'Birth kundali and chart questions. The API key stays off the device. Chat is ₹299 once store billing is live.';
 
-  String get kundaliCta => isHindi ? 'मुझे सूचित करें' : 'Notify me';
+  String get kundaliCta => isHindi ? 'कुंडली खोलें' : 'Open kundali';
 
-  String get kundaliNoted => isHindi
-      ? 'धन्यवाद — कुंडली आने पर सूचित करेंगे।'
-      : 'Thank you — we will let you know when kundali is ready.';
+  String get kundaliOpenChart => isHindi ? 'कुंडली देखें' : 'View chart';
+
+  String get kundaliBirthDate => isHindi ? 'जन्म तिथि' : 'Birth date';
+
+  String get kundaliBirthTime => isHindi ? 'जन्म समय' : 'Birth time';
+
+  String get kundaliBirthPlace => isHindi ? 'जन्म स्थान' : 'Birth place';
+
+  String get kundaliDraw => isHindi ? 'कुंडली बनाएँ' : 'Draw kundali';
+
+  String get kundaliRedraw => isHindi ? 'फिर से बनाएँ' : 'Draw again';
+
+  String get kundaliChatTitle => isHindi ? 'ज्योतिष चैट' : 'Chart chat';
+
+  String get kundaliChatCta => isHindi ? 'कुंडली से पूछें' : 'Ask the chart';
+
+  String get kundaliChatHint => isHindi
+      ? 'मंगल दोष, दशा, आज का फल…'
+      : 'Mangal dosha, dasha, today…';
+
+  String get kundaliChatSend => isHindi ? 'पूछें' : 'Ask';
+
+  String get kundaliChatPaidNote => isHindi
+      ? 'यह चार्ट से उत्तर है, लाइव ज्योतिषी नहीं। ₹२९९ गेट स्टोर बिलिंग के साथ जुड़ेगा।'
+      : 'Answers come from the chart API, not a live astrologer. The ₹299 gate lands with store billing.';
+
+  String get kundaliNakshatra => isHindi ? 'नक्षत्र' : 'Nakshatra';
+
+  String get kundaliMoon => isHindi ? 'चंद्र राशि' : 'Moon sign';
+
+  String get kundaliSun => isHindi ? 'सूर्य राशि' : 'Sun sign';
+
+  String get kundaliZodiac => isHindi ? 'राशि' : 'Zodiac';
+
+  String get kundaliMangal => isHindi ? 'मंगल दोष' : 'Mangal dosha';
+
+  String get kundaliYogas => isHindi ? 'योग' : 'Yogas';
+
+  String get kundaliNeedChart => isHindi
+      ? 'पहले कुंडली बनाएँ, फिर प्रश्न पूछें।'
+      : 'Draw a kundali first, then ask.';
+
+  String kundaliChip(String id) {
+    return switch (id) {
+      'mangal' => isHindi ? 'मंगल दोष?' : 'Mangal dosha?',
+      'dasha' => isHindi ? 'अभी कौन सी दशा?' : 'Current dasha?',
+      'sadesati' => isHindi ? 'साढ़े साती?' : 'Sade sati?',
+      'today' => isHindi ? 'आज का फल' : 'Today',
+      _ => isHindi ? 'सार' : 'Summary',
+    };
+  }
 
   String get bhajans => isHindi ? 'भजन' : 'Bhajans';
 

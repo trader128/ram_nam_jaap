@@ -26,9 +26,19 @@ copy of:
 That copy is stored with Google Firebase (Firebase Authentication and Cloud
 Firestore). It exists so your practice survives losing or replacing your phone.
 
-We do not store your name, email, phone number, contacts, location, or any
+We do not store your name, email, phone number, contacts, or any
 device advertising identifier. There is no analytics SDK, no advertising SDK,
 and no third-party tracking.
+
+## Kundali and chart chat
+
+If you open **Kundali**, the birth date, time, and city you enter are sent to
+our Firebase backend so it can call Prokerala. Those details are stored on your
+phone and, after a draw, on your anonymous Firebase user document. They are not
+mixed into jap backup. The Prokerala key never sits in the app.
+
+Chart chat is answered from that kundli (dosha, dasha, daily rashifal). It is
+not a live astrologer. Paid unlock (₹299) waits on store billing.
 
 ## Turning it off and deleting your data
 

@@ -12,7 +12,7 @@ import '../../../theme/app_text_styles.dart';
 import '../../deity/providers/deity_providers.dart';
 import '../domain/vrat.dart';
 import '../providers/calendar_providers.dart';
-import 'widgets/kundali_interest_card.dart';
+import '../../kundali/presentation/widgets/kundali_entry_card.dart';
 import 'widgets/prasadam_interest_card.dart';
 import 'widgets/today_panchang_card.dart';
 import 'widgets/vrat_list_tile.dart';
@@ -106,7 +106,7 @@ class CalendarScreen extends ConsumerWidget {
                     ),
                   const SizedBox(height: AppSpacing.lg),
                 ],
-                const KundaliInterestCard(),
+                const KundaliEntryCard(),
                 const SizedBox(height: AppSpacing.lg),
                 const PrasadamInterestCard(),
               ],

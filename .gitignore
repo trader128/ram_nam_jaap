@@ -2,6 +2,7 @@
 .env
 .env.*
 !.env.example
+!**/.env.example
 **/*serviceAccount*.json
 tool/navamsha/node_modules/
 
@@ -39,6 +40,9 @@ migrate_working_dir/
 .pub/
 /build/
 /coverage/
+
+# Cloud Functions (local deps)
+functions/node_modules/
 
 # Firestore rules tests (Node)
 firestore-tests/node_modules/

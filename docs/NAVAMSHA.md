@@ -94,11 +94,8 @@ chmod +x tool/navamsha/install-weekly.sh
 - Calendar shows tithi, nakshatra, and sunrise on the today card. Home repeats
   today's tithi on the sadhana strip.
 
-Kundali, matching, and paid chat endpoints exist on Navamsha but are out of
-scope until store billing is decided. Those would still go through a trusted
-backend, never the client. Calendar already records kundali interest taps
-(Hive `kundali_interest_taps`, synced with backup) so demand is visible
-before any birth data is collected.
+Navamsha is **panchang only**. Kundali and chart chat go through Prokerala —
+see [PROKERALA.md](PROKERALA.md). The Flutter app never holds either vendor key.
 
 ## If the probe fails
 

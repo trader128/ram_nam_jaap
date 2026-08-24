@@ -14,6 +14,8 @@ import '../features/home/presentation/home_screen.dart';
 import '../features/insights/presentation/insights_screen.dart';
 import '../features/jap/presentation/jap_screen.dart';
 import '../features/deity/presentation/deity_selection_screen.dart';
+import '../features/kundali/presentation/kundali_chat_screen.dart';
+import '../features/kundali/presentation/kundali_screen.dart';
 import '../features/onboarding/presentation/welcome_screen.dart';
 import '../features/settings/presentation/floating_color_screen.dart';
 import '../features/settings/presentation/about_screen.dart';
@@ -259,6 +261,24 @@ final appRouterProvider = Provider<GoRouter>((ref) {
               child: child,
             );
           },
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.kundali,
+        name: 'kundali',
+        parentNavigatorKey: rootNavigatorKey,
+        pageBuilder: (context, state) => _fadePage(
+          key: state.pageKey,
+          child: const KundaliScreen(),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.kundaliChat,
+        name: 'kundaliChat',
+        parentNavigatorKey: rootNavigatorKey,
+        pageBuilder: (context, state) => _fadePage(
+          key: state.pageKey,
+          child: const KundaliChatScreen(),
         ),
       ),
       GoRoute(

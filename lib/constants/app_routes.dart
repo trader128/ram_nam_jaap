@@ -13,4 +13,6 @@ abstract final class AppRoutes {
   static const String welcome = '/welcome';
   static const String help = '/help';
   static const String about = '/about';
+  static const String kundali = '/kundali';
+  static const String kundaliChat = '/kundali/chat';
 }

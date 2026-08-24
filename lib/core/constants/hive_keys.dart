@@ -40,6 +40,9 @@ abstract final class HiveKeys {
   static const String bhajanTransliteration = 'bhajan_transliteration';
   static const String prasadamInterest = 'prasadam_interest_taps';
   static const String kundaliInterest = 'kundali_interest_taps';
+  static const String kundaliProfile = 'kundali_birth_profile';
+  static const String kundaliReading = 'kundali_reading';
+  static const String kundaliChat = 'kundali_chat';
 
   static const String syncEnabled = 'cloud_sync_enabled';
   static const String lastSyncedAt = 'cloud_last_synced_at';
