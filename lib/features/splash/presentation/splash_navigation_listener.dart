@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../constants/app_routes.dart';
+import '../../../core/constants/hive_keys.dart';
+import '../../../core/storage/hive_storage.dart';
 import '../../../theme/app_durations.dart';
 
 class SplashNavigationListener extends StatefulWidget {
@@ -18,15 +20,24 @@ class _SplashNavigationListenerState extends State<SplashNavigationListener> {
   @override
   void initState() {
     super.initState();
-    _navigateToHome();
+    _navigateNext();
   }
 
-  Future<void> _navigateToHome() async {
+  Future<void> _navigateNext() async {
     await Future<void>.delayed(AppDurations.splash);
     if (!mounted) {
       return;
     }
-    context.go(AppRoutes.home);
+    final completed = HiveStorage.settingsBox.get(
+          HiveKeys.welcomeCompleted,
+          defaultValue: false,
+        )
+        as bool;
+    if (completed) {
+      context.go(AppRoutes.home);
+    } else {
+      context.go(AppRoutes.welcome);
+    }
   }
 
   @override

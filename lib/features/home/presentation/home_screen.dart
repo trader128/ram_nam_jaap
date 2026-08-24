@@ -1,23 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
-import '../../../constants/app_strings.dart';
+import '../../../constants/app_routes.dart';
+import '../../../core/helpers/number_formatter.dart';
+import '../../../features/deity/providers/deity_providers.dart';
+import '../../../features/guide/presentation/daily_guidance_card.dart';
+import '../../../l10n/localized_strings.dart';
+import '../../../l10n/localized_strings_provider.dart';
+import '../../../shared/models/jap_statistics.dart';
+import '../../../features/jap/presentation/widgets/deity_image_background.dart';
+import '../../../features/jap/providers/jap_providers.dart';
 import '../../../shared/ui/app_scaffold.dart';
+import '../../../shared/widgets/breathing_glow.dart';
+import '../../../shared/widgets/animated_count_text.dart';
 import '../../../shared/widgets/divine_name_text.dart';
+import '../../../shared/widgets/daily_goal_progress.dart';
 import '../../../shared/widgets/primary_button.dart';
 import '../../../theme/app_colors.dart';
 import '../../../theme/app_durations.dart';
 import '../../../theme/app_radius.dart';
 import '../../../theme/app_spacing.dart';
 import '../../../theme/app_text_styles.dart';
+import 'widgets/today_sadhana_card.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>
+class _HomeScreenState extends ConsumerState<HomeScreen>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _heroFade;
@@ -27,6 +41,10 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(japStatisticsProvider.notifier).refresh();
+      ref.read(japHistoryProvider.notifier).refresh();
+    });
     _controller = AnimationController(vsync: this, duration: AppDurations.slow);
 
     _heroFade = CurvedAnimation(
@@ -57,41 +75,154 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
+    final statistics = ref.watch(japStatisticsProvider);
+    final settings = ref.watch(japSettingsProvider);
+    final deity = ref.watch(selectedDeityProvider);
+    final l10n = ref.watch(localizedStringsProvider);
+
     return AppScaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
-          child: Column(
-            children: [
-              const SizedBox(height: AppSpacing.xxxl),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FadeTransition(
-                      opacity: _heroFade,
-                      child: ScaleTransition(
-                        scale: _heroScale,
-                        child: const DivineNameText(fontSize: 96),
+      useAdaptiveFrame: false,
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          const DeityImageBackground(imageOpacity: 0.55),
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+              child: Column(
+                children: [
+                  const SizedBox(height: AppSpacing.lg),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: _DeitySwitcher(
+                      label: deity.name,
+                      color: deity.primary,
+                      onTap: () => context.push(AppRoutes.deitySelection),
+                    ),
+                  ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const SizedBox(height: AppSpacing.md),
+                          FadeTransition(
+                            opacity: _heroFade,
+                            child: const TodaySadhanaCard(),
+                          ),
+                          const SizedBox(height: AppSpacing.md),
+                          FadeTransition(
+                            opacity: _heroFade,
+                            child: ScaleTransition(
+                              scale: _heroScale,
+                              child: const DivineNameText(fontSize: 96),
+                            ),
+                          ),
+                          const SizedBox(height: AppSpacing.md),
+                          FadeTransition(
+                            opacity: _statsFade,
+                            child: Text(
+                              deity.mantra,
+                              textAlign: TextAlign.center,
+                              style: AppTextStyles.bodyLarge.copyWith(
+                                color: deity.primary.withValues(alpha: 0.85),
+                                letterSpacing: 0.4,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: AppSpacing.xl),
+                          FadeTransition(
+                            opacity: _statsFade,
+                            child: Column(
+                              children: [
+                                _HomeStatsRow(
+                                  statistics: statistics,
+                                  l10n: l10n,
+                                ),
+                                const SizedBox(height: AppSpacing.lg),
+                                DailyGoalProgress(
+                                  todayCount: statistics.todayCount,
+                                  dailyGoal: settings.dailyGoal,
+                                  color: deity.primary,
+                                ),
+                                const SizedBox(height: AppSpacing.lg),
+                                const DailyGuidanceCard(),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: AppSpacing.lg),
+                        ],
                       ),
                     ),
-                    const SizedBox(height: AppSpacing.xl),
-                    FadeTransition(
-                      opacity: _statsFade,
-                      child: const _HomeStatsRow(),
+                  ),
+                  FadeTransition(
+                    opacity: _statsFade,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: AppSpacing.lg),
+                      child: BreathingGlow(
+                        color: deity.primary,
+                        child: PrimaryButtonAnimated(
+                          label: l10n.beginJap,
+                          onPressed: () => context.push(AppRoutes.jap),
+                        ),
+                      ),
                     ),
-                  ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _DeitySwitcher extends StatelessWidget {
+  const _DeitySwitcher({
+    required this.label,
+    required this.color,
+    required this.onTap,
+  });
+
+  final String label;
+  final Color color;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(AppRadius.full),
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.md,
+            vertical: AppSpacing.xs,
+          ),
+          decoration: BoxDecoration(
+            color: AppColors.surface.withValues(alpha: 0.7),
+            borderRadius: BorderRadius.circular(AppRadius.full),
+            border: Border.all(color: color.withValues(alpha: 0.5)),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.auto_awesome_rounded, size: 16, color: color),
+              const SizedBox(width: AppSpacing.xs),
+              Text(
+                label,
+                style: AppTextStyles.labelLarge.copyWith(
+                  color: AppColors.textPrimary,
                 ),
               ),
-              FadeTransition(
-                opacity: _statsFade,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: AppSpacing.xl),
-                  child: PrimaryButtonAnimated(
-                    label: AppStrings.beginJap,
-                    onPressed: () {},
-                  ),
-                ),
+              const SizedBox(width: AppSpacing.xxs),
+              Icon(
+                Icons.expand_more_rounded,
+                size: 18,
+                color: AppColors.textSecondary,
               ),
             ],
           ),
@@ -102,22 +233,51 @@ class _HomeScreenState extends State<HomeScreen>
 }
 
 class _HomeStatsRow extends StatelessWidget {
-  const _HomeStatsRow();
+  const _HomeStatsRow({required this.statistics, required this.l10n});
+
+  final JapStatistics statistics;
+  final LocalizedStrings l10n;
 
   @override
   Widget build(BuildContext context) {
+    final valueStyle = AppTextStyles.headlineMedium.copyWith(
+      color: AppColors.textPrimary,
+      fontWeight: FontWeight.w400,
+    );
+
     return Row(
       children: [
         Expanded(
-          child: _StatCard(label: AppStrings.today, value: '0'),
+          child: _StatCard(
+            label: l10n.today,
+            valueWidget: AnimatedFormattedCountText(
+              value: statistics.todayCount,
+              formatter: NumberFormatter.formatCount,
+              style: valueStyle,
+            ),
+          ),
         ),
         const SizedBox(width: AppSpacing.sm),
         Expanded(
-          child: _StatCard(label: AppStrings.totalJaps, value: '0'),
+          child: _StatCard(
+            label: l10n.totalJaps,
+            valueWidget: AnimatedFormattedCountText(
+              value: statistics.lifetimeCount,
+              formatter: NumberFormatter.formatCount,
+              style: valueStyle,
+            ),
+          ),
         ),
         const SizedBox(width: AppSpacing.sm),
         Expanded(
-          child: _StatCard(label: AppStrings.streak, value: '0'),
+          child: _StatCard(
+            label: l10n.streak,
+            valueWidget: AnimatedFormattedCountText(
+              value: statistics.currentStreak,
+              formatter: NumberFormatter.formatCount,
+              style: valueStyle,
+            ),
+          ),
         ),
       ],
     );
@@ -125,10 +285,10 @@ class _HomeStatsRow extends StatelessWidget {
 }
 
 class _StatCard extends StatelessWidget {
-  const _StatCard({required this.label, required this.value});
+  const _StatCard({required this.label, required this.valueWidget});
 
   final String label;
-  final String value;
+  final Widget valueWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -144,13 +304,7 @@ class _StatCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Text(
-            value,
-            style: AppTextStyles.headlineMedium.copyWith(
-              color: AppColors.textPrimary,
-              fontWeight: FontWeight.w400,
-            ),
-          ),
+          valueWidget,
           const SizedBox(height: AppSpacing.xxs),
           Text(
             label,

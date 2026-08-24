@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../constants/app_strings.dart';
-import '../../theme/app_colors.dart';
+import '../../features/deity/providers/deity_providers.dart';
 import '../../theme/app_text_styles.dart';
 
-class DivineNameText extends StatelessWidget {
+/// Shows the currently selected deity's name in that deity's color.
+class DivineNameText extends ConsumerWidget {
   const DivineNameText({super.key, this.fontSize = 72, this.opacity = 1});
 
   final double fontSize;
   final double opacity;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final deity = ref.watch(selectedDeityProvider);
+
     return Text(
-      AppStrings.divineName,
+      deity.name,
       textAlign: TextAlign.center,
       style: AppTextStyles.displayLarge.copyWith(
         fontSize: fontSize,
-        color: AppColors.primaryGold.withValues(alpha: opacity),
+        color: deity.primary.withValues(alpha: opacity),
       ),
     );
   }

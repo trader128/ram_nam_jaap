@@ -1,3 +1,10 @@
+# Local secrets — Navamsha key, ADC overrides, service accounts
+.env
+.env.*
+!.env.example
+**/*serviceAccount*.json
+tool/navamsha/node_modules/
+
 # Miscellaneous
 *.class
 *.log
@@ -33,6 +40,13 @@ migrate_working_dir/
 /build/
 /coverage/
 
+# Firestore rules tests (Node)
+firestore-tests/node_modules/
+firestore-tests/package-lock.json
+.firebase/
+firebase-debug.log
+firestore-debug.log
+
 # Symbolication related
 app.*.symbols
 
@@ -43,3 +57,9 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Android release signing secrets (never commit)
+/android/key.properties
+/android/SIGNING_CREDENTIALS.txt
+**/*.jks
+**/*.keystore

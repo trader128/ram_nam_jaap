@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../theme/app_colors.dart';
+import '../../features/deity/providers/deity_providers.dart';
 import '../../theme/app_durations.dart';
 import '../../theme/app_radius.dart';
 import '../../theme/app_spacing.dart';
 import '../../theme/app_text_styles.dart';
 
-class PrimaryButton extends StatelessWidget {
+class PrimaryButton extends ConsumerWidget {
   const PrimaryButton({
     required this.label,
     required this.onPressed,
@@ -19,26 +20,26 @@ class PrimaryButton extends StatelessWidget {
   final bool isExpanded;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final color = ref.watch(deityColorProvider);
+
     final button = Material(
       color: Colors.transparent,
       child: InkWell(
         onTap: onPressed,
         borderRadius: BorderRadius.circular(AppRadius.lg),
-        splashColor: AppColors.primaryGold.withValues(alpha: 0.16),
-        highlightColor: AppColors.primaryGold.withValues(alpha: 0.08),
+        splashColor: color.withValues(alpha: 0.16),
+        highlightColor: color.withValues(alpha: 0.08),
         child: Ink(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppRadius.lg),
-            border: Border.all(
-              color: AppColors.primaryGold.withValues(alpha: 0.45),
-            ),
+            border: Border.all(color: color.withValues(alpha: 0.45)),
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                AppColors.primaryGold.withValues(alpha: 0.14),
-                AppColors.primaryGold.withValues(alpha: 0.06),
+                color.withValues(alpha: 0.14),
+                color.withValues(alpha: 0.06),
               ],
             ),
           ),
@@ -51,7 +52,7 @@ class PrimaryButton extends StatelessWidget {
               child: Text(
                 label,
                 style: AppTextStyles.titleLarge.copyWith(
-                  color: AppColors.primaryGold,
+                  color: color,
                   letterSpacing: 0.6,
                 ),
               ),

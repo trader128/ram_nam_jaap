@@ -1,0 +1,613 @@
+{
+  "_note": "Devotional texts for the Bhajans screen. Every bundled entry is a traditional composition old enough to be firmly in the public domain, and 'attribution' records the author and period as the licensing basis. No audio ships bundled - commercial devotional recordings are almost all label-owned, so 'audioUrl' is supplied per-bhajan through the Firestore 'bhajans' collection only for recordings you hold the rights to. See docs/BHAJAN_CONTENT.md.",
+  "bhajans": [
+    {
+      "id": "hanuman-chalisa",
+      "category": "chalisa",
+      "deityId": "hanuman",
+      "titleEn": "Hanuman Chalisa",
+      "titleHi": "हनुमान चालीसा",
+      "attribution": "Tulsidas, c. 16th century — public domain",
+      "aboutEn": "Forty verses in praise of Hanuman ji, composed by Tulsidas in Awadhi. The most widely recited devotional text in North India, traditionally read on Tuesdays and Saturdays.",
+      "aboutHi": "तुलसीदास द्वारा अवधी में रचित हनुमान जी की स्तुति के चालीस छंद। उत्तर भारत का सर्वाधिक पठित स्तोत्र, परंपरा अनुसार मंगलवार और शनिवार को पढ़ा जाता है।",
+      "verses": [
+        {
+          "hi": "श्रीगुरु चरन सरोज रज निज मनु मुकुरु सुधारि।\nबरनउँ रघुबर बिमल जसु जो दायकु फल चारि॥",
+          "en": "Shrī guru charan saroj raj nij manu mukuru sudhāri,\nbaranau raghubar bimal jasu jo dāyaku phal chāri."
+        },
+        {
+          "hi": "बुद्धिहीन तनु जानिके सुमिरौं पवन-कुमार।\nबल बुधि बिद्या देहु मोहिं हरहु कलेस बिकार॥",
+          "en": "Buddhihīn tanu jānike sumirau pavan-kumār,\nbal budhi bidyā dehu mohi harahu kales bikār."
+        },
+        {
+          "hi": "जय हनुमान ज्ञान गुन सागर।\nजय कपीस तिहुँ लोक उजागर॥",
+          "en": "Jai hanumān gyān gun sāgar,\njai kapīs tihu lok ujāgar."
+        },
+        {
+          "hi": "राम दूत अतुलित बल धामा।\nअंजनि-पुत्र पवनसुत नामा॥",
+          "en": "Rām dūt atulit bal dhāmā,\nanjani-putra pavansut nāmā."
+        },
+        {
+          "hi": "महाबीर बिक्रम बजरंगी।\nकुमति निवार सुमति के संगी॥",
+          "en": "Mahābīr bikram bajarangī,\nkumati nivār sumati ke sangī."
+        },
+        {
+          "hi": "कंचन बरन बिराज सुबेसा।\nकानन कुण्डल कुँचित केसा॥",
+          "en": "Kanchan baran birāj subesā,\nkānan kundal kunchit kesā."
+        },
+        {
+          "hi": "हाथ बज्र औ ध्वजा बिराजै।\nकाँधे मूँज जनेऊ साजै॥",
+          "en": "Hāth bajra au dhvajā birājai,\nkādhe mūnj janeū sājai."
+        },
+        {
+          "hi": "संकर सुवन केसरीनंदन।\nतेज प्रताप महा जग बंदन॥",
+          "en": "Sankar suvan kesarīnandan,\ntej pratāp mahā jag bandan."
+        },
+        {
+          "hi": "बिद्यावान गुनी अति चातुर।\nराम काज करिबे को आतुर॥",
+          "en": "Bidyāvān gunī ati chātur,\nrām kāj karibe ko ātur."
+        },
+        {
+          "hi": "प्रभु चरित्र सुनिबे को रसिया।\nराम लखन सीता मन बसिया॥",
+          "en": "Prabhu charitra sunibe ko rasiyā,\nrām lakhan sītā man basiyā."
+        },
+        {
+          "hi": "सूक्ष्म रूप धरि सियहिं दिखावा।\nबिकट रूप धरि लंक जरावा॥",
+          "en": "Sūkshma rūp dhari siyahi dikhāvā,\nbikat rūp dhari lank jarāvā."
+        },
+        {
+          "hi": "भीम रूप धरि असुर सँहारे।\nरामचंद्र के काज सँवारे॥",
+          "en": "Bhīm rūp dhari asur sahāre,\nrāmachandra ke kāj savāre."
+        },
+        {
+          "hi": "लाय सजीवन लखन जियाये।\nश्रीरघुबीर हरषि उर लाये॥",
+          "en": "Lāya sajīvan lakhan jiyāye,\nshrī raghubīr harashi ur lāye."
+        },
+        {
+          "hi": "रघुपति कीन्ही बहुत बड़ाई।\nतुम मम प्रिय भरतहि सम भाई॥",
+          "en": "Raghupati kīnhī bahut badāī,\ntum mam priya bharatahi sam bhāī."
+        },
+        {
+          "hi": "सहस बदन तुम्हरो जस गावैं।\nअस कहि श्रीपति कंठ लगावैं॥",
+          "en": "Sahas badan tumharo jas gāvai,\nas kahi shrīpati kanth lagāvai."
+        },
+        {
+          "hi": "सनकादिक ब्रह्मादि मुनीसा।\nनारद सारद सहित अहीसा॥",
+          "en": "Sanakādik brahmādi munīsā,\nnārad sārad sahit ahīsā."
+        },
+        {
+          "hi": "जम कुबेर दिगपाल जहाँ ते।\nकबि कोबिद कहि सके कहाँ ते॥",
+          "en": "Jam kuber digapāl jahā te,\nkabi kobid kahi sake kahā te."
+        },
+        {
+          "hi": "तुम उपकार सुग्रीवहिं कीन्हा।\nराम मिलाय राज पद दीन्हा॥",
+          "en": "Tum upakār sugrīvahi kīnhā,\nrām milāya rāj pad dīnhā."
+        },
+        {
+          "hi": "तुम्हरो मंत्र बिभीषन माना।\nलंकेस्वर भए सब जग जाना॥",
+          "en": "Tumharo mantra bibhīshan mānā,\nlankesvar bhae sab jag jānā."
+        },
+        {
+          "hi": "जुग सहस्र जोजन पर भानू।\nलील्यो ताहि मधुर फल जानू॥",
+          "en": "Jug sahasra jojan par bhānū,\nlīlyo tāhi madhur phal jānū."
+        },
+        {
+          "hi": "प्रभु मुद्रिका मेलि मुख माहीं।\nजलधि लाँघि गये अचरज नाहीं॥",
+          "en": "Prabhu mudrikā meli mukh māhī,\njaladhi lāghi gaye acharaj nāhī."
+        },
+        {
+          "hi": "दुर्गम काज जगत के जेते।\nसुगम अनुग्रह तुम्हरे तेते॥",
+          "en": "Durgam kāj jagat ke jete,\nsugam anugrah tumhare tete."
+        },
+        {
+          "hi": "राम दुआरे तुम रखवारे।\nहोत न आज्ञा बिनु पैसारे॥",
+          "en": "Rām duāre tum rakhavāre,\nhot na āgyā binu paisāre."
+        },
+        {
+          "hi": "सब सुख लहै तुम्हारी सरना।\nतुम रक्षक काहू को डर ना॥",
+          "en": "Sab sukh lahai tumhārī saranā,\ntum rakshak kāhū ko dar nā."
+        },
+        {
+          "hi": "आपन तेज सम्हारो आपै।\nतीनों लोक हाँक तें काँपै॥",
+          "en": "Āpan tej samhāro āpai,\ntīno lok hāk te kāpai."
+        },
+        {
+          "hi": "भूत पिसाच निकट नहिं आवै।\nमहाबीर जब नाम सुनावै॥",
+          "en": "Bhūt pisāch nikat nahi āvai,\nmahābīr jab nām sunāvai."
+        },
+        {
+          "hi": "नासै रोग हरै सब पीरा।\nजपत निरंतर हनुमत बीरा॥",
+          "en": "Nāsai rog harai sab pīrā,\njapat nirantar hanumat bīrā."
+        },
+        {
+          "hi": "संकट तें हनुमान छुड़ावै।\nमन क्रम बचन ध्यान जो लावै॥",
+          "en": "Sankat te hanumān chudāvai,\nman kram bachan dhyān jo lāvai."
+        },
+        {
+          "hi": "सब पर राम तपस्वी राजा।\nतिन के काज सकल तुम साजा॥",
+          "en": "Sab par rām tapasvī rājā,\ntin ke kāj sakal tum sājā."
+        },
+        {
+          "hi": "और मनोरथ जो कोई लावै।\nसोइ अमित जीवन फल पावै॥",
+          "en": "Aur manorath jo koī lāvai,\nsoi amit jīvan phal pāvai."
+        },
+        {
+          "hi": "चारों जुग परताप तुम्हारा।\nहै परसिद्ध जगत उजियारा॥",
+          "en": "Chāro jug paratāp tumhārā,\nhai parasiddh jagat ujiyārā."
+        },
+        {
+          "hi": "साधु-संत के तुम रखवारे।\nअसुर निकंदन राम दुलारे॥",
+          "en": "Sādhu-sant ke tum rakhavāre,\nasur nikandan rām dulāre."
+        },
+        {
+          "hi": "अष्ट सिद्धि नौ निधि के दाता।\nअस बर दीन जानकी माता॥",
+          "en": "Ashta siddhi nau nidhi ke dātā,\nas bar dīn jānakī mātā."
+        },
+        {
+          "hi": "राम रसायन तुम्हरे पासा।\nसदा रहो रघुपति के दासा॥",
+          "en": "Rām rasāyan tumhare pāsā,\nsadā raho raghupati ke dāsā."
+        },
+        {
+          "hi": "तुम्हरे भजन राम को पावै।\nजनम-जनम के दुख बिसरावै॥",
+          "en": "Tumhare bhajan rām ko pāvai,\njanam-janam ke dukh bisarāvai."
+        },
+        {
+          "hi": "अंत काल रघुबर पुर जाई।\nजहाँ जन्म हरि-भक्त कहाई॥",
+          "en": "Ant kāl raghubar pur jāī,\njahā janma hari-bhakta kahāī."
+        },
+        {
+          "hi": "और देवता चित्त न धरई।\nहनुमत सेइ सर्ब सुख करई॥",
+          "en": "Aur devatā chitta na dharaī,\nhanumat sei sarb sukh karaī."
+        },
+        {
+          "hi": "संकट कटै मिटै सब पीरा।\nजो सुमिरै हनुमत बलबीरा॥",
+          "en": "Sankat katai mitai sab pīrā,\njo sumirai hanumat balabīrā."
+        },
+        {
+          "hi": "जय जय जय हनुमान गोसाईं।\nकृपा करहु गुरुदेव की नाईं॥",
+          "en": "Jai jai jai hanumān gosāī,\nkripā karahu gurudev kī nāī."
+        },
+        {
+          "hi": "जो सत बार पाठ कर कोई।\nछूटहि बंदि महा सुख होई॥",
+          "en": "Jo sat bār pāth kar koī,\nchhūtahi bandi mahā sukh hoī."
+        },
+        {
+          "hi": "जो यह पढ़ै हनुमान चालीसा।\nहोय सिद्धि साखी गौरीसा॥",
+          "en": "Jo yah padhai hanumān chālīsā,\nhoya siddhi sākhī gaurīsā."
+        },
+        {
+          "hi": "तुलसीदास सदा हरि चेरा।\nकीजै नाथ हृदय महँ डेरा॥",
+          "en": "Tulasīdās sadā hari cherā,\nkījai nāth hriday mah derā."
+        },
+        {
+          "hi": "पवनतनय संकट हरन मंगल मूरति रूप।\nराम लखन सीता सहित हृदय बसहु सुर भूप॥",
+          "en": "Pavantanaya sankat haran mangal mūrati rūp,\nrām lakhan sītā sahit hriday basahu sur bhūp."
+        }
+      ]
+    },
+    {
+      "id": "om-jai-jagdish-hare",
+      "category": "aarti",
+      "deityId": "krishna",
+      "titleEn": "Vishnu Aarti",
+      "titleHi": "विष्णु आरती",
+      "attribution": "Shraddharam Phillauri, 1870 — public domain",
+      "aboutEn": "Om Jai Jagdish Hare — the household Vishnu aarti, sung at the close of worship in homes and temples.",
+      "aboutHi": "ॐ जय जगदीश हरे — घरों और मंदिरों में पूजा के अंत में गाई जाने वाली विष्णु आरती।",
+      "verses": [
+        {
+          "hi": "ॐ जय जगदीश हरे, स्वामी जय जगदीश हरे।\nभक्त जनों के संकट, क्षण में दूर करे॥",
+          "en": "Om jai jagadīsh hare, svāmī jai jagadīsh hare,\nbhakta jano ke sankat, kshan me dūr kare."
+        },
+        {
+          "hi": "जो ध्यावे फल पावे, दुख बिनसे मन का।\nसुख सम्पत्ति घर आवे, कष्ट मिटे तन का॥",
+          "en": "Jo dhyāve phal pāve, dukh binase man kā,\nsukh sampatti ghar āve, kasht mite tan kā."
+        },
+        {
+          "hi": "मात-पिता तुम मेरे, शरण गहूँ मैं किसकी।\nतुम बिन और न दूजा, आस करूँ मैं जिसकी॥",
+          "en": "Māt-pitā tum mere, sharan gahū mai kiskī,\ntum bin aur na dūjā, ās karū mai jiskī."
+        },
+        {
+          "hi": "तुम पूरन परमात्मा, तुम अंतरयामी।\nपारब्रह्म परमेश्वर, तुम सबके स्वामी॥",
+          "en": "Tum pūran paramātmā, tum antarayāmī,\npārabrahma parameshvar, tum sabake svāmī."
+        },
+        {
+          "hi": "तुम करुणा के सागर, तुम पालनकर्ता।\nमैं सेवक तुम स्वामी, कृपा करो भर्ता॥",
+          "en": "Tum karunā ke sāgar, tum pālanakartā,\nmai sevak tum svāmī, kripā karo bhartā."
+        },
+        {
+          "hi": "तुम हो एक अगोचर, सबके प्राणपति।\nकिस विध मिलूँ दयामय, तुमको मैं कुमति॥",
+          "en": "Tum ho ek agochar, sabake prānapati,\nkis vidh milū dayāmaya, tumako mai kumati."
+        },
+        {
+          "hi": "दीनबंधु दुखहर्ता, तुम ठाकुर मेरे।\nअपने हाथ उठाओ, द्वार पड़ा तेरे॥",
+          "en": "Dīnabandhu dukhahartā, tum thākur mere,\napane hāth uthāo, dvār padā tere."
+        },
+        {
+          "hi": "विषय विकार मिटाओ, पाप हरो देवा।\nश्रद्धा भक्ति बढ़ाओ, संतन की सेवा॥",
+          "en": "Vishaya vikār mitāo, pāp haro devā,\nshraddhā bhakti badhāo, santan kī sevā."
+        },
+        {
+          "hi": "श्री जगदीश जी की आरती, जो कोई नर गावे।\nकहत शिवानन्द स्वामी, सुख सम्पत्ति पावे॥",
+          "en": "Shrī jagadīsh jī kī ārtī, jo koī nar gāve,\nkahat shivānand svāmī, sukh sampatti pāve."
+        }
+      ]
+    },
+    {
+      "id": "ganesh-aarti",
+      "category": "aarti",
+      "deityId": "ganesh",
+      "titleEn": "Ganesh Aarti",
+      "titleHi": "गणेश आरती",
+      "attribution": "Attributed to Surdas, 16th century — public domain",
+      "aboutEn": "Jai Ganesh Deva — the North Indian Ganesh aarti, sung first at the start of any puja.",
+      "aboutHi": "जय गणेश देवा — उत्तर भारतीय गणेश आरती, किसी भी पूजा के आरंभ में सबसे पहले गाई जाती है।",
+      "verses": [
+        {
+          "hi": "जय गणेश, जय गणेश, जय गणेश देवा।\nमाता जाकी पार्वती, पिता महादेवा॥",
+          "en": "Jai ganesh, jai ganesh, jai ganesh devā,\nmātā jākī pārvatī, pitā mahādevā."
+        },
+        {
+          "hi": "एकदन्त दयावन्त, चार भुजाधारी।\nमाथे सिन्दूर सोहे, मूसे की सवारी॥",
+          "en": "Ekadanta dayāvanta, chār bhujādhārī,\nmāthe sindūr sohe, mūse kī savārī."
+        },
+        {
+          "hi": "पान चढ़े, फूल चढ़े और चढ़े मेवा।\nलड्डुअन का भोग लगे, सन्त करें सेवा॥",
+          "en": "Pān chadhe, phūl chadhe aur chadhe mevā,\nladdūan kā bhog lage, sant karen sevā."
+        },
+        {
+          "hi": "अंधन को आँख देत, कोढ़िन को काया।\nबाँझन को पुत्र देत, निर्धन को माया॥",
+          "en": "Andhan ko ākh det, kodhin ko kāyā,\nbājhan ko putra det, nirdhan ko māyā."
+        },
+        {
+          "hi": "सूर श्याम शरण आए, सफल कीजे सेवा।\nमाता जाकी पार्वती, पिता महादेवा॥",
+          "en": "Sūr shyām sharan āe, saphal kīje sevā,\nmātā jākī pārvatī, pitā mahādevā."
+        },
+        {
+          "hi": "दीनन की लाज रखो, शंभु सुतवारी।\nकामना को पूर्ण करो, जग बलिहारी॥",
+          "en": "Dīnan kī lāj rakho, shambhu sutavārī,\nkāmanā ko pūrna karo, jag balihārī."
+        },
+        {
+          "hi": "जय गणेश, जय गणेश, जय गणेश देवा।\nमाता जाकी पार्वती, पिता महादेवा॥",
+          "en": "Jai ganesh, jai ganesh, jai ganesh devā,\nmātā jākī pārvatī, pitā mahādevā."
+        }
+      ]
+    },
+    {
+      "id": "lakshmi-aarti",
+      "category": "aarti",
+      "deityId": "durga",
+      "titleEn": "Lakshmi Aarti",
+      "titleHi": "लक्ष्मी आरती",
+      "attribution": "Traditional — public domain",
+      "aboutEn": "Om Jai Lakshmi Mata — sung on Fridays, Diwali, and at Lakshmi puja in the home.",
+      "aboutHi": "ॐ जय लक्ष्मी माता — शुक्रवार, दीपावली और घर की लक्ष्मी पूजा में गाई जाती है।",
+      "verses": [
+        {
+          "hi": "ॐ जय लक्ष्मी माता, मैया जय लक्ष्मी माता।\nतुमको निशदिन सेवत, हरि विष्णु विधाता॥",
+          "en": "Om jai lakshmī mātā, maiyā jai lakshmī mātā,\ntumako nishadin sevat, hari vishnu vidhātā."
+        },
+        {
+          "hi": "उमा रमा ब्रह्माणी, तुम ही जग-माता।\nसूर्य-चन्द्रमा ध्यावत, नारद ऋषि गाता॥",
+          "en": "Umā ramā brahmānī, tum hī jag-mātā,\nsūrya-chandramā dhyāvat, nārad rishi gātā."
+        },
+        {
+          "hi": "दुर्गा रूप निरंजनी, सुख सम्पत्ति दाता।\nजो कोई तुमको ध्यावत, ऋद्धि-सिद्धि धन पाता॥",
+          "en": "Durgā rūp niranjanī, sukh sampatti dātā,\njo koī tumako dhyāvat, riddhi-siddhi dhan pātā."
+        },
+        {
+          "hi": "तुम पाताल-निवासिनि, तुम ही शुभदाता।\nकर्म-प्रभाव-प्रकाशिनी, भवनिधि की त्राता॥",
+          "en": "Tum pātāl-nivāsini, tum hī shubhadātā,\nkarm-prabhāv-prakāshinī, bhavnidhi kī trātā."
+        },
+        {
+          "hi": "जिस घर में तुम रहतीं, सब सद्गुण आता।\nसब सम्भव हो जाता, मन नहीं घबराता॥",
+          "en": "Jis ghar me tum rahtī, sab sadgun ātā,\nsab sambhav ho jātā, man nahīn ghabrātā."
+        },
+        {
+          "hi": "तुम बिन यज्ञ न होते, वस्त्र न कोई पाता।\nखान-पान का वैभव, सब तुमसे आता॥",
+          "en": "Tum bin yagya na hote, vastra na koī pātā,\nkhān-pān kā vaibhav, sab tumase ātā."
+        },
+        {
+          "hi": "शुभ-गुण मन्दिर सुन्दर, क्षीरोदधि-जाता।\nरत्न चतुर्दश तुम बिन, कोई नहीं पाता॥",
+          "en": "Shubh-gun mandir sundar, kshīrodadhi-jātā,\nratna chaturdash tum bin, koī nahīn pātā."
+        },
+        {
+          "hi": "महालक्ष्मी जी की आरती, जो कोई नर गाता।\nउर आनन्द समाता, पाप उतर जाता॥",
+          "en": "Mahālakshmī jī kī ārtī, jo koī nar gātā,\nur ānand samātā, pāp utar jātā."
+        }
+      ]
+    },
+    {
+      "id": "shiv-aarti",
+      "category": "aarti",
+      "deityId": "mahadev",
+      "titleEn": "Shiva Aarti",
+      "titleHi": "शिव आरती",
+      "attribution": "Traditional — public domain",
+      "aboutEn": "Om Jai Shiv Omkara — the household Shiva aarti, sung on Mondays and at the close of Shiva puja.",
+      "aboutHi": "ॐ जय शिव ओंकारा — घर की शिव आरती, सोमवार और शिव पूजा के अंत में गाई जाती है।",
+      "verses": [
+        {
+          "hi": "ॐ जय शिव ओंकारा, स्वामी जय शिव ओंकारा।\nब्रह्मा विष्णु सदाशिव, अर्द्धांगी धारा॥",
+          "en": "Om jai shiv omkārā, svāmī jai shiv omkārā,\nbrahmā vishnu sadāshiv, ardhāngī dhārā."
+        },
+        {
+          "hi": "एकानन चतुरानन, पञ्चानन राजे।\nहंसासन गरुड़ासन, वृषवाहन साजे॥",
+          "en": "Ekānan chaturānan, panchānan rāje,\nhansāsan garudāsan, vrishavāhan sāje."
+        },
+        {
+          "hi": "दो भुज चार चतुर्भुज, दस भुज अति सोहे।\nत्रिगुण रूप निरखते, त्रिभुवन जन मोहे॥",
+          "en": "Do bhuj chār chaturbhuj, das bhuj ati sohe,\ntrigun rūp nirakhate, tribhuvan jan mohe."
+        },
+        {
+          "hi": "अक्षमाला वनमाला, मुण्डमाला धारी।\nत्रिपुरारी कंसारी, कर माला धारी॥",
+          "en": "Akshamālā vanamālā, mundamālā dhārī,\ntripurārī kansārī, kar mālā dhārī."
+        },
+        {
+          "hi": "श्वेतांबर पीतांबर, बाघंबर अंगे।\nसनकादिक गरुणादिक, भूतादिक संगे॥",
+          "en": "Shvetāmbar pītāmbar, bāghambar ange,\nsanakādik garunādik, bhūtādik sange."
+        },
+        {
+          "hi": "कर के मध्य कमंडल, चक्र त्रिशूल धरता।\nसुखकारी दुखहारी, जग पालन करता॥",
+          "en": "Kar ke madhya kamandal, chakra trishūl dhartā,\nsukhakārī dukhahārī, jag pālan kartā."
+        },
+        {
+          "hi": "ब्रह्मा विष्णु सदाशिव, जानत अविवेका।\nप्रणवाक्षर मध्य ये, तीनों एका॥",
+          "en": "Brahmā vishnu sadāshiv, jānat avivekā,\npranavākshar madhya ye, tīno ekā."
+        },
+        {
+          "hi": "त्रिगुण स्वामी जी की आरती, जो कोई नर गावे।\nकहत शिवानन्द स्वामी, मनवांछित फल पावे॥",
+          "en": "Trigun svāmī jī kī ārtī, jo koī nar gāve,\nkahat shivānand svāmī, manvānchhit phal pāve."
+        }
+      ]
+    },
+    {
+      "id": "durga-aarti",
+      "category": "aarti",
+      "deityId": "durga",
+      "titleEn": "Durga Aarti",
+      "titleHi": "दुर्गा आरती",
+      "attribution": "Traditional — public domain",
+      "aboutEn": "Ambe Tu Hai Jagdambe Kali — the household Durga aarti, sung through Navratri and on Tuesdays and Fridays.",
+      "aboutHi": "अम्बे तू है जगदम्बे काली — घर की दुर्गा आरती, नवरात्रि तथा मंगलवार-शुक्रवार को गाई जाती है।",
+      "verses": [
+        {
+          "hi": "अम्बे तू है जगदम्बे काली, जय दुर्गे खप्पर वाली।\nतेरे ही गुण गावें भारती, ओ मैया हम सब उतारे तेरी आरती॥",
+          "en": "Ambe tū hai jagadambe kālī, jai durge khappar vālī,\ntere hī gun gāven bhāratī, o maiyā ham sab utāre terī ārtī."
+        },
+        {
+          "hi": "तेरे भक्त जनों पर माता, भीर पड़ी है भारी।\nदानव दल पर टूट पड़ी माँ, करके सिंह सवारी॥",
+          "en": "Tere bhakt jano par mātā, bhīr padī hai bhārī,\ndānav dal par tūt padī mā, karke singh savārī."
+        },
+        {
+          "hi": "सौ-सौ सिंहों से बलशाली, है अष्ट भुजाओं वाली।\nदुष्टों को तू ही ललकारती, ओ मैया हम सब उतारे तेरी आरती॥",
+          "en": "Sau-sau singho se balashālī, hai asht bhujāo vālī,\ndushto ko tū hī lalkāratī, o maiyā ham sab utāre terī ārtī."
+        },
+        {
+          "hi": "माँ-बेटे का है इस जग में, बड़ा ही निर्मल नाता।\nपूत-कपूत सुने हैं, पर ना माता सुनी कुमाता॥",
+          "en": "Mā-bete kā hai is jag me, badā hī nirmal nātā,\npūt-kapūt sune hain, par nā mātā sunī kumātā."
+        },
+        {
+          "hi": "सब पे करुणा दर्शाने वाली, अमृत बरसाने वाली।\nदुखियों के दुखड़े निवारती, ओ मैया हम सब उतारे तेरी आरती॥",
+          "en": "Sab pe karunā darshāne vālī, amrit barasāne vālī,\ndukhiyo ke dukhade nivāratī, o maiyā ham sab utāre terī ārtī."
+        },
+        {
+          "hi": "नहीं माँगते धन और दौलत, न चाँदी न सोना।\nहम तो माँगें तेरे चरणों में, छोटा सा कोना॥",
+          "en": "Nahīn māngte dhan aur daulat, na chāndī na sonā,\nham to māngen tere charano me, chhotā sā konā."
+        },
+        {
+          "hi": "सबकी बिगड़ी बनाने वाली, लाज बचाने वाली।\nसतियों के सत को संवारती, ओ मैया हम सब उतारे तेरी आरती॥",
+          "en": "Sabkī bigadī banāne vālī, lāj bachāne vālī,\nsatiyo ke sat ko sanvāratī, o maiyā ham sab utāre terī ārtī."
+        },
+        {
+          "hi": "चरण शरण में खड़े तुम्हारी, ले पूजा की थाली।\nवरद हस्त सर पर रख दो माँ, संकट हरने वाली॥",
+          "en": "Charan sharan me khade tumhārī, le pūjā kī thālī,\nvarad hasta sar par rakh do mā, sankat harane vālī."
+        }
+      ]
+    },
+    {
+      "id": "hanuman-aarti",
+      "category": "aarti",
+      "deityId": "hanuman",
+      "titleEn": "Hanuman Aarti",
+      "titleHi": "हनुमान आरती",
+      "attribution": "Traditional — public domain",
+      "aboutEn": "Aarti Kije Hanuman Lala Ki — sung on Tuesdays and Saturdays after the Hanuman Chalisa.",
+      "aboutHi": "आरती कीजै हनुमान लला की — मंगलवार और शनिवार को हनुमान चालीसा के बाद गाई जाती है।",
+      "verses": [
+        {
+          "hi": "आरती कीजै हनुमान लला की।\nदुष्ट दलन रघुनाथ कला की॥",
+          "en": "Ārtī kīje hanumān lalā kī,\ndusht dalan raghunāth kalā kī."
+        },
+        {
+          "hi": "जाके बल से गिरिवर काँपे।\nरोग दोष जाके निकट न झाँके॥",
+          "en": "Jāke bal se girivar kāmpe,\nrog dosh jāke nikat na jhānke."
+        },
+        {
+          "hi": "अंजनि पुत्र महा बलदाई।\nसन्तन के प्रभु सदा सहाई॥",
+          "en": "Anjani putra mahā baldāī,\nsantan ke prabhu sadā sahāī."
+        },
+        {
+          "hi": "दे बीरा रघुनाथ पठाए।\nलंका जारि सिया सुधि लाए॥",
+          "en": "De bīrā raghunāth pathāe,\nlankā jāri siyā sudhi lāe."
+        },
+        {
+          "hi": "लंका सो कोट समुद्र-सी खाई।\nजात पवनसुत बार न लाई॥",
+          "en": "Lankā so kot samudra-sī khāī,\njāt pavansut bār na lāī."
+        },
+        {
+          "hi": "लंका जारि असुर संहारे।\nसियाराम जी के काज सँवारे॥",
+          "en": "Lankā jāri asur sanhāre,\nsiyārām jī ke kāj savāre."
+        },
+        {
+          "hi": "लक्ष्मण मूर्च्छित पड़े सकारे।\nआनि संजीवन प्राण उबारे॥",
+          "en": "Lakshman mūrchchhit pade sakāre,\nāni sanjīvan prān ubāre."
+        },
+        {
+          "hi": "पैठि पाताल तोरि जम-कारे।\nअहिरावण की भुजा उखारे॥",
+          "en": "Paithi pātāl tori jam-kāre,\nahirāvan kī bhujā ukhāre."
+        },
+        {
+          "hi": "बाएँ भुजा असुर दल मारे।\nदाहिने भुजा संत जन तारे॥",
+          "en": "Bāen bhujā asur dal māre,\ndāhine bhujā sant jan tāre."
+        },
+        {
+          "hi": "सुर नर मुनि आरती उतारें।\nजय जय जय हनुमान उचारें॥",
+          "en": "Sur nar muni ārtī utāren,\njai jai jai hanumān uchāren."
+        },
+        {
+          "hi": "कंचन थार कपूर लौ छाई।\nआरती करत अंजना माई॥",
+          "en": "Kanchan thār kapūr lau chhāī,\nārtī karat anjanā māī."
+        },
+        {
+          "hi": "जो हनुमान जी की आरती गावे।\nबसि बैकुण्ठ परम पद पावे॥",
+          "en": "Jo hanumān jī kī ārtī gāve,\nbasi baikunth param pad pāve."
+        }
+      ]
+    },
+    {
+      "id": "sukhkarta-dukhharta",
+      "category": "aarti",
+      "deityId": "ganesh",
+      "titleEn": "Sukhkarta Dukhharta",
+      "titleHi": "सुखकर्ता दुखहर्ता",
+      "attribution": "Samarth Ramdas, 17th century — public domain",
+      "aboutEn": "The Ganesh aarti in Marathi, sung at the close of worship and through the days of Ganesh Chaturthi.",
+      "aboutHi": "मराठी में गणेश आरती, पूजा के अंत में तथा गणेश चतुर्थी के दिनों में गाई जाती है।",
+      "verses": [
+        {
+          "hi": "सुखकर्ता दुखहर्ता वार्ता विघ्नाची।\nनुरवी पुरवी प्रेम कृपा जयाची॥\nसर्वांगी सुंदर उटी शेंदुराची।\nकंठी झळके माळ मुक्ताफळांची॥",
+          "en": "Sukhakartā dukhahartā vārtā vighnāchī,\nnuravī puravī prem kripā jayāchī,\nsarvāngī sundar utī shendurāchī,\nkanthī zhalake māl muktāphalānchī."
+        },
+        {
+          "hi": "जय देव जय देव जय मंगलमूर्ती।\nदर्शनमात्रे मनकामना पुरती॥",
+          "en": "Jai dev jai dev jai mangalamūrtī,\ndarshanamātre manakāmanā puratī."
+        },
+        {
+          "hi": "रत्नखचित फरा तुज गौरीकुमरा।\nचंदनाची उटी कुंकुमकेशरा॥\nहिरेजडित मुकुट शोभतो बरा।\nरुणझुणती नूपुरे चरणी घागरिया॥",
+          "en": "Ratnakhachit pharā tuj gaurīkumarā,\nchandanāchī utī kunkumakesharā,\nhirejadit mukut shobhato barā,\nrunazhunatī nūpure charanī ghāgariyā."
+        },
+        {
+          "hi": "लंबोदर पीतांबर फणिवरबंधना।\nसरळ सोंड वक्रतुंड त्रिनयना॥\nदास रामाचा वाट पाहे सदना।\nसंकटी पावावे निर्वाणी रक्षावे सुरवरवंदना॥",
+          "en": "Lambodar pītāmbar phanivarabandhanā,\nsarala sonda vakratunda trinayanā,\ndās rāmāchā vāt pāhe sadanā,\nsankatī pāvāve nirvānī rakshāve suravaravandanā."
+        }
+      ]
+    },
+    {
+      "id": "shri-ramchandra-kripalu",
+      "category": "bhajan",
+      "deityId": "ram",
+      "titleEn": "Shri Ramchandra Kripalu",
+      "titleHi": "श्री रामचंद्र कृपालु",
+      "attribution": "Tulsidas, c. 16th century — public domain",
+      "aboutEn": "Tulsidas's stuti to Shri Ram, sung in homes at dawn and at the close of Ramayan paath.",
+      "aboutHi": "तुलसीदास कृत श्री राम स्तुति, प्रातःकाल तथा रामायण पाठ के अंत में गाई जाती है।",
+      "verses": [
+        {
+          "hi": "श्री रामचंद्र कृपालु भजु मन हरण भवभय दारुणम्।\nनव कंज लोचन कंज मुख कर कंज पद कंजारुणम्॥",
+          "en": "Shrī rāmachandra kripālu bhaju man haran bhavabhaya dārunam,\nnav kanj lochan kanj mukh kar kanj pad kanjārunam."
+        },
+        {
+          "hi": "कंदर्प अगणित अमित छवि नव नील नीरज सुंदरम्।\nपटपीत मानहुँ तड़ित रुचि शुचि नौमि जनक सुतावरम्॥",
+          "en": "Kandarp aganit amit chhavi nav nīl nīraj sundaram,\npatapīt mānahu tadit ruchi shuchi naumi janak sutāvaram."
+        },
+        {
+          "hi": "भजु दीनबंधु दिनेश दानव दैत्य वंश निकंदनम्।\nरघुनंद आनँदकंद कोशल चंद दशरथ नंदनम्॥",
+          "en": "Bhaju dīnabandhu dinesh dānav daitya vansh nikandanam,\nraghunanda ānandakanda koshal chanda dasharath nandanam."
+        },
+        {
+          "hi": "सिर मुकुट कुंडल तिलक चारु उदारु अंग विभूषणम्।\nआजानुभुज शर चाप धर संग्राम जित खरदूषणम्॥",
+          "en": "Sir mukut kundal tilak chāru udāru anga vibhūshanam,\nājānubhuj shar chāp dhar sangrām jit kharadūshanam."
+        },
+        {
+          "hi": "इति वदति तुलसीदास शंकर शेष मुनि मन रंजनम्।\nमम हृदय कंज निवास कुरु कामादि खलदल गंजनम्॥",
+          "en": "Iti vadati tulasīdās shankar shesh muni man ranjanam,\nmam hriday kanj nivās kuru kāmādi khaladal ganjanam."
+        }
+      ]
+    },
+    {
+      "id": "achyutam-keshavam",
+      "category": "bhajan",
+      "deityId": "krishna",
+      "titleEn": "Achyutam Keshavam",
+      "titleHi": "अच्युतम् केशवम्",
+      "attribution": "Traditional — public domain",
+      "aboutEn": "A short and much-loved Krishna bhajan, easy to learn and often the first one children are taught.",
+      "aboutHi": "एक छोटा और अत्यंत प्रिय कृष्ण भजन, सीखने में सरल और अक्सर बच्चों को सिखाया जाने वाला पहला भजन।",
+      "verses": [
+        {
+          "hi": "अच्युतम् केशवम् राम नारायणम्।\nकृष्ण दामोदरम् वासुदेवम् हरिम्॥",
+          "en": "Achyutam keshavam rām nārāyanam,\nkrishna dāmodaram vāsudevam harim."
+        },
+        {
+          "hi": "श्रीधरम् माधवम् गोपिका वल्लभम्।\nजानकी नायकम् रामचंद्रम् भजे॥",
+          "en": "Shrīdharam mādhavam gopikā vallabham,\njānakī nāyakam rāmachandram bhaje."
+        },
+        {
+          "hi": "अच्युतम् केशवम् सत्यभामाधवम्।\nमाधवम् श्रीधरम् राधिका आराधितम्॥",
+          "en": "Achyutam keshavam satyabhāmādhavam,\nmādhavam shrīdharam rādhikā ārādhitam."
+        },
+        {
+          "hi": "इंदिरा मंदिरम् चेतसा सुंदरम्।\nदेवकी नंदनम् नंदजम् संदधे॥",
+          "en": "Indirā mandiram chetasā sundaram,\ndevakī nandanam nandajam sandadhe."
+        }
+      ]
+    },
+    {
+      "id": "shiv-panchakshar-stotra",
+      "category": "stotra",
+      "deityId": "mahadev",
+      "titleEn": "Shiva Panchakshara Stotra",
+      "titleHi": "शिव पंचाक्षर स्तोत्र",
+      "attribution": "Attributed to Adi Shankaracharya, c. 8th century — public domain",
+      "aboutEn": "Five verses, one for each syllable of Om Namah Shivaya, traditionally recited on Mondays and through Shravan.",
+      "aboutHi": "पाँच श्लोक, ॐ नमः शिवाय के प्रत्येक अक्षर के लिए एक; परंपरा अनुसार सोमवार और श्रावण मास में पाठ किया जाता है।",
+      "verses": [
+        {
+          "hi": "नागेन्द्रहाराय त्रिलोचनाय।\nभस्माङ्गरागाय महेश्वराय॥\nनित्याय शुद्धाय दिगम्बराय।\nतस्मै न काराय नमः शिवाय॥",
+          "en": "Nāgendrahārāya trilochanāya,\nbhasmāngarāgāya maheshvarāya,\nnityāya shuddhāya digambarāya,\ntasmai na kārāya namah shivāya."
+        },
+        {
+          "hi": "मन्दाकिनी सलिल चन्दन चर्चिताय।\nनन्दीश्वर प्रमथनाथ महेश्वराय॥\nमन्दार पुष्प बहुपुष्प सुपूजिताय।\nतस्मै म काराय नमः शिवाय॥",
+          "en": "Mandākinī salil chandan charchitāya,\nnandīshvar pramathanāth maheshvarāya,\nmandār pushpa bahupushpa supūjitāya,\ntasmai ma kārāya namah shivāya."
+        },
+        {
+          "hi": "शिवाय गौरी वदनाब्ज वृन्द।\nसूर्याय दक्षाध्वर नाशकाय॥\nश्री नीलकण्ठाय वृषध्वजाय।\nतस्मै शि काराय नमः शिवाय॥",
+          "en": "Shivāya gaurī vadanābja vrinda,\nsūryāya dakshādhvara nāshakāya,\nshrī nīlakanthāya vrishadhvajāya,\ntasmai shi kārāya namah shivāya."
+        },
+        {
+          "hi": "वसिष्ठ कुम्भोद्भव गौतमार्य।\nमुनीन्द्र देवार्चित शेखराय॥\nचन्द्रार्क वैश्वानर लोचनाय।\nतस्मै व काराय नमः शिवाय॥",
+          "en": "Vasishtha kumbhodbhava gautamārya,\nmunīndra devārchita shekharāya,\nchandrārka vaishvānara lochanāya,\ntasmai va kārāya namah shivāya."
+        },
+        {
+          "hi": "यक्षस्वरूपाय जटाधराय।\nपिनाकहस्ताय सनातनाय॥\nदिव्याय देवाय दिगम्बराय।\nतस्मै य काराय नमः शिवाय॥",
+          "en": "Yakshasvarūpāya jatādharāya,\npināka hastāya sanātanāya,\ndivyāya devāya digambarāya,\ntasmai ya kārāya namah shivāya."
+        }
+      ]
+    },
+    {
+      "id": "durga-chalisa-stuti",
+      "category": "stotra",
+      "deityId": "durga",
+      "titleEn": "Devi Stuti",
+      "titleHi": "देवी स्तुति",
+      "attribution": "From the Devi Mahatmya, traditional — public domain",
+      "aboutEn": "The verse of surrender to the Devi from the Devi Mahatmya, recited through Navratri.",
+      "aboutHi": "देवी माहात्म्य से देवी को समर्पण का श्लोक, नवरात्रि में पाठ किया जाता है।",
+      "verses": [
+        {
+          "hi": "या देवी सर्वभूतेषु शक्तिरूपेण संस्थिता।\nनमस्तस्यै नमस्तस्यै नमस्तस्यै नमो नमः॥",
+          "en": "Yā devī sarvabhūteshu shaktirūpena samsthitā,\nnamastasyai namastasyai namastasyai namo namah."
+        },
+        {
+          "hi": "सर्वमङ्गल माङ्गल्ये शिवे सर्वार्थ साधिके।\nशरण्ये त्र्यम्बके गौरि नारायणि नमोऽस्तु ते॥",
+          "en": "Sarvamangala māngalye shive sarvārtha sādhike,\nsharanye tryambake gauri nārāyani namo'stu te."
+        },
+        {
+          "hi": "सृष्टि स्थिति विनाशानां शक्तिभूते सनातनि।\nगुणाश्रये गुणमये नारायणि नमोऽस्तु ते॥",
+          "en": "Srishti sthiti vināshānām shaktibhūte sanātani,\ngunāshraye gunamaye nārāyani namo'stu te."
+        }
+      ]
+    }
+  ]
+}

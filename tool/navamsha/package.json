@@ -1,0 +1,14 @@
+{
+  "name": "bhakti-navamsha-sync",
+  "private": true,
+  "type": "module",
+  "description": "Trusted-machine Navamsha → Firestore panchang sync. The API key never ships in the app.",
+  "scripts": {
+    "probe": "node sync.mjs --probe",
+    "dry-run": "node sync.mjs --dry-run",
+    "sync": "node sync.mjs"
+  },
+  "dependencies": {
+    "firebase-admin": "^13.5.0"
+  }
+}
