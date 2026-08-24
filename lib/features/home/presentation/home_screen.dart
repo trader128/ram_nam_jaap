@@ -22,6 +22,7 @@ import '../../../theme/app_durations.dart';
 import '../../../theme/app_radius.dart';
 import '../../../theme/app_spacing.dart';
 import '../../../theme/app_text_styles.dart';
+import 'widgets/today_sadhana_card.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -94,7 +95,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                   Align(
                     alignment: Alignment.topRight,
                     child: _DeitySwitcher(
-                      label: deity.transliteration,
+                      label: deity.name,
                       color: deity.primary,
                       onTap: () => context.push(AppRoutes.deitySelection),
                     ),
@@ -105,6 +106,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          const SizedBox(height: AppSpacing.md),
+                          FadeTransition(
+                            opacity: _heroFade,
+                            child: const TodaySadhanaCard(),
+                          ),
                           const SizedBox(height: AppSpacing.md),
                           FadeTransition(
                             opacity: _heroFade,

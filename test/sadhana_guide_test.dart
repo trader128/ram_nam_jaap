@@ -9,13 +9,13 @@ import 'package:bhakti/shared/models/jap_statistics.dart';
 void main() {
   test('SadhanaGuideEngine suggests starting when counts are zero', () {
     final insight = SadhanaGuideEngine.generate(
-      language: AppLanguage.english,
+        language: AppLanguage.hindi,
       statistics: JapStatistics.initial(),
       settings: JapSettings.defaults(),
       deity: DeityCatalog.byId('ram'),
     );
 
-    expect(insight.message, contains('Ram'));
+    expect(insight.message, contains('राम'));
     expect(insight.affirmation, isNotEmpty);
   });
 }

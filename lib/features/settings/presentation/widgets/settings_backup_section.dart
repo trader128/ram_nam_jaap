@@ -124,22 +124,8 @@ class SettingsBackupSection extends ConsumerWidget {
         if (at == null) {
           return strings.backupNeverSynced;
         }
-        return strings.backupLastSynced(_relative(at));
+        return strings.backupLastSynced(strings.relativeTime(at));
     }
-  }
-
-  String _relative(DateTime at) {
-    final delta = DateTime.now().difference(at);
-    if (delta.inMinutes < 1) {
-      return 'just now';
-    }
-    if (delta.inHours < 1) {
-      return '${delta.inMinutes}m ago';
-    }
-    if (delta.inDays < 1) {
-      return '${delta.inHours}h ago';
-    }
-    return '${delta.inDays}d ago';
   }
 
   Future<void> _confirmDelete(
@@ -155,7 +141,7 @@ class SettingsBackupSection extends ConsumerWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(false),
-            child: const Text('Cancel'),
+            child: Text(strings.cancel),
           ),
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(true),

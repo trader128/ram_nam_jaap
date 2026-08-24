@@ -3,18 +3,18 @@ import '../../core/helpers/date_helper.dart';
 
 abstract final class DisplayDateHelper {
   static const List<String> _months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
+    'जनवरी',
+    'फ़रवरी',
+    'मार्च',
+    'अप्रैल',
+    'मई',
+    'जून',
+    'जुलाई',
+    'अगस्त',
+    'सितंबर',
+    'अक्तूबर',
+    'नवंबर',
+    'दिसंबर',
   ];
 
   static String labelFor(DateTime date) {

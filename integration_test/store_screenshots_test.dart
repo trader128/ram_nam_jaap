@@ -47,10 +47,10 @@ void main() {
     await tester.tap(find.byIcon(Icons.close_rounded));
     await tester.pumpAndSettle(const Duration(seconds: 1));
 
-    // Insights tab
-    await tester.tap(find.text(AppStrings.insights));
+    // Calendar tab — the daily-open surface
+    await tester.tap(find.text(AppStrings.calendar));
     await tester.pumpAndSettle();
-    await binding.takeScreenshot('04-insights');
+    await binding.takeScreenshot('04-calendar');
 
     // Settings (More tab)
     await tester.tap(find.text(AppStrings.more));

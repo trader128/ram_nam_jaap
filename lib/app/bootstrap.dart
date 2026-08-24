@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../core/firebase/firebase_bootstrap.dart';
+import '../core/notifications/reminder_service.dart';
 import '../core/storage/hive_storage.dart';
 import '../features/deity/data/deity_migration.dart';
 import 'app.dart';
@@ -32,6 +33,7 @@ Future<void> bootstrap() async {
 
   // Cloud backup is optional; a failure here must never delay the counter.
   await FirebaseBootstrap.init();
+  await ReminderService.instance.init();
 
   runApp(const ProviderScope(child: BhaktiApp()));
 }

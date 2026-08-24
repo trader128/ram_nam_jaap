@@ -20,6 +20,10 @@ class JapSettings {
     required this.idleMusicEnabled,
     required this.bookModeEnabled,
     required this.language,
+    this.reminderEnabled = false,
+    this.reminderHour = 6,
+    this.reminderMinute = 0,
+    this.vratReminderEnabled = true,
   });
 
   final bool soundEnabled;
@@ -35,6 +39,10 @@ class JapSettings {
   final bool idleMusicEnabled;
   final bool bookModeEnabled;
   final AppLanguage language;
+  final bool reminderEnabled;
+  final int reminderHour;
+  final int reminderMinute;
+  final bool vratReminderEnabled;
 
   static JapSettings defaults() {
     return const JapSettings(
@@ -50,7 +58,11 @@ class JapSettings {
       divineWallpaperEnabled: true,
       idleMusicEnabled: true,
       bookModeEnabled: false,
-      language: AppLanguage.english,
+      language: AppLanguage.hindi,
+      reminderEnabled: false,
+      reminderHour: 6,
+      reminderMinute: 0,
+      vratReminderEnabled: true,
     );
   }
 
@@ -68,6 +80,10 @@ class JapSettings {
     bool? idleMusicEnabled,
     bool? bookModeEnabled,
     AppLanguage? language,
+    bool? reminderEnabled,
+    int? reminderHour,
+    int? reminderMinute,
+    bool? vratReminderEnabled,
   }) {
     return JapSettings(
       soundEnabled: soundEnabled ?? this.soundEnabled,
@@ -84,6 +100,10 @@ class JapSettings {
       idleMusicEnabled: idleMusicEnabled ?? this.idleMusicEnabled,
       bookModeEnabled: bookModeEnabled ?? this.bookModeEnabled,
       language: language ?? this.language,
+      reminderEnabled: reminderEnabled ?? this.reminderEnabled,
+      reminderHour: reminderHour ?? this.reminderHour,
+      reminderMinute: reminderMinute ?? this.reminderMinute,
+      vratReminderEnabled: vratReminderEnabled ?? this.vratReminderEnabled,
     );
   }
 }

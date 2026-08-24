@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../constants/app_strings.dart';
 import '../core/sync/sync_lifecycle_observer.dart';
 import '../core/widgets/deity_asset_precache.dart';
 import '../features/deity/providers/deity_providers.dart';
-import '../features/jap/providers/jap_providers.dart';
-import '../shared/enums/app_language.dart';
 import '../theme/app_theme.dart';
 import 'router.dart';
 
@@ -17,9 +16,6 @@ class BhaktiApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(appRouterProvider);
     final deity = ref.watch(selectedDeityProvider);
-    final language = ref.watch(
-      japSettingsProvider.select((settings) => settings.language),
-    );
     final theme = AppTheme.themed(primary: deity.primary, accent: deity.accent);
 
     return SyncLifecycleObserver(
@@ -30,8 +26,13 @@ class BhaktiApp extends ConsumerWidget {
           theme: theme,
           darkTheme: theme,
           themeMode: ThemeMode.dark,
-          locale: language.locale,
-          supportedLocales: AppLanguage.supportedLocales,
+          locale: const Locale('hi'),
+          supportedLocales: const [Locale('hi')],
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
           routerConfig: router,
         ),
       ),

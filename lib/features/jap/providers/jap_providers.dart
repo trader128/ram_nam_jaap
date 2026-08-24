@@ -203,6 +203,23 @@ class JapSettingsNotifier extends StateNotifier<JapSettings> {
     return update(state.copyWith(bookModeEnabled: value));
   }
 
+  Future<void> setReminderEnabled(bool value) {
+    return update(state.copyWith(reminderEnabled: value));
+  }
+
+  Future<void> setReminderTime(int hour, int minute) {
+    return update(
+      state.copyWith(
+        reminderHour: hour.clamp(0, 23),
+        reminderMinute: minute.clamp(0, 59),
+      ),
+    );
+  }
+
+  Future<void> setVratReminderEnabled(bool value) {
+    return update(state.copyWith(vratReminderEnabled: value));
+  }
+
   Future<void> setLanguage(AppLanguage value) {
     return update(state.copyWith(language: value));
   }

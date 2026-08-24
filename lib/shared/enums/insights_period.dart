@@ -1,9 +1,9 @@
 enum InsightsPeriod {
-  sevenDays(7, '7D'),
-  thirtyDays(30, '30D'),
-  ninetyDays(90, '90D'),
-  oneYear(365, '1Y'),
-  all(-1, 'All');
+  sevenDays(7, '7 दिन'),
+  thirtyDays(30, '30 दिन'),
+  ninetyDays(90, '90 दिन'),
+  oneYear(365, '1 वर्ष'),
+  all(-1, 'सभी');
 
   const InsightsPeriod(this.days, this.label);
 

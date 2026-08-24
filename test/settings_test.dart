@@ -67,6 +67,24 @@ void main() {
     expect(loaded.divineWallpaperEnabled, isFalse);
   });
 
+  test('JapSettingsRepository persists reminder preferences', () async {
+    final repository = JapSettingsRepository();
+    final custom = JapSettings.defaults().copyWith(
+      reminderEnabled: true,
+      reminderHour: 5,
+      reminderMinute: 30,
+      vratReminderEnabled: false,
+    );
+
+    await repository.save(custom);
+    final loaded = repository.load();
+
+    expect(loaded.reminderEnabled, isTrue);
+    expect(loaded.reminderHour, 5);
+    expect(loaded.reminderMinute, 30);
+    expect(loaded.vratReminderEnabled, isFalse);
+  });
+
   testWidgets('SettingsScreen shows core toggles', (tester) async {
     await tester.pumpWidget(
       ProviderScope(
@@ -77,6 +95,8 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text(AppStrings.currentNaam), findsOneWidget);
+    expect(find.text('प्रोफ़ाइल'), findsOneWidget);
+    expect(find.text('राम'), findsWidgets);
     expect(find.text(AppStrings.countWith), findsOneWidget);
     expect(find.text(AppStrings.backTapTitle), findsOneWidget);
 

@@ -20,6 +20,7 @@ class InsightsScreen extends ConsumerWidget {
     final insights = ref.watch(insightsProvider);
 
     return AppScaffold(
+      appBar: AppBar(backgroundColor: Colors.transparent),
       body: SafeArea(
         child: ScreenEntrance(
           child: ListView(

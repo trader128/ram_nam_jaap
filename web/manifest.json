@@ -1,11 +1,11 @@
 {
-    "name": "BHAKTi",
-    "short_name": "BHAKTi",
+    "name": "भक्ति",
+    "short_name": "भक्ति",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#050608",
     "theme_color": "#D4AF37",
-    "description": "BHAKTi — a daily devotional companion: naam jap, calendar, and more.",
+    "description": "भक्ति — नाम जप, पंचांग और भजन के लिए दैनिक भक्ति साथी।",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

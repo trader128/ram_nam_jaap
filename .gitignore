@@ -1,3 +1,10 @@
+# Local secrets — Navamsha key, ADC overrides, service accounts
+.env
+.env.*
+!.env.example
+**/*serviceAccount*.json
+tool/navamsha/node_modules/
+
 # Miscellaneous
 *.class
 *.log

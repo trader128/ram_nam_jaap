@@ -20,6 +20,7 @@ class HistoryScreen extends ConsumerWidget {
     final l10n = ref.watch(localizedStringsProvider);
 
     return AppScaffold(
+      appBar: AppBar(backgroundColor: Colors.transparent),
       body: SafeArea(
         child: ScreenEntrance(
           child: Padding(

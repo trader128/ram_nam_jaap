@@ -24,7 +24,16 @@ class LocalSnapshotRepository {
     HiveKeys.idleMusicEnabled,
     HiveKeys.bookModeEnabled,
     HiveKeys.appLanguage,
+    HiveKeys.reminderEnabled,
+    HiveKeys.reminderHour,
+    HiveKeys.reminderMinute,
+    HiveKeys.vratReminderEnabled,
     HiveKeys.selectedDeity,
+    HiveKeys.bhajanTransliteration,
+    // Not a preference, but a demand signal worth surviving a reinstall and
+    // being visible per user in the cloud copy.
+    HiveKeys.prasadamInterest,
+    HiveKeys.kundaliInterest,
   ];
 
   SyncSnapshot read() {

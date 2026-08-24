@@ -10,9 +10,11 @@ class SettingsToggleTile extends StatelessWidget {
     required this.value,
     required this.onChanged,
     super.key,
+    this.subtitle,
   });
 
   final String title;
+  final String? subtitle;
   final bool value;
   final ValueChanged<bool> onChanged;
 
@@ -20,6 +22,9 @@ class SettingsToggleTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return SwitchListTile(
       title: Text(title, style: AppTextStyles.bodyLarge),
+      subtitle: subtitle == null
+          ? null
+          : Text(subtitle!, style: AppTextStyles.bodyMedium),
       value: value,
       onChanged: onChanged,
       activeThumbColor: AppColors.primaryGold,

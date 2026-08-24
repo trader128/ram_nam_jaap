@@ -89,6 +89,16 @@ await check(
   'vrats are not client-writable',
   assertFails(setDoc(doc(alice, 'vrats/ekadashi'), { name: 'x' })),
 );
+await check(
+  'panchang is publicly readable',
+  assertSucceeds(getDoc(doc(alice, 'panchang/2026-08-24'))),
+);
+await check(
+  'panchang is not client-writable',
+  assertFails(
+    setDoc(doc(alice, 'panchang/2026-08-24'), { date: '2026-08-24' }),
+  ),
+);
 
 console.log('\ncollections not yet defined');
 await check(

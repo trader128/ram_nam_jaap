@@ -43,7 +43,15 @@ class JapSettingsRepository {
           box.get(HiveKeys.idleMusicEnabled, defaultValue: true) as bool,
       bookModeEnabled:
           box.get(HiveKeys.bookModeEnabled, defaultValue: false) as bool,
-      language: AppLanguage.fromCode(box.get(HiveKeys.appLanguage) as String?),
+      language: AppLanguage.hindi,
+      reminderEnabled:
+          box.get(HiveKeys.reminderEnabled, defaultValue: false) as bool,
+      reminderHour:
+          (box.get(HiveKeys.reminderHour, defaultValue: 6) as num).toInt(),
+      reminderMinute:
+          (box.get(HiveKeys.reminderMinute, defaultValue: 0) as num).toInt(),
+      vratReminderEnabled:
+          box.get(HiveKeys.vratReminderEnabled, defaultValue: true) as bool,
     );
   }
 
@@ -68,5 +76,9 @@ class JapSettingsRepository {
     await box.put(HiveKeys.idleMusicEnabled, settings.idleMusicEnabled);
     await box.put(HiveKeys.bookModeEnabled, settings.bookModeEnabled);
     await box.put(HiveKeys.appLanguage, settings.language.code);
+    await box.put(HiveKeys.reminderEnabled, settings.reminderEnabled);
+    await box.put(HiveKeys.reminderHour, settings.reminderHour);
+    await box.put(HiveKeys.reminderMinute, settings.reminderMinute);
+    await box.put(HiveKeys.vratReminderEnabled, settings.vratReminderEnabled);
   }
 }

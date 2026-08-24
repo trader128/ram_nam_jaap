@@ -8,13 +8,14 @@ import '../../../core/constants/settings_constants.dart';
 import '../../../features/deity/providers/deity_providers.dart';
 import '../../../features/jap/providers/jap_providers.dart';
 import '../../../l10n/localized_strings_provider.dart';
-import '../../../shared/enums/app_language.dart';
 import '../../../shared/ui/app_scaffold.dart';
 import '../../../theme/app_spacing.dart';
 import '../../../theme/app_text_styles.dart';
+import 'widgets/sadhana_profile_card.dart';
 import 'widgets/settings_backup_section.dart';
 import 'widgets/settings_count_method_selector.dart';
 import 'widgets/settings_nav_tile.dart';
+import 'widgets/settings_reminder_section.dart';
 import 'widgets/settings_section.dart';
 import 'widgets/settings_toggle_tile.dart';
 import 'widgets/settings_value_tiles.dart';
@@ -33,16 +34,24 @@ class SettingsScreen extends ConsumerWidget {
         child: ListView(
           padding: const EdgeInsets.all(AppSpacing.lg),
           children: [
-            Text(AppStrings.settingsTitle, style: AppTextStyles.headlineLarge),
+            Text(
+              ref.watch(localizedStringsProvider).profile,
+              style: AppTextStyles.headlineLarge,
+            ),
             const SizedBox(height: AppSpacing.xxs),
-            Text(AppStrings.moreSubtitle, style: AppTextStyles.bodyMedium),
+            Text(
+              ref.watch(localizedStringsProvider).profileSubtitle,
+              style: AppTextStyles.bodyMedium,
+            ),
+            const SizedBox(height: AppSpacing.lg),
+            const SadhanaProfileCard(),
             const SizedBox(height: AppSpacing.lg),
             SettingsSection(
               title: AppStrings.deitySection,
               children: [
                 SettingsNavTile(
                   title: AppStrings.currentNaam,
-                  trailingLabel: deity.transliteration,
+                  trailingLabel: deity.name,
                   trailingColor: deity.primary,
                   onTap: () => context.push(AppRoutes.deitySelection),
                 ),
@@ -112,34 +121,21 @@ class SettingsScreen extends ConsumerWidget {
             ),
             const SizedBox(height: AppSpacing.lg),
             SettingsSection(
-              title: ref.watch(localizedStringsProvider).languageSection,
+              title: ref.watch(localizedStringsProvider).practiceSection,
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpacing.md,
-                    vertical: AppSpacing.sm,
-                  ),
-                  child: Text(
-                    ref.watch(localizedStringsProvider).languageHint,
-                    style: AppTextStyles.labelSmall,
-                  ),
+                SettingsNavTile(
+                  title: ref.watch(localizedStringsProvider).insights,
+                  onTap: () => context.push(AppRoutes.insights),
                 ),
-                SegmentedButton<AppLanguage>(
-                  segments: AppLanguage.values
-                      .map(
-                        (language) => ButtonSegment(
-                          value: language,
-                          label: Text(language.label),
-                        ),
-                      )
-                      .toList(),
-                  selected: {settings.language},
-                  onSelectionChanged: (selection) {
-                    notifier.setLanguage(selection.first);
-                  },
+                const Divider(height: 1),
+                SettingsNavTile(
+                  title: ref.watch(localizedStringsProvider).history,
+                  onTap: () => context.push(AppRoutes.history),
                 ),
               ],
             ),
+            const SizedBox(height: AppSpacing.lg),
+            const SettingsReminderSection(),
             const SizedBox(height: AppSpacing.lg),
             const SettingsBackupSection(),
             const SizedBox(height: AppSpacing.lg),

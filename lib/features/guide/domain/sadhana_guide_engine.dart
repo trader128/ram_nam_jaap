@@ -34,9 +34,8 @@ abstract final class SadhanaGuideEngine {
     if (today == 0 && streak == 0) {
       return SadhanaGuideInsight(
         title: l10n.guideTitle,
-        message: language == AppLanguage.hindi
-            ? '${deity.transliteration} के नाम से आज की यात्रा शुरू करें। छोटा सा जप भी मन को शांत करता है।'
-            : 'Begin today\'s journey with ${deity.transliteration}. Even a few calm repetitions settle the mind.',
+        message:
+            '${deity.name} के नाम से आज की यात्रा शुरू करें। छोटा सा जप भी मन को शांत करता है।',
         affirmation: deity.mantra,
       );
     }

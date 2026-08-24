@@ -71,7 +71,7 @@ class DeityCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          deity.transliteration,
+                          deity.name,
                           style: AppTextStyles.titleLarge.copyWith(
                             color: AppColors.textPrimary,
                           ),

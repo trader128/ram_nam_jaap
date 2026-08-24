@@ -24,6 +24,16 @@ class LocalizedStrings {
 
   String get more => isHindi ? 'अधिक' : 'More';
 
+  String get profile => isHindi ? 'प्रोफ़ाइल' : 'Profile';
+
+  String get profileSubtitle => isHindi
+      ? 'आपका नाम, साधना और बैकअप'
+      : 'Your naam, practice, and backup';
+
+  String get profileBackupOff => isHindi
+      ? 'बैकअप बंद — सब कुछ इसी फ़ोन पर है'
+      : 'Backup off — everything stays on this phone';
+
   String get today => isHindi ? 'आज' : 'Today';
 
   String get totalJaps => isHindi ? 'कुल जप' : 'Total Japs';
@@ -43,8 +53,8 @@ class LocalizedStrings {
       : 'Tap the screen, use volume buttons, or back-tap (in Settings) to count each jap.';
 
   String get welcomeStep3 => isHindi
-      ? 'होम, अंतर्दृष्टि और इतिहास में लक्ष्य, स्ट्रीक और यात्रा देखें।'
-      : 'Track goals, streaks, and history on Home, Insights, and History tabs.';
+      ? 'पंचांग पर आज का व्रत देखें, भजन पढ़ें, और होम से जप शुरू करें।'
+      : 'See today\'s vrat on Calendar, read a bhajan, and begin jap from Home.';
 
   String get guideTitle => isHindi ? 'आज का मार्गदर्शन' : 'Today\'s guidance';
 
@@ -65,7 +75,7 @@ class LocalizedStrings {
       isHindi ? 'एक माला पूर्ण' : 'One mala complete';
 
   String get malaCompleteBody => isHindi
-      ? '१०८ नाम — शांत मन से आगे बढ़ें'
+      ? '108 नाम — शांत मन से आगे बढ़ें'
       : '108 names — continue with a calm mind';
 
   String get helpTitle => isHindi ? 'कैसे उपयोग करें' : 'How to use';
@@ -90,14 +100,18 @@ class LocalizedStrings {
       ? [
           'छह देवता थीम — राम, कृष्ण, महादेव, गणेश, दुर्गा, हनुमान',
           'टैप, वॉल्यूम बटन, या फ़ोन बॉडी टैप से गिनती',
+          'रोज़ का व्रत, कथा-विधि, और भजन पाठ',
           'दैनिक लक्ष्य, स्ट्रीक, इतिहास और चार्ट',
+          'दैनिक जप और व्रत स्मरण',
           'लिखित जप (पुस्तक) और माला रिंग मोड',
           'स्थानीय ध्वनि और मंदिर वातावरण संगीत',
         ]
       : [
           'Six deity themes — Ram, Krishna, Mahadev, Ganesh, Durga, Hanuman',
           'Count by tap, volume buttons, or back-of-phone tap',
+          'Daily vrat, katha and vidhi, and bhajan recitation',
           'Daily goals, streaks, history, and charts',
+          'Daily jap and vrat reminders',
           'Likhit jap book mode and mala ring',
           'Local chant audio and gentle temple ambience',
         ];
@@ -159,4 +173,133 @@ class LocalizedStrings {
   String get backupDeleteHint => isHindi
       ? 'क्लाउड कॉपी हटती है; इस फ़ोन का डेटा वैसा ही रहता है।'
       : 'Removes the cloud copy. Data on this phone is untouched.';
+
+  String get calendar => isHindi ? 'पंचांग' : 'Calendar';
+
+  String get calendarToday => isHindi ? 'आज' : 'Today';
+
+  String get calendarNoVratToday => isHindi
+      ? 'आज कोई विशेष व्रत नहीं — जप सदैव शुभ है।'
+      : 'No special vrat today — jap is always auspicious.';
+
+  String get calendarUpcoming => isHindi ? 'आगामी व्रत' : 'Upcoming vrats';
+
+  String get calendarObservances =>
+      isHindi ? 'व्रत और पर्व' : 'Vrats & observances';
+
+  String get calendarObservancesHint => isHindi
+      ? 'तिथि आधारित व्रत — सही तिथि के लिए पंचांग देखें।'
+      : 'Tithi-based vrats — check a panchang for exact dates.';
+
+  String get calendarObservancesHintWithPanchang => isHindi
+      ? 'तिथि व्रत — तिथियाँ उज्जैन पंचांग से जुड़ती हैं।'
+      : 'Tithi vrats — dates come from the Ujjain panchang.';
+
+  String get calendarTithi => isHindi ? 'तिथि' : 'Tithi';
+
+  String get calendarNakshatra => isHindi ? 'नक्षत्र' : 'Nakshatra';
+
+  String get calendarSunrise => isHindi ? 'सूर्योदय' : 'Sunrise';
+
+  String calendarPanchangPlace(String place) =>
+      isHindi ? '$place पंचांग' : '$place panchang';
+
+  String get calendarNoUpcoming => isHindi
+      ? 'आगामी तिथियाँ जोड़ी जा रही हैं।'
+      : 'Upcoming dates are being added.';
+
+  String get vratKatha => isHindi ? 'कथा' : 'Katha';
+
+  String get vratVidhi => isHindi ? 'विधि' : 'Vidhi';
+
+  String get vratMuhurat => isHindi ? 'मुहूर्त' : 'Muhurat';
+
+  String get vratChantCta => isHindi ? 'इस नाम का जप करें' : 'Chant this naam';
+
+  String get prasadamTitle => isHindi ? 'प्रसादम' : 'Prasadam';
+
+  String get prasadamBody => isHindi
+      ? 'व्रत के लिए प्रसाद घर मंगवाएँ — शीघ्र आ रहा है।'
+      : 'Order prasad for your vrat, delivered home — coming soon.';
+
+  String get prasadamCta => isHindi ? 'मुझे सूचित करें' : 'Notify me';
+
+  String get prasadamNoted => isHindi
+      ? 'धन्यवाद — उपलब्ध होने पर सूचित करेंगे।'
+      : 'Thank you — we will let you know when it is ready.';
+
+  String get kundaliTitle => isHindi ? 'कुंडली' : 'Kundali';
+
+  String get kundaliBody => isHindi
+      ? 'जन्म कुंडली उज्जैन पंचांग से — शीघ्र आ रहा है। कुंजी ऐप में नहीं रहेगी।'
+      : 'Birth kundali from the Ujjain panchang — coming soon. The API key stays off the device.';
+
+  String get kundaliCta => isHindi ? 'मुझे सूचित करें' : 'Notify me';
+
+  String get kundaliNoted => isHindi
+      ? 'धन्यवाद — कुंडली आने पर सूचित करेंगे।'
+      : 'Thank you — we will let you know when kundali is ready.';
+
+  String get bhajans => isHindi ? 'भजन' : 'Bhajans';
+
+  String get bhajansSubtitle => isHindi
+      ? 'आरती, चालीसा और स्तोत्र — पाठ के लिए'
+      : 'Aarti, chalisa, and stotra — to read and recite';
+
+  String get bhajanShowRoman =>
+      isHindi ? 'रोमन में देखें' : 'Show in Roman script';
+
+  String get bhajanNoAudio => isHindi
+      ? 'केवल पाठ — इस भजन के लिए रिकॉर्डिंग उपलब्ध नहीं।'
+      : 'Text only — no recording available for this bhajan.';
+
+  String get bhajanAudioFailed => isHindi
+      ? 'रिकॉर्डिंग नहीं चल पाई।'
+      : 'The recording could not be played.';
+
+  String get bhajanEmpty =>
+      isHindi ? 'भजन जोड़े जा रहे हैं।' : 'Bhajans are being added.';
+
+  String bhajanCategory(String category) {
+    return switch (category) {
+      'chalisa' => isHindi ? 'चालीसा' : 'Chalisa',
+      'aarti' => isHindi ? 'आरती' : 'Aarti',
+      'stotra' => isHindi ? 'स्तोत्र' : 'Stotra',
+      'mantra' => isHindi ? 'मंत्र' : 'Mantra',
+      _ => isHindi ? 'भजन' : 'Bhajan',
+    };
+  }
+
+  String verseCount(int count) => isHindi ? '$count छंद' : '$count verses';
+
+  String get practiceSection => isHindi ? 'आपकी साधना' : 'Your practice';
+
+  String readBhajan(String title) =>
+      isHindi ? '$title पढ़ें' : 'Read $title';
+
+  String daysAway(int days) {
+    if (days == 0) {
+      return isHindi ? 'आज' : 'Today';
+    }
+    if (days == 1) {
+      return isHindi ? 'कल' : 'Tomorrow';
+    }
+    return isHindi ? '$days दिन में' : 'in $days days';
+  }
+
+  String get cancel => isHindi ? 'रद्द करें' : 'Cancel';
+
+  String relativeTime(DateTime at) {
+    final delta = DateTime.now().difference(at);
+    if (delta.inMinutes < 1) {
+      return isHindi ? 'अभी' : 'just now';
+    }
+    if (delta.inHours < 1) {
+      return isHindi ? '${delta.inMinutes} मिनट पहले' : '${delta.inMinutes}m ago';
+    }
+    if (delta.inDays < 1) {
+      return isHindi ? '${delta.inHours} घंटे पहले' : '${delta.inHours}h ago';
+    }
+    return isHindi ? '${delta.inDays} दिन पहले' : '${delta.inDays}d ago';
+  }
 }

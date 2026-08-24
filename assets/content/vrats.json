@@ -1,0 +1,292 @@
+{
+  "_note": "Vrat content for the Calendar screen. Weekly vrats use 'weekday' (1=Mon..7=Sun) and are resolved locally, so they are always correct. Tithi and festival entries need a 'date' (yyyy-MM-dd) from an authoritative panchang - do not guess these. Entries here can be overridden or extended at runtime from the Firestore 'vrats' collection using the same field names, so dates can be corrected without an app update.",
+  "vrats": [
+    {
+      "id": "somvar",
+      "kind": "weekly",
+      "weekday": 1,
+      "deityId": "mahadev",
+      "nameEn": "Somvar Vrat",
+      "nameHi": "सोमवार व्रत",
+      "summaryEn": "Monday fast dedicated to Lord Shiva.",
+      "summaryHi": "भगवान शिव को समर्पित सोमवार का व्रत।",
+      "kathaEn": "Monday is held sacred to Shiva. Devotees observing Somvar vrat traditionally take a single sattvic meal, offer water and bel patra at a Shivling, and chant Om Namah Shivaya through the day. The vrat is especially observed through the month of Shravan.",
+      "kathaHi": "सोमवार भगवान शिव को प्रिय है। सोमवार व्रत में भक्त एक समय सात्विक भोजन करते हैं, शिवलिंग पर जल और बेल पत्र अर्पित करते हैं, और दिन भर ॐ नमः शिवाय का जाप करते हैं। श्रावण मास में यह व्रत विशेष रूप से किया जाता है।",
+      "vidhiEn": [
+        "Bathe early and wear clean clothes.",
+        "Offer water, milk, and bel patra at a Shivling.",
+        "Chant Om Namah Shivaya — a mala of 108 is traditional.",
+        "Take one sattvic meal after evening worship."
+      ],
+      "vidhiHi": [
+        "प्रातः स्नान कर स्वच्छ वस्त्र धारण करें।",
+        "शिवलिंग पर जल, दूध और बेल पत्र अर्पित करें।",
+        "ॐ नमः शिवाय का जाप करें — 108 की एक माला परंपरा है।",
+        "सायं पूजा के बाद एक समय सात्विक भोजन करें।"
+      ],
+      "muhuratEn": "Pradosh kaal, the hour and a half after sunset, is considered most auspicious.",
+      "muhuratHi": "प्रदोष काल — सूर्यास्त के बाद के लगभग डेढ़ घंटे — सर्वाधिक शुभ माना जाता है।"
+    },
+    {
+      "id": "mangalvar",
+      "kind": "weekly",
+      "weekday": 2,
+      "deityId": "hanuman",
+      "nameEn": "Mangalvar Vrat",
+      "nameHi": "मंगलवार व्रत",
+      "summaryEn": "Tuesday fast dedicated to Hanuman ji.",
+      "summaryHi": "हनुमान जी को समर्पित मंगलवार का व्रत।",
+      "kathaEn": "Tuesday belongs to Hanuman ji, the embodiment of strength and devotion. Devotees recite the Hanuman Chalisa, offer sindoor and boondi, and keep a fast that is believed to steady courage and clear obstacles.",
+      "kathaHi": "मंगलवार हनुमान जी का दिन है, जो बल और भक्ति के प्रतीक हैं। भक्त हनुमान चालीसा का पाठ करते हैं, सिंदूर और बूंदी अर्पित करते हैं, और व्रत रखते हैं जिससे साहस दृढ़ होता है और बाधाएँ दूर होती हैं।",
+      "vidhiEn": [
+        "Bathe and wear red or saffron if you have it.",
+        "Offer sindoor, chameli oil, and boondi laddu.",
+        "Recite the Hanuman Chalisa, then chant Om Ham Hanumate Namah.",
+        "Avoid salt in the single meal, by common practice."
+      ],
+      "vidhiHi": [
+        "स्नान कर लाल या केसरिया वस्त्र धारण करें।",
+        "सिंदूर, चमेली का तेल और बूंदी के लड्डू अर्पित करें।",
+        "हनुमान चालीसा का पाठ करें, फिर ॐ हं हनुमते नमः का जाप करें।",
+        "परंपरा अनुसार एक समय के भोजन में नमक से परहेज करें।"
+      ],
+      "muhuratEn": "Morning after sunrise, or evening at dusk.",
+      "muhuratHi": "सूर्योदय के बाद प्रातःकाल, अथवा सायंकाल संध्या समय।"
+    },
+    {
+      "id": "budhvar",
+      "kind": "weekly",
+      "weekday": 3,
+      "deityId": "ganesh",
+      "nameEn": "Budhvar Vrat",
+      "nameHi": "बुधवार व्रत",
+      "summaryEn": "Wednesday observance for Lord Ganesha.",
+      "summaryHi": "भगवान गणेश के लिए बुधवार का व्रत।",
+      "kathaEn": "Wednesday is kept for Ganesha, the remover of obstacles. Durva grass and modak are the traditional offerings, and the day is considered favourable for beginning new work.",
+      "kathaHi": "बुधवार विघ्नहर्ता गणेश जी का दिन है। दूर्वा और मोदक पारंपरिक भोग हैं, और यह दिन नया कार्य आरंभ करने के लिए शुभ माना जाता है।",
+      "vidhiEn": [
+        "Offer durva grass, modak, or laddu.",
+        "Light a lamp before Ganesha and chant Om Gam Ganapataye Namah.",
+        "Green is the colour associated with the day."
+      ],
+      "vidhiHi": [
+        "दूर्वा, मोदक अथवा लड्डू अर्पित करें।",
+        "गणेश जी के सम्मुख दीप जलाकर ॐ गं गणपतये नमः का जाप करें।",
+        "हरा रंग इस दिन से संबंधित है।"
+      ],
+      "muhuratEn": "Morning, before beginning the day's work.",
+      "muhuratHi": "प्रातःकाल, दिन का कार्य आरंभ करने से पूर्व।"
+    },
+    {
+      "id": "guruvar",
+      "kind": "weekly",
+      "weekday": 4,
+      "deityId": "krishna",
+      "nameEn": "Guruvar Vrat",
+      "nameHi": "गुरुवार व्रत",
+      "summaryEn": "Thursday fast for Vishnu and Brihaspati.",
+      "summaryHi": "विष्णु और बृहस्पति के लिए गुरुवार का व्रत।",
+      "kathaEn": "Thursday is dedicated to Vishnu and to Brihaspati, the guru among planets. Yellow is offered and worn — chana dal, gud, and haldi are placed before the deity, and the day is associated with learning and guidance.",
+      "kathaHi": "गुरुवार भगवान विष्णु और ग्रहों के गुरु बृहस्पति को समर्पित है। पीला रंग अर्पित और धारण किया जाता है — चना दाल, गुड़ और हल्दी भोग में रखी जाती है। यह दिन विद्या और मार्गदर्शन से जुड़ा है।",
+      "vidhiEn": [
+        "Wear yellow and offer yellow foods — chana dal, gud, banana.",
+        "Chant the Vishnu or Krishna naam through the day.",
+        "Traditionally, hair and nails are not cut on this day."
+      ],
+      "vidhiHi": [
+        "पीले वस्त्र धारण करें और पीला भोग अर्पित करें — चना दाल, गुड़, केला।",
+        "दिन भर विष्णु अथवा कृष्ण नाम का जाप करें।",
+        "परंपरा अनुसार इस दिन बाल और नाखून नहीं काटे जाते।"
+      ],
+      "muhuratEn": "Morning after bathing, before the first meal.",
+      "muhuratHi": "स्नान के बाद प्रातःकाल, प्रथम भोजन से पूर्व।"
+    },
+    {
+      "id": "shukravar",
+      "kind": "weekly",
+      "weekday": 5,
+      "deityId": "durga",
+      "nameEn": "Shukravar Vrat",
+      "nameHi": "शुक्रवार व्रत",
+      "summaryEn": "Friday fast for the Devi and Lakshmi.",
+      "summaryHi": "देवी और लक्ष्मी के लिए शुक्रवार का व्रत।",
+      "kathaEn": "Friday is kept for the Devi — Durga, Lakshmi, and Santoshi Mata. Kheer or gud-chana is offered, and the vrat is associated with wellbeing of the household.",
+      "kathaHi": "शुक्रवार देवी को समर्पित है — दुर्गा, लक्ष्मी और संतोषी माता। खीर अथवा गुड़-चना अर्पित किया जाता है, और यह व्रत गृह कल्याण से जुड़ा है।",
+      "vidhiEn": [
+        "Offer kheer, gud-chana, or white sweets.",
+        "Light a lamp before the Devi and chant Om Dum Durgayei Namah.",
+        "Santoshi Mata vrat is traditionally kept for sixteen Fridays."
+      ],
+      "vidhiHi": [
+        "खीर, गुड़-चना अथवा सफेद मिष्ठान्न अर्पित करें।",
+        "देवी के सम्मुख दीप जलाकर ॐ दुं दुर्गायै नमः का जाप करें।",
+        "संतोषी माता का व्रत परंपरा अनुसार सोलह शुक्रवार किया जाता है।"
+      ],
+      "muhuratEn": "Evening, after lighting the household lamp.",
+      "muhuratHi": "सायंकाल, घर में दीप जलाने के बाद।"
+    },
+    {
+      "id": "shanivar",
+      "kind": "weekly",
+      "weekday": 6,
+      "deityId": "hanuman",
+      "nameEn": "Shanivar Vrat",
+      "nameHi": "शनिवार व्रत",
+      "summaryEn": "Saturday observance for Shani and Hanuman ji.",
+      "summaryHi": "शनि देव और हनुमान जी के लिए शनिवार का व्रत।",
+      "kathaEn": "Saturday is kept for Shani Dev, and Hanuman ji is worshipped alongside as the one who eases Shani's severity. Sesame oil is offered, and black til and urad are given in daan.",
+      "kathaHi": "शनिवार शनि देव का दिन है, और उनके प्रभाव को सौम्य करने वाले हनुमान जी की भी पूजा की जाती है। तिल का तेल अर्पित किया जाता है, और काले तिल तथा उड़द का दान किया जाता है।",
+      "vidhiEn": [
+        "Offer sesame oil to Shani Dev or to Hanuman ji.",
+        "Recite the Hanuman Chalisa.",
+        "Give black til, urad dal, or an iron item in daan."
+      ],
+      "vidhiHi": [
+        "शनि देव अथवा हनुमान जी को तिल का तेल अर्पित करें।",
+        "हनुमान चालीसा का पाठ करें।",
+        "काले तिल, उड़द दाल अथवा लोहे की वस्तु का दान करें।"
+      ],
+      "muhuratEn": "Evening, after sunset.",
+      "muhuratHi": "सायंकाल, सूर्यास्त के बाद।"
+    },
+    {
+      "id": "ravivar",
+      "kind": "weekly",
+      "weekday": 7,
+      "deityId": "ram",
+      "nameEn": "Ravivar Vrat",
+      "nameHi": "रविवार व्रत",
+      "summaryEn": "Sunday observance for Surya Dev.",
+      "summaryHi": "सूर्य देव के लिए रविवार का व्रत।",
+      "kathaEn": "Sunday is kept for Surya Dev. Water is offered to the rising sun, and the single meal of the day traditionally excludes salt. The Suryavanshi lineage of Shri Ram is remembered on this day.",
+      "kathaHi": "रविवार सूर्य देव का दिन है। उदय होते सूर्य को जल अर्पित किया जाता है, और दिन के एक समय के भोजन में परंपरा अनुसार नमक नहीं लिया जाता। इस दिन श्री राम के सूर्यवंश का स्मरण किया जाता है।",
+      "vidhiEn": [
+        "Offer water to the sun at sunrise, facing east.",
+        "Chant the Ram naam or the Surya mantra.",
+        "Take one meal, traditionally without salt."
+      ],
+      "vidhiHi": [
+        "सूर्योदय के समय पूर्व दिशा की ओर मुख कर सूर्य को जल अर्पित करें।",
+        "राम नाम अथवा सूर्य मंत्र का जाप करें।",
+        "एक समय भोजन करें, परंपरा अनुसार नमक रहित।"
+      ],
+      "muhuratEn": "Sunrise — the offering of water is made as the sun appears.",
+      "muhuratHi": "सूर्योदय — सूर्य दर्शन के समय जल अर्पित किया जाता है।"
+    },
+    {
+      "id": "ekadashi",
+      "kind": "tithi",
+      "deityId": "krishna",
+      "nameEn": "Ekadashi",
+      "nameHi": "एकादशी",
+      "summaryEn": "The eleventh tithi, kept for Vishnu — twice each lunar month.",
+      "summaryHi": "ग्यारहवीं तिथि, विष्णु को समर्पित — प्रत्येक चंद्र मास में दो बार।",
+      "kathaEn": "Ekadashi falls on the eleventh day of each lunar fortnight and is the foremost vrat for Vaishnavas. Grains and pulses are set aside for the day; the fast is broken the following morning at the prescribed parana time.",
+      "kathaHi": "एकादशी प्रत्येक चंद्र पक्ष की ग्यारहवीं तिथि को आती है और वैष्णवों का प्रमुख व्रत है। इस दिन अन्न और दाल का त्याग किया जाता है; व्रत अगले प्रातः निर्धारित पारण समय पर खोला जाता है।",
+      "vidhiEn": [
+        "Avoid grains, rice, and pulses for the day.",
+        "Chant the Vishnu or Krishna naam; the Hare Krishna mahamantra is traditional.",
+        "Break the fast the next morning within the parana window."
+      ],
+      "vidhiHi": [
+        "इस दिन अन्न, चावल और दाल का त्याग करें।",
+        "विष्णु अथवा कृष्ण नाम का जाप करें; हरे कृष्ण महामंत्र परंपरागत है।",
+        "अगले प्रातः पारण काल में व्रत खोलें।"
+      ],
+      "muhuratEn": "Parana, the breaking of the fast, must fall within a set window the next morning — check the panchang for the exact time.",
+      "muhuratHi": "पारण अगले प्रातः निर्धारित काल में होना चाहिए — सही समय के लिए पंचांग देखें।"
+    },
+    {
+      "id": "purnima",
+      "kind": "tithi",
+      "deityId": "krishna",
+      "nameEn": "Purnima",
+      "nameHi": "पूर्णिमा",
+      "summaryEn": "The full moon day — satyanarayan katha and daan.",
+      "summaryHi": "पूर्ण चंद्र का दिन — सत्यनारायण कथा और दान।",
+      "kathaEn": "Purnima, the full moon, closes the bright fortnight. Satyanarayan katha is commonly read, daan is given, and a bath in a river is considered meritorious.",
+      "kathaHi": "पूर्णिमा शुक्ल पक्ष का अंतिम दिन है। सत्यनारायण कथा का पाठ किया जाता है, दान दिया जाता है, और नदी स्नान पुण्यकारी माना जाता है।",
+      "vidhiEn": [
+        "Bathe early; a river or holy water source if possible.",
+        "Read or listen to the Satyanarayan katha.",
+        "Give daan according to your means."
+      ],
+      "vidhiHi": [
+        "प्रातः स्नान करें; संभव हो तो नदी अथवा पवित्र जल में।",
+        "सत्यनारायण कथा का पाठ करें अथवा सुनें।",
+        "सामर्थ्य अनुसार दान दें।"
+      ],
+      "muhuratEn": "Evening, at moonrise.",
+      "muhuratHi": "सायंकाल, चंद्रोदय के समय।"
+    },
+    {
+      "id": "amavasya",
+      "kind": "tithi",
+      "deityId": "mahadev",
+      "nameEn": "Amavasya",
+      "nameHi": "अमावस्या",
+      "summaryEn": "The new moon day — remembrance of the ancestors.",
+      "summaryHi": "अमावस्या — पितरों का स्मरण।",
+      "kathaEn": "Amavasya, the new moon, closes the dark fortnight and is kept for the pitr. Tarpan and daan are offered in their name, and the day is considered suited to quiet practice rather than new undertakings.",
+      "kathaHi": "अमावस्या कृष्ण पक्ष का अंतिम दिन है और पितरों को समर्पित है। उनके नाम पर तर्पण और दान किया जाता है। यह दिन नया कार्य आरंभ करने की अपेक्षा शांत साधना के लिए उपयुक्त माना जाता है।",
+      "vidhiEn": [
+        "Offer tarpan and give daan in the name of the ancestors.",
+        "Keep the day quiet; avoid beginning new work.",
+        "Chant and light a lamp at dusk."
+      ],
+      "vidhiHi": [
+        "पितरों के नाम पर तर्पण और दान करें।",
+        "दिन शांत रखें; नया कार्य आरंभ न करें।",
+        "संध्या समय दीप जलाकर जाप करें।"
+      ],
+      "muhuratEn": "Midday for tarpan; dusk for the lamp.",
+      "muhuratHi": "तर्पण के लिए मध्याह्न; दीप के लिए संध्या।"
+    },
+    {
+      "id": "pradosh",
+      "kind": "tithi",
+      "deityId": "mahadev",
+      "nameEn": "Pradosh Vrat",
+      "nameHi": "प्रदोष व्रत",
+      "summaryEn": "The thirteenth tithi, kept for Shiva at dusk.",
+      "summaryHi": "त्रयोदशी तिथि, संध्या समय शिव को समर्पित।",
+      "kathaEn": "Pradosh falls on the thirteenth tithi of each fortnight and is kept for Shiva. Worship is performed specifically in the pradosh kaal, the hour and a half following sunset.",
+      "kathaHi": "प्रदोष व्रत प्रत्येक पक्ष की त्रयोदशी तिथि को शिव जी के लिए किया जाता है। पूजा विशेष रूप से प्रदोष काल में — सूर्यास्त के बाद के लगभग डेढ़ घंटे में — की जाती है।",
+      "vidhiEn": [
+        "Fast through the day, breaking it after the evening worship.",
+        "Perform abhishek of the Shivling in pradosh kaal.",
+        "Chant Om Namah Shivaya."
+      ],
+      "vidhiHi": [
+        "दिन भर व्रत रखें, सायं पूजा के बाद खोलें।",
+        "प्रदोष काल में शिवलिंग का अभिषेक करें।",
+        "ॐ नमः शिवाय का जाप करें।"
+      ],
+      "muhuratEn": "Pradosh kaal — roughly ninety minutes after sunset.",
+      "muhuratHi": "प्रदोष काल — सूर्यास्त के लगभग नब्बे मिनट बाद तक।"
+    },
+    {
+      "id": "sankashti-chaturthi",
+      "kind": "tithi",
+      "deityId": "ganesh",
+      "nameEn": "Sankashti Chaturthi",
+      "nameHi": "संकष्टी चतुर्थी",
+      "summaryEn": "The fourth tithi after Purnima, kept for Ganesha.",
+      "summaryHi": "पूर्णिमा के बाद चतुर्थी तिथि, गणेश जी को समर्पित।",
+      "kathaEn": "Sankashti Chaturthi falls in the dark fortnight and is kept for Ganesha as the remover of sankat. The fast is broken after the sighting of the moon.",
+      "kathaHi": "संकष्टी चतुर्थी कृष्ण पक्ष में आती है और संकट हरने वाले गणेश जी को समर्पित है। चंद्र दर्शन के बाद व्रत खोला जाता है।",
+      "vidhiEn": [
+        "Fast through the day.",
+        "Offer durva and modak to Ganesha in the evening.",
+        "Break the fast after seeing the moon."
+      ],
+      "vidhiHi": [
+        "दिन भर व्रत रखें।",
+        "सायंकाल गणेश जी को दूर्वा और मोदक अर्पित करें।",
+        "चंद्र दर्शन के बाद व्रत खोलें।"
+      ],
+      "muhuratEn": "After moonrise — the time shifts through the year, so check the panchang.",
+      "muhuratHi": "चंद्रोदय के बाद — समय वर्ष भर बदलता है, अतः पंचांग देखें।"
+    }
+  ]
+}

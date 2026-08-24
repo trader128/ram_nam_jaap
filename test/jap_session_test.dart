@@ -8,6 +8,9 @@ import 'package:hive/hive.dart';
 import 'package:bhakti/constants/app_strings.dart';
 import 'package:bhakti/core/constants/hive_box_names.dart';
 import 'package:bhakti/core/helpers/number_formatter.dart';
+import 'package:bhakti/features/bhajan/providers/bhajan_providers.dart';
+import 'package:bhakti/features/calendar/domain/vrat.dart';
+import 'package:bhakti/features/calendar/providers/calendar_providers.dart';
 import 'package:bhakti/features/deity/domain/deity_catalog.dart';
 import 'package:bhakti/features/home/presentation/home_screen.dart';
 import 'package:bhakti/features/jap/presentation/jap_screen.dart';
@@ -37,16 +40,28 @@ void main() {
   });
 
   testWidgets('HomeScreen displays divine name as hero', (tester) async {
-    await tester.pumpWidget(
-      ProviderScope(
-        child: MaterialApp(theme: AppTheme.dark, home: const HomeScreen()),
-      ),
-    );
-
+    await tester.pumpWidget(_homeApp());
     await tester.pump();
 
-    expect(find.text(DeityCatalog.fallback.name), findsOneWidget);
+    expect(find.text(DeityCatalog.fallback.name), findsWidgets);
     expect(find.text(AppStrings.beginJap), findsOneWidget);
+  });
+
+  testWidgets('HomeScreen shows today\'s weekly vrat', (tester) async {
+    const vratName = 'Test Vrat';
+    final todayVrat = Vrat(
+      id: 'test-today',
+      kind: VratKind.weekly,
+      weekday: DateTime.now().weekday,
+      nameEn: vratName,
+      nameHi: 'परीक्षण व्रत',
+    );
+
+    await tester.pumpWidget(_homeApp(vrats: [todayVrat]));
+    await tester.pump();
+    await tester.pump();
+
+    expect(find.text('परीक्षण व्रत'), findsOneWidget);
   });
 
   testWidgets('JapScreen shows tap instruction', (tester) async {
@@ -61,4 +76,14 @@ void main() {
 
     expect(find.text(AppStrings.tapToChant), findsOneWidget);
   });
+}
+
+Widget _homeApp({List<Vrat> vrats = const []}) {
+  return ProviderScope(
+    overrides: [
+      vratContentProvider.overrideWith((ref) async => vrats),
+      bhajanContentProvider.overrideWith((ref) async => const []),
+    ],
+    child: MaterialApp(theme: AppTheme.dark, home: const HomeScreen()),
+  );
 }

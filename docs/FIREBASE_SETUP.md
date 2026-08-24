@@ -93,9 +93,9 @@ users/{uid}
   }
 ```
 
-`vrats/{vratId}`, `bhajans/{bhajanId}`, `chatSessions/{sessionId}` and
-`orders/{orderId}` from the plan do not exist yet; rules for the first two are
-already in place as read-only.
+`vrats/{vratId}`, `bhajans/{bhajanId}`, and `panchang/{yyyy-MM-dd}` are
+public-read and client-write-denied. Panchang documents are written only by
+the Navamsha sync tool (`docs/NAVAMSHA.md`), never from the app.
 
 ## Design notes worth keeping
 
@@ -144,5 +144,6 @@ listing.
 
 ## Later phases
 
-AstroKerala calls should go through a backend proxy rather than the client, as
-the plan specifies, so the API key is never shipped in the app bundle.
+AstroKerala / Navamsha calls go through a trusted machine (or a later Blaze
+Cloud Function), never the client, so the API key is never shipped in the app
+bundle. Panchang is the Navamsha path documented in `docs/NAVAMSHA.md`.

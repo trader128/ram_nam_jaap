@@ -32,7 +32,8 @@
           "projectId": "bhakti-sawarun",
           "configurations": {
             "android": "1:782282598335:android:fa72996a4103ddf4f8230a",
-            "ios": "1:782282598335:ios:087d5dbfc967e930f8230a"
+            "ios": "1:782282598335:ios:087d5dbfc967e930f8230a",
+            "web": "1:782282598335:web:b63619b3f4a7ddf0f8230a"
           }
         }
       }

@@ -38,14 +38,14 @@ class AppShell extends ConsumerWidget {
             label: l10n.home,
           ),
           NavigationDestination(
-            icon: const Icon(Icons.insights_outlined),
-            selectedIcon: const Icon(Icons.insights_rounded),
-            label: l10n.insights,
+            icon: const Icon(Icons.calendar_month_outlined),
+            selectedIcon: const Icon(Icons.calendar_month_rounded),
+            label: l10n.calendar,
           ),
           NavigationDestination(
-            icon: const Icon(Icons.history_outlined),
-            selectedIcon: const Icon(Icons.history_rounded),
-            label: l10n.history,
+            icon: const Icon(Icons.menu_book_outlined),
+            selectedIcon: const Icon(Icons.menu_book_rounded),
+            label: l10n.bhajans,
           ),
           NavigationDestination(
             icon: const Icon(Icons.more_horiz_rounded),
