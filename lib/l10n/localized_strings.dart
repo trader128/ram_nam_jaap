@@ -8,10 +8,11 @@ class LocalizedStrings {
 
   bool get isHindi => language == AppLanguage.hindi;
 
-  String get appName => isHindi ? 'राम नाम जप' : 'RAM NAM JAP';
+  String get appName => isHindi ? 'भक्ति' : 'BHAKTi';
 
-  String get tagline =>
-      isHindi ? 'शांत डिजिटल मंदिर' : 'A peaceful digital temple';
+  String get tagline => isHindi
+      ? 'भक्ति भाव से पूजा तक'
+      : 'Bhakti bhav se pooja tak';
 
   String get beginJap => isHindi ? 'जप शुरू करें' : 'Begin Jap';
 
@@ -70,8 +71,8 @@ class LocalizedStrings {
   String get helpTitle => isHindi ? 'कैसे उपयोग करें' : 'How to use';
 
   String get helpIntro => isHindi
-      ? 'राम नाम जप एक निजी, ऑफ़लाइन जप काउंटर है। सब कुछ आपके फ़ोन पर रहता है।'
-      : 'RAM NAM JAP is a private, offline counter for your daily naam jap. Everything stays on your device.';
+      ? 'भक्ति आपके रोज़ाना नाम जप का निजी साथी है। जप पूरी तरह ऑफ़लाइन चलता है; क्लाउड बैकअप वैकल्पिक है।'
+      : 'BHAKTi is a private companion for your daily naam jap. Chanting works fully offline; cloud backup is optional.';
 
   String get aboutTitle => isHindi ? 'ऐप के बारे में' : 'About this app';
 
@@ -79,8 +80,8 @@ class LocalizedStrings {
       isHindi ? 'उद्देश्य' : 'Purpose';
 
   String get aboutPurposeBody => isHindi
-      ? 'यह ऐप रोज़ाना नाम जप को सरल, शांत और नियमित बनाने के लिए बनाया गया है — बिना विज्ञापन, बिना खाते, बिना इंटरनेट।'
-      : 'This app helps you practice daily naam jap with calm focus — no ads, no account, and no internet required.';
+      ? 'यह ऐप रोज़ाना नाम जप को सरल, शांत और नियमित बनाने के लिए बनाया गया है — बिना विज्ञापन और बिना खाते। जप पूरी तरह ऑफ़लाइन चलता है; बैकअप वैकल्पिक है।'
+      : 'This app helps you practice daily naam jap with calm focus — no ads and no account needed. Chanting works fully offline; cloud backup is optional.';
 
   String get aboutFeaturesTitle =>
       isHindi ? 'मुख्य सुविधाएँ' : 'What you can do';
@@ -121,4 +122,41 @@ class LocalizedStrings {
   String get emptyHistorySubtitle => isHindi
       ? 'पहला जप पूरा करें — यहाँ दैनिक इतिहास दिखेगा।'
       : 'Complete your first jap session — daily history will appear here.';
+
+  String get backupSection => isHindi ? 'बैकअप और सिंक' : 'Backup & Sync';
+
+  String get backupToggleTitle =>
+      isHindi ? 'क्लाउड बैकअप' : 'Cloud backup';
+
+  String get backupToggleHint => isHindi
+      ? 'जप गिनती और सेटिंग्स सुरक्षित रखें ताकि फ़ोन बदलने पर भी बनी रहें।'
+      : 'Keep your counts and settings safe so they survive a new phone.';
+
+  String get backupOffHint => isHindi
+      ? 'बंद है — सब कुछ केवल इसी फ़ोन पर रहता है।'
+      : 'Off — everything stays on this phone only.';
+
+  String get backupUnavailable => isHindi
+      ? 'इस बिल्ड में क्लाउड बैकअप उपलब्ध नहीं है।'
+      : 'Cloud backup is not available in this build.';
+
+  String get backupSyncing => isHindi ? 'सिंक हो रहा है…' : 'Syncing…';
+
+  String get backupFailed => isHindi
+      ? 'सिंक नहीं हो सका — आपका डेटा फ़ोन पर सुरक्षित है।'
+      : 'Sync failed — your data is safe on this phone.';
+
+  String get backupNeverSynced => isHindi ? 'अभी तक सिंक नहीं' : 'Not synced yet';
+
+  String get backupSyncNow => isHindi ? 'अभी सिंक करें' : 'Sync now';
+
+  String backupLastSynced(String when) =>
+      isHindi ? 'अंतिम सिंक: $when' : 'Last synced $when';
+
+  String get backupDelete =>
+      isHindi ? 'क्लाउड बैकअप हटाएँ' : 'Delete cloud backup';
+
+  String get backupDeleteHint => isHindi
+      ? 'क्लाउड कॉपी हटती है; इस फ़ोन का डेटा वैसा ही रहता है।'
+      : 'Removes the cloud copy. Data on this phone is untouched.';
 }

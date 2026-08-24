@@ -33,6 +33,13 @@ migrate_working_dir/
 /build/
 /coverage/
 
+# Firestore rules tests (Node)
+firestore-tests/node_modules/
+firestore-tests/package-lock.json
+.firebase/
+firebase-debug.log
+firestore-debug.log
+
 # Symbolication related
 app.*.symbols
 

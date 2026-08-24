@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:ram_nam_jap/core/helpers/insights_calculator.dart';
-import 'package:ram_nam_jap/shared/enums/insights_period.dart';
-import 'package:ram_nam_jap/shared/models/daily_jap_record.dart';
+import 'package:bhakti/core/helpers/insights_calculator.dart';
+import 'package:bhakti/shared/enums/insights_period.dart';
+import 'package:bhakti/shared/models/daily_jap_record.dart';
 
 void main() {
   group('InsightsCalculator', () {

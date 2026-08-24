@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:ram_nam_jap/core/constants/hive_keys.dart';
-import 'package:ram_nam_jap/features/deity/domain/deity_catalog.dart';
+import 'package:bhakti/core/constants/hive_keys.dart';
+import 'package:bhakti/features/deity/domain/deity_catalog.dart';
 
 void main() {
   test('catalog exposes the expected deities', () {

@@ -8,6 +8,7 @@ import '../../../core/services/haptic_service.dart';
 import '../../../core/services/motion_jap_service.dart';
 import '../../../core/services/sound_service.dart';
 import '../../../core/services/volume_jap_service.dart';
+import '../../../core/sync/sync_providers.dart';
 import '../../../shared/enums/app_language.dart';
 import '../../../shared/enums/count_method.dart';
 import '../../../shared/enums/insights_period.dart';
@@ -81,12 +82,20 @@ final japStatisticsProvider =
 
 final japSettingsProvider =
     StateNotifierProvider<JapSettingsNotifier, JapSettings>((ref) {
-      return JapSettingsNotifier(ref.watch(japSettingsRepositoryProvider));
+      return JapSettingsNotifier(
+        ref.watch(japSettingsRepositoryProvider),
+        onChanged: () =>
+            ref.read(syncControllerProvider.notifier).notifyLocalChange(),
+      );
     });
 
 final japSessionProvider =
     StateNotifierProvider<JapSessionNotifier, JapSessionStateBundle>((ref) {
-      return JapSessionNotifier(ref.watch(japControllerProvider));
+      return JapSessionNotifier(
+        ref.watch(japControllerProvider),
+        onProgressPersisted: () =>
+            ref.read(syncControllerProvider.notifier).notifyLocalChange(),
+      );
     });
 
 final japHistoryProvider =
@@ -125,13 +134,17 @@ class JapStatisticsNotifier extends StateNotifier<JapStatistics> {
 }
 
 class JapSettingsNotifier extends StateNotifier<JapSettings> {
-  JapSettingsNotifier(this._repository) : super(_repository.load());
+  JapSettingsNotifier(this._repository, {VoidCallback? onChanged})
+    : _onChanged = onChanged,
+      super(_repository.load());
 
   final JapSettingsRepository _repository;
+  final VoidCallback? _onChanged;
 
   Future<void> update(JapSettings settings) async {
     state = settings;
     await _repository.save(settings);
+    _onChanged?.call();
   }
 
   Future<void> setSoundEnabled(bool value) {
@@ -214,11 +227,14 @@ class JapSessionStateBundle {
 }
 
 class JapSessionNotifier extends StateNotifier<JapSessionStateBundle> {
-  JapSessionNotifier(this._controller) : super(JapSessionStateBundle.empty) {
+  JapSessionNotifier(this._controller, {VoidCallback? onProgressPersisted})
+    : _onProgressPersisted = onProgressPersisted,
+      super(JapSessionStateBundle.empty) {
     _restore();
   }
 
   final JapController _controller;
+  final VoidCallback? _onProgressPersisted;
 
   Future<void> _restore() async {
     final session = _controller.loadSession();
@@ -250,6 +266,9 @@ class JapSessionNotifier extends StateNotifier<JapSessionStateBundle> {
   Future<void> endSession() async {
     await _controller.endSession();
     state = JapSessionStateBundle.empty;
+    // Taps themselves stay off the sync path; a finished session is the
+    // natural point to back up without touching the hot loop.
+    _onProgressPersisted?.call();
   }
 }
 

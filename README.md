@@ -1,6 +1,6 @@
-# RAM NAM JAP
+# BHAKTi
 
-**A peaceful digital temple** — offline Ram Naam jap counter for iPhone.
+**Bhakti bhav se pooja tak** — a daily devotional companion, built around naam jap.
 
 ## Features
 
@@ -8,12 +8,12 @@
 - Daily goals, streaks, and insights charts
 - Multiple deities / mantras with divine artwork
 - Mala ring, likhit jap book mode, ambient music
-- Fully offline — no account, no cloud
+- Chanting works fully offline; cloud backup is optional and off by default
 
 ## Develop
 
 ```bash
-cd ~/Projects/ram-nam-jap
+cd ~/Projects/bhakti
 flutter pub get
 flutter run
 ```

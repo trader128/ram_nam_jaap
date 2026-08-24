@@ -5,18 +5,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
 
-import 'package:ram_nam_jap/constants/app_strings.dart';
-import 'package:ram_nam_jap/core/constants/hive_box_names.dart';
-import 'package:ram_nam_jap/core/helpers/number_formatter.dart';
-import 'package:ram_nam_jap/features/deity/domain/deity_catalog.dart';
-import 'package:ram_nam_jap/features/home/presentation/home_screen.dart';
-import 'package:ram_nam_jap/features/jap/presentation/jap_screen.dart';
-import 'package:ram_nam_jap/theme/app_theme.dart';
+import 'package:bhakti/constants/app_strings.dart';
+import 'package:bhakti/core/constants/hive_box_names.dart';
+import 'package:bhakti/core/helpers/number_formatter.dart';
+import 'package:bhakti/features/deity/domain/deity_catalog.dart';
+import 'package:bhakti/features/home/presentation/home_screen.dart';
+import 'package:bhakti/features/jap/presentation/jap_screen.dart';
+import 'package:bhakti/theme/app_theme.dart';
 
 void main() {
   setUpAll(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
-    final tempDir = await Directory.systemTemp.createTemp('ram_nam_jap_test');
+    final tempDir = await Directory.systemTemp.createTemp('bhakti_test');
     Hive.init(tempDir.path);
     await Future.wait([
       Hive.openBox<dynamic>(HiveBoxNames.settings),

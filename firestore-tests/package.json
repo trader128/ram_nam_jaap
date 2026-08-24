@@ -1,0 +1,15 @@
+{
+  "name": "bhakti-firestore-rules-tests",
+  "private": true,
+  "type": "module",
+  "description": "Rules tests for firestore.rules, run against the Firestore emulator.",
+  "scripts": {
+    "test": "firebase emulators:exec --only firestore --project bhakti-sawarun \"node rules.test.mjs\""
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "^4.0.1"
+  },
+  "dependencies": {
+    "firebase": "^12.18.0"
+  }
+}

@@ -3,11 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:ram_nam_jap/app/app.dart';
-import 'package:ram_nam_jap/app/bootstrap.dart';
-import 'package:ram_nam_jap/app/router.dart';
-import 'package:ram_nam_jap/constants/app_routes.dart';
-import 'package:ram_nam_jap/constants/app_strings.dart';
+import 'package:bhakti/app/app.dart';
+import 'package:bhakti/app/bootstrap.dart';
+import 'package:bhakti/app/router.dart';
+import 'package:bhakti/constants/app_routes.dart';
+import 'package:bhakti/constants/app_strings.dart';
 
 /// Captures Play Store screenshots on a connected Android emulator/device.
 ///
@@ -24,7 +24,7 @@ void main() {
     // Phone portrait — standard Play Store screenshot size.
     await binding.setSurfaceSize(const Size(1080, 1920));
 
-    await tester.pumpWidget(const ProviderScope(child: RamNamJapApp()));
+    await tester.pumpWidget(const ProviderScope(child: BhaktiApp()));
     await tester.pump();
     await tester.pump(const Duration(seconds: 3));
     await tester.pumpAndSettle();

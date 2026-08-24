@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "782282598335",
+    "project_id": "bhakti-sawarun",
+    "storage_bucket": "bhakti-sawarun.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782282598335:android:fa72996a4103ddf4f8230a",
+        "android_client_info": {
+          "package_name": "com.ramnamjap.ram_nam_jap"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBopBzJXlllGB0C2a5ZnDR2wwQnDZMQSS4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

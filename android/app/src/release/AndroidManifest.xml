@@ -1,11 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <!-- This release-only manifest guarantees the published build requests no
-         network or location access, even if a transitive dependency tries to
-         merge such a permission. Debug/profile builds keep INTERNET so Flutter
-         tooling (hot reload, debugger) continues to work. -->
-    <uses-permission android:name="android.permission.INTERNET" tools:node="remove" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" tools:node="remove" />
+    <!-- Network access is required for optional cloud backup (Firebase Auth +
+         Firestore). Chanting itself still works fully offline; nothing is sent
+         until the user turns Backup & Sync on.
+
+         Location remains stripped from the published build so no transitive
+         dependency can quietly add it. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" tools:node="remove" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" tools:node="remove" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" tools:node="remove" />

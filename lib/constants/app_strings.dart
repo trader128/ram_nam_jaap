@@ -1,6 +1,6 @@
 abstract final class AppStrings {
-  static const String appName = 'RAM NAM JAP';
-  static const String tagline = 'A peaceful digital temple';
+  static const String appName = 'BHAKTi';
+  static const String tagline = 'Bhakti bhav se pooja tak';
   static const String beginJap = 'Begin Jap';
   static const String settings = 'Settings';
   static const String today = 'Today';
@@ -98,7 +98,7 @@ abstract final class AppStrings {
 
   static const String helpTitle = 'How to use';
   static const String helpIntro =
-      'RAM NAM JAP is a private, offline counter for your daily naam jap. Everything stays on your device.';
+      'BHAKTi is a private companion for your daily naam jap. Chanting works fully offline; cloud backup is optional.';
   static const String helpHowToTitle = 'Quick start';
   static const List<String> helpSteps = [
     'Choose your deity and mantra from the home screen.',
@@ -109,7 +109,7 @@ abstract final class AppStrings {
 
   static const String privacyTitle = 'Privacy';
   static const String privacyBody =
-      'RAM NAM JAP does not collect personal data. Counts and settings are stored locally on your device. No account is required. Optional sounds play from bundled files only.';
+      'BHAKTi does not collect personal data. Counts and settings are stored on your device, and are only copied to the cloud if you turn on Backup & Sync. No sign-in is required. Optional sounds play from bundled files only.';
   static const String helpAndPrivacy = 'Help & privacy';
   static const String supportSection = 'Support';
 }

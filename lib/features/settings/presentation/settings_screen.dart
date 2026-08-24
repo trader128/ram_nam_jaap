@@ -12,6 +12,7 @@ import '../../../shared/enums/app_language.dart';
 import '../../../shared/ui/app_scaffold.dart';
 import '../../../theme/app_spacing.dart';
 import '../../../theme/app_text_styles.dart';
+import 'widgets/settings_backup_section.dart';
 import 'widgets/settings_count_method_selector.dart';
 import 'widgets/settings_nav_tile.dart';
 import 'widgets/settings_section.dart';
@@ -139,6 +140,8 @@ class SettingsScreen extends ConsumerWidget {
                 ),
               ],
             ),
+            const SizedBox(height: AppSpacing.lg),
+            const SettingsBackupSection(),
             const SizedBox(height: AppSpacing.lg),
             SettingsSection(
               title: AppStrings.supportSection,

@@ -30,6 +30,10 @@ abstract final class HiveKeys {
   static const String welcomeCompleted = 'welcome_completed';
   static const String japCoachCompleted = 'jap_coach_completed';
 
+  static const String syncEnabled = 'cloud_sync_enabled';
+  static const String lastSyncedAt = 'cloud_last_synced_at';
+  static const String localChangedAt = 'cloud_local_changed_at';
+
   /// Builds a per-deity namespaced key, e.g. `ram_today_count`.
   static String forDeity(String deityId, String baseKey) =>
       '${deityId}_$baseKey';

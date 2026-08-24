@@ -9,5 +9,6 @@ abstract final class AppColors {
   static const Color textPrimary = Color(0xFFFFFFFF);
   static const Color textSecondary = Color(0xFFB5BAC5);
   static const Color divider = Color(0xFF2A2E36);
+  static const Color error = Color(0xFFE0574A);
   static const Color overlay = Color(0x66050608);
 }

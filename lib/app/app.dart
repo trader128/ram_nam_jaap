@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../constants/app_strings.dart';
+import '../core/sync/sync_lifecycle_observer.dart';
 import '../core/widgets/deity_asset_precache.dart';
 import '../features/deity/providers/deity_providers.dart';
 import '../features/jap/providers/jap_providers.dart';
@@ -9,8 +10,8 @@ import '../shared/enums/app_language.dart';
 import '../theme/app_theme.dart';
 import 'router.dart';
 
-class RamNamJapApp extends ConsumerWidget {
-  const RamNamJapApp({super.key});
+class BhaktiApp extends ConsumerWidget {
+  const BhaktiApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -21,16 +22,18 @@ class RamNamJapApp extends ConsumerWidget {
     );
     final theme = AppTheme.themed(primary: deity.primary, accent: deity.accent);
 
-    return DeityAssetPrecache(
-      child: MaterialApp.router(
-        title: AppStrings.appName,
-        debugShowCheckedModeBanner: false,
-        theme: theme,
-        darkTheme: theme,
-        themeMode: ThemeMode.dark,
-        locale: language.locale,
-        supportedLocales: AppLanguage.supportedLocales,
-        routerConfig: router,
+    return SyncLifecycleObserver(
+      child: DeityAssetPrecache(
+        child: MaterialApp.router(
+          title: AppStrings.appName,
+          debugShowCheckedModeBanner: false,
+          theme: theme,
+          darkTheme: theme,
+          themeMode: ThemeMode.dark,
+          locale: language.locale,
+          supportedLocales: AppLanguage.supportedLocales,
+          routerConfig: router,
+        ),
       ),
     );
   }

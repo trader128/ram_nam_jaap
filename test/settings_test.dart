@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
 
-import 'package:ram_nam_jap/constants/app_strings.dart';
-import 'package:ram_nam_jap/core/constants/hive_box_names.dart';
-import 'package:ram_nam_jap/core/constants/hive_keys.dart';
-import 'package:ram_nam_jap/core/helpers/color_helper.dart';
-import 'package:ram_nam_jap/features/jap/data/jap_settings_repository.dart';
-import 'package:ram_nam_jap/features/settings/presentation/settings_screen.dart';
-import 'package:ram_nam_jap/shared/enums/count_method.dart';
-import 'package:ram_nam_jap/shared/models/jap_settings.dart';
-import 'package:ram_nam_jap/theme/app_theme.dart';
+import 'package:bhakti/constants/app_strings.dart';
+import 'package:bhakti/core/constants/hive_box_names.dart';
+import 'package:bhakti/core/constants/hive_keys.dart';
+import 'package:bhakti/core/helpers/color_helper.dart';
+import 'package:bhakti/features/jap/data/jap_settings_repository.dart';
+import 'package:bhakti/features/settings/presentation/settings_screen.dart';
+import 'package:bhakti/shared/enums/count_method.dart';
+import 'package:bhakti/shared/models/jap_settings.dart';
+import 'package:bhakti/theme/app_theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {

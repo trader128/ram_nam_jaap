@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:ram_nam_jap/shared/enums/app_language.dart';
-import 'package:ram_nam_jap/shared/enums/count_method.dart';
-import 'package:ram_nam_jap/shared/models/jap_settings.dart';
+import 'package:bhakti/shared/enums/app_language.dart';
+import 'package:bhakti/shared/enums/count_method.dart';
+import 'package:bhakti/shared/models/jap_settings.dart';
 
 void main() {
   test('JapSettings defaults include milestone 5 preferences', () {

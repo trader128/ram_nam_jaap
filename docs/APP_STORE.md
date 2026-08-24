@@ -1,11 +1,11 @@
-# RAM NAM JAP — Relaunch checklist (v1.0.1)
+# BHAKTi — Relaunch checklist (v1.0.1)
 
 ## App Store Connect
 
 | Field | Value |
 |-------|--------|
-| **Name** | RAM NAM JAP |
-| **Subtitle** | Peaceful digital jap counter |
+| **Name** | BHAKTi |
+| **Subtitle** | Bhakti bhav se pooja tak |
 | **Category** | Lifestyle or Health & Fitness |
 | **Price** | Free (confirm — not $99.99) |
 | **Age rating** | Parental Controls → **None** |
@@ -16,7 +16,7 @@
 ## Review notes (paste)
 
 ```
-RAM NAM JAP is an offline chanting counter for personal spiritual practice.
+BHAKTi is a devotional companion for personal spiritual practice, built around a naam jap counter.
 
 HOW TO TEST:
 1. Open app → welcome explains tap-to-chant.

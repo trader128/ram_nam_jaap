@@ -1,11 +1,11 @@
 {
-    "name": "ram_nam_jap",
-    "short_name": "ram_nam_jap",
+    "name": "BHAKTi",
+    "short_name": "BHAKTi",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#050608",
+    "theme_color": "#D4AF37",
+    "description": "BHAKTi — a daily devotional companion: naam jap, calendar, and more.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
